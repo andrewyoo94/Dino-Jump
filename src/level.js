@@ -32,11 +32,37 @@ export default class Level {
         ctx.fillStyle = "black";
 
         ctx.fillRect(
-            50,
-            20,
+            125,
+            500,
             100,
             10
         );
+    }
+
+    collidesWith(dino) {
+        //this function returns true if the the rectangles overlap
+        const _overlap = (plat, dino) => {
+            //check that they don't overlap in the x axis
+            if (plat.left > dino.right || plat.right < dino.left) {
+                return false;
+            }
+            //check that they don't overlap in the y axis
+            if (plat.top > dino.bottom || plat.bottom < dino.top) {
+                return false;
+            }
+            return true;
+        };
+        let collision = false;
+
+        // this.eachPipe((pipe) => {
+            if (
+                //check if the dino is overlapping (colliding) with either pipe
+                _overlap(pipe.topPipe, dino) ||
+                _overlap(pipe.bottomPipe, dino)
+            ) { collision = true; }
+        // });
+        
+        return collision;
     }
 
     animate(ctx) {
