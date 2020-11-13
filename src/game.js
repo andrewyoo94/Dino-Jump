@@ -13,6 +13,10 @@ export default class Game {
         //first we move and draw the level
         this.level.animate(this.ctx);
         this.dino.animate(this.ctx);
+
+        if (!this.level.collidesWith(this.dino)) {
+            this.dino.jump();
+        }
     
         if (this.running) {
             //This calls this function again, after around 1/60th of a second

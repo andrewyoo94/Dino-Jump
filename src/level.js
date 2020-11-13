@@ -6,27 +6,8 @@ export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
 
-        // this.platform = [
-        //     this.randomPlatform(firstPlatformDistance)
-            // this.randomPlatform(firstPlatformDistance + CONSTANTS.Platform_SPACING),
-            // this.randomPlatform(firstPlatformDistance + (CONSTANTS.Platform_SPACING * 2)),
-        // ];
+        this.platform = [];
     }
-
-    // randomPlatform(x) {
-    //     const heightRange = this.dimensions.height - (2 * CONSTANTS.EDGE_BUFFER) - CONSTANTS.GAP_HEIGHT;
-    //     const gapTop = (Math.random() * heightRange) + CONSTANTS.EDGE_BUFFER;
-    //     const platform = {
-    //         dimensions: {
-    //             left: x,
-    //             right: CONSTANTS.PIPE_WIDTH + x,
-    //             top: 0,
-    //             bottom: gapTop
-    //         },
-    //         passed: false
-    //     };
-    //     return platform
-    // }
 
     drawPlatforms(ctx) {
         ctx.fillStyle = "black";
@@ -53,15 +34,16 @@ export default class Level {
             return true;
         };
         let collision = false;
-
-        // this.eachPipe((pipe) => {
-            if (
-                //check if the dino is overlapping (colliding) with either pipe
-                _overlap(pipe.topPipe, dino) ||
-                _overlap(pipe.bottomPipe, dino)
-            ) { collision = true; }
-        // });
         
+        // this.eachPipe((pipe) => {
+            //check if the dino is overlapping (colliding) with either pipe
+
+        if (_overlap(this.platform, dino) ) { 
+            collision = true; 
+        }
+        
+        // });
+
         return collision;
     }
 
