@@ -1,8 +1,9 @@
 const CONSTANTS = {
     DINO_WIDTH: 40,
     DINO_HEIGHT: 60,
-    GRAVITY: 0.8,
-    TERMINAL_VEL: 12
+    GRAVITY: 0.3,
+    TERMINAL_VEL: 10,
+    JUMP_SPEED: 12,
 };
 
 export default class Dino {
@@ -42,7 +43,7 @@ export default class Dino {
         //if this were a more realistic bird simulation, we would be adding to the velocity
         //instead of just assigning it outright
         //to make the experience more fun and 'bouncy' we just set it directly
-        this.vel = -1 * CONSTANTS.FLAP_SPEED;
+        this.vel = -1 * (this.vel + CONSTANTS.JUMP_SPEED);
     }
 
     animate(ctx) {
