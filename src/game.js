@@ -14,7 +14,7 @@ export default class Game {
         this.level.animate(this.ctx);
         this.dino.animate(this.ctx);
 
-        if (!this.level.collidesWith(this.dino)) {
+        if (this.level.collidesWith(this.dino)) {
             this.dino.jump();
         }
     

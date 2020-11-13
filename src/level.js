@@ -1,32 +1,46 @@
 const CONSTANTS = {
-    PIPE_WIDTH: 75
+    PLAT_WIDTH: 100,
+    PLAT_HEIGHT: 10
 };
 
 export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
 
-        this.platform = [];
+        this.platforms = [ this.createPlat() ]
+    }
+
+    createPlat() {
+        const plat = {
+            dim: {
+                x: 125,
+                y: 500,
+                width: CONSTANTS.PLAT_WIDTH,
+                height: CONSTANTS.PLAT_HEIGHT
+            },
+        }
+        return plat;
     }
 
     drawPlatforms(ctx) {
         ctx.fillStyle = "black";
 
         ctx.fillRect(
-            125,
-            500,
-            100,
-            10
+            this.platforms[0].dim.x,
+            this.platforms[0].dim.y,
+            this.platforms[0].dim.width,
+            this.platforms[0].dim.height
         );
     }
 
     collidesWith(dino) {
         //this function returns true if the the rectangles overlap
         const _overlap = (plat, dino) => {
+            debugger
             //check that they don't overlap in the x axis
-            if (plat.left > dino.right || plat.right < dino.left) {
-                return false;
-            }
+            // if (plat.left > dino.right || plat.right < dino.left) {
+            //     return false;
+            // }
             //check that they don't overlap in the y axis
             if (plat.top > dino.bottom || plat.bottom < dino.top) {
                 return false;
@@ -38,10 +52,11 @@ export default class Level {
         // this.eachPipe((pipe) => {
             //check if the dino is overlapping (colliding) with either pipe
 
-        if (_overlap(this.platform, dino) ) { 
+        if (_overlap(this.platforms[0], dino) ) {
+            debugger 
             collision = true; 
         }
-        
+
         // });
 
         return collision;
