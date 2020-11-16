@@ -46,6 +46,15 @@ export default class Dino {
         this.vel = -1 * (this.vel + CONSTANTS.JUMP_SPEED);
     }
 
+    bounds() {
+        return {
+            left: this.x,
+            right: this.x + CONSTANTS.DINO_WIDTH,
+            top: this.y,
+            bottom: this.y + CONSTANTS.DINO_HEIGHT
+        }
+    }
+
     animate(ctx) {
         this.moveDino();
         this.drawDino(ctx);

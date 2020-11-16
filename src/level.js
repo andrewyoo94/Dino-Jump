@@ -42,7 +42,7 @@ export default class Level {
             //     return false;
             // }
             //check that they don't overlap in the y axis
-            if (plat.top > dino.bottom || plat.bottom < dino.top) {
+            if (plat.dim.x > dino.bottom || plat.dim.y < dino.top) {
                 return false;
             }
             return true;
