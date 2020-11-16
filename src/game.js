@@ -15,7 +15,6 @@ export default class Game {
         this.dino.animate(this.ctx);
 
         if (this.level.collidesWith(this.dino)) {
-            debugger
             this.dino.jump();
         }
     

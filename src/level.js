@@ -18,7 +18,12 @@ export default class Level {
                 width: CONSTANTS.PLAT_WIDTH,
                 height: CONSTANTS.PLAT_HEIGHT
             },
+
+            hitbox: {
+
+            }
         }
+
         return plat;
     }
 
@@ -33,34 +38,34 @@ export default class Level {
         );
     }
 
-    collidesWith(dino) {
-        //this function returns true if the the rectangles overlap
-        const _overlap = (plat, dino) => {
-            debugger
-            //check that they don't overlap in the x axis
-            // if (plat.left > dino.right || plat.right < dino.left) {
-            //     return false;
-            // }
-            //check that they don't overlap in the y axis
-            if (plat.dim.x > dino.bottom || plat.dim.y < dino.top) {
-                return false;
-            }
-            return true;
-        };
-        let collision = false;
+    // collidesWith(dino) {
+    //     //this function returns true if the the rectangles overlap
+    //     const _overlap = (plat, dino) => {
+    //         debugger
+    //         //check that they don't overlap in the x axis
+    //         if (plat.dim.x > dino.right || plat.dim.y < dino.left) {
+    //             return false;
+    //         }
+    //         //check that they don't overlap in the y axis
+    //         if (plat.dim.width > dino.bottom || plat.dim.height < dino.top) {
+    //             return false;
+    //         }
+    //         return true;
+    //     };
+    //     let collision = false;
         
-        // this.eachPipe((pipe) => {
-            //check if the dino is overlapping (colliding) with either pipe
+    //     // this.eachPipe((pipe) => {
+    //         //check if the dino is overlapping (colliding) with either pipe
 
-        if (_overlap(this.platforms[0], dino) ) {
-            debugger 
-            collision = true; 
-        }
+    //     if (_overlap(this.platforms[0], dino) ) {
+    //         debugger 
+    //         collision = true; 
+    //     }
 
-        // });
+    //     // });
 
-        return collision;
-    }
+    //     return collision;
+    // }
 
     animate(ctx) {
         this.drawBackground(ctx);
@@ -70,5 +75,37 @@ export default class Level {
     drawBackground(ctx) {
         ctx.fillStyle = "skyblue";
         ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+    }
+
+    collidesWith(dino) {
+        //this function returns true if the the rectangles overlap
+        const _overlap = (plat, dino) => {
+            //check that they don't overlap in the x axis
+
+            // debugger
+            if(plat.dim.x > dino.x + 40 || plat.dim.x + 100 < dino.x) {
+                // debugger
+                return false;
+            }
+
+            //check that they don't overlap in the y axis
+            if (plat.dim.y > dino.y) {
+                // debugger
+                return false;
+            }
+            return true;
+        };
+        let collision = false;
+
+        // this.eachPipe((pipe) => {
+        //check if the dino is overlapping (colliding) with either pipe
+
+        if (_overlap(this.platforms[0], dino)) {
+            collision = true;
+        }
+
+        // });
+
+        return collision;
     }
 }
