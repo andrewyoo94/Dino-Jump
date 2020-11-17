@@ -19,9 +19,6 @@ export default class Level {
     }
 
     randomPlat(minPlatDistance) {
-        const heightRange = this.dimensions.height - (2 * CONSTANTS.EDGE_BUFFER) - CONSTANTS.GAP_HEIGHT;
-        const gapTop = (Math.random() * heightRange) + CONSTANTS.EDGE_BUFFER;
-
         const randX = Math.floor(Math.random() * this.dimensions.width);
         const randY = Math.floor(Math.random() * 60) + minPlatDistance;
 
@@ -32,6 +29,23 @@ export default class Level {
             height: CONSTANTS.PLAT_HEIGHT
         }
         return plat
+    }
+
+    eachPlat(callback) {
+        this.platforms.forEach(callback.bind(this));
+    }
+
+    drawPlatforms(ctx) {
+        this.eachPlat(function (plat) {
+            ctx.fillStyle = "black";
+
+            ctx.fillRect(
+                plat.x,
+                plat.y,
+                plat.width,
+                plat.height
+            )
+        });
     }
 
     // createPlat() {
