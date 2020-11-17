@@ -1,38 +1,72 @@
 const CONSTANTS = {
     PLAT_WIDTH: 100,
-    PLAT_HEIGHT: 10
+    PLAT_HEIGHT: 10,
+    PLAT_START_HEIGHT: 550
 };
 
 export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
 
-        this.platforms = [ this.createPlat() ]
+        // this.platforms = [ this.createPlat() ]
+
+        const minPlatDistance = this.dimensions.height/4;
+
+        this.platforms = [
+            this.randomPlat(minPlatDistance),
+            this.randomPlat(minPlatDistance)
+        ];
     }
 
-    createPlat() {
+    randomPlat(minPlatDistance) {
+        const heightRange = this.dimensions.height - (2 * CONSTANTS.EDGE_BUFFER) - CONSTANTS.GAP_HEIGHT;
+        const gapTop = (Math.random() * heightRange) + CONSTANTS.EDGE_BUFFER;
+
+        const randX = Math.floor(Math.random() * this.dimensions.width);
+        const randY = Math.floor(Math.random() * 60) + minPlatDistance;
+
         const plat = {
-            dim: {
-                x: 125,
-                y: 500,
-                width: CONSTANTS.PLAT_WIDTH,
-                height: CONSTANTS.PLAT_HEIGHT
-            },
+            x: randX,
+            y: randY,
+            width: CONSTANTS.PLAT_WIDTH,
+            height: CONSTANTS.PLAT_HEIGHT
         }
-
-        return plat;
+        return plat
     }
 
-    drawPlatforms(ctx) {
-        ctx.fillStyle = "black";
+    // createPlat() {
+    //     const plat = {
+    //         dim: {
+    //             x: 125,
+    //             y: CONSTANTS.PLAT_START_HEIGHT,
+    //             width: CONSTANTS.PLAT_WIDTH,
+    //             height: CONSTANTS.PLAT_HEIGHT
+    //         },
+    //     }
 
-        ctx.fillRect(
-            this.platforms[0].dim.x,
-            this.platforms[0].dim.y,
-            this.platforms[0].dim.width,
-            this.platforms[0].dim.height
-        );
-    }
+    //     return plat;
+    // }
+
+    // drawPlatforms(ctx) {
+    //     ctx.fillStyle = "black";
+
+    //     ctx.fillRect(
+    //         this.platforms[0].dim.x,
+    //         this.platforms[0].dim.y,
+    //         this.platforms[0].dim.width,
+    //         this.platforms[0].dim.height
+    //     );
+    // }
+
+
+
+
+
+
+
+
+
+
 
     animate(ctx) {
         this.drawBackground(ctx);

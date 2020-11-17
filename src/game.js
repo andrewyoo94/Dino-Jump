@@ -1,8 +1,6 @@
 import Level from "./level";
 import Dino from "./dino";
 
-
-
 export default class Game {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
@@ -40,18 +38,6 @@ export default class Game {
         this.animate();
     }
 
-    // registerEvents() {
-    //     this.boundClickHandler = this.click.bind(this);
-    //     this.ctx.canvas.addEventListener("mousedown", this.boundClickHandler);
-    // }
-    
-    // click(e) {
-    //     if (!this.running) {
-    //         this.play();
-    //     }
-    //     this.dino.jump();
-    // }
-
     registerEvents() {
         this.boundClickHandler = this.input.bind(this);
         document.addEventListener("keydown", this.boundClickHandler);
@@ -66,16 +52,4 @@ export default class Game {
         }
     }
 
-    // registerEvents() {
-    //     this.ctx.canvas.addEventListener("keydown", function(event) {
-    //         debugger
-    //         if (event.keyCode === 65 || event.keyCode === 37) { // A or Arrow_Left
-    //             this.dino.controlDino("left");
-
-    //         } 
-    //         if (event.keyCode === 68 || event.keyCode === 39) { // D or Arrow_Right
-    //             this.dino.controlDino("right");
-    //         }
-    //     });
-    // }
 }

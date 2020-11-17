@@ -48,15 +48,6 @@ export default class Dino {
         this.vel = -1 * (this.vel + CONSTANTS.JUMP_SPEED);
     }
 
-    bounds() {
-        return {
-            left: this.x,
-            right: this.x + CONSTANTS.DINO_WIDTH,
-            top: this.y,
-            bottom: this.y + CONSTANTS.DINO_HEIGHT
-        }
-    }
-
     animate(ctx) {
         this.moveDino();
         this.drawDino(ctx);
@@ -64,10 +55,10 @@ export default class Dino {
 
     controlDino(direction) {
         if(direction=="left") {
-            this.x -= 5;
+            this.x -= 9;
         } 
         if(direction=="right") {
-            this.x += 5;
+            this.x += 9;
         }
     }
 }
