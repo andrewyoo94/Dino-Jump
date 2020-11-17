@@ -1,26 +1,35 @@
 const CONSTANTS = {
     PLAT_WIDTH: 100,
     PLAT_HEIGHT: 10,
-    PLAT_START_HEIGHT: 550
+    PLAT_START_HEIGHT: 450  
 };
 
 export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
 
-        // this.platforms = [ this.createPlat() ]
-
-        const minPlatDistance = this.dimensions.height/4;
+        const minPlatDistance = this.dimensions.height/2;
 
         this.platforms = [
-            this.randomPlat(minPlatDistance),
+            this.startPlat(),
             this.randomPlat(minPlatDistance)
         ];
     }
 
+    startPlat() {
+        const plat = {
+            x: 125,
+            y: 550,
+            width: CONSTANTS.PLAT_WIDTH,
+            height: CONSTANTS.PLAT_HEIGHT
+        }
+
+        return plat
+    }
+
     randomPlat(minPlatDistance) {
         const randX = Math.floor(Math.random() * this.dimensions.width);
-        const randY = Math.floor(Math.random() * 60) + minPlatDistance;
+        const randY = Math.floor(Math.random() * 100) + minPlatDistance;
 
         const plat = {
             x: randX,
@@ -48,40 +57,6 @@ export default class Level {
         });
     }
 
-    // createPlat() {
-    //     const plat = {
-    //         dim: {
-    //             x: 125,
-    //             y: CONSTANTS.PLAT_START_HEIGHT,
-    //             width: CONSTANTS.PLAT_WIDTH,
-    //             height: CONSTANTS.PLAT_HEIGHT
-    //         },
-    //     }
-
-    //     return plat;
-    // }
-
-    // drawPlatforms(ctx) {
-    //     ctx.fillStyle = "black";
-
-    //     ctx.fillRect(
-    //         this.platforms[0].dim.x,
-    //         this.platforms[0].dim.y,
-    //         this.platforms[0].dim.width,
-    //         this.platforms[0].dim.height
-    //     );
-    // }
-
-
-
-
-
-
-
-
-
-
-
     animate(ctx) {
         this.drawBackground(ctx);
         this.drawPlatforms(ctx);
@@ -95,28 +70,25 @@ export default class Level {
     collidesWith(dino) {
         //this function returns true if the the rectangles overlap
         const _overlap = (plat, dino) => {
+            
             //check that they don't overlap in the x axis
-
-            if(plat.dim.x > dino.x + dino.width || plat.dim.x + CONSTANTS.PLAT_WIDTH < dino.x) {
+            if(plat.x > dino.x + dino.width || plat.x + CONSTANTS.PLAT_WIDTH < dino.x) {
                 return false;
             }
 
             //check that they don't overlap in the y axis
-            if (plat.dim.y > dino.y + dino.height) {
+            if (plat.y > dino.y + dino.height) {
                 return false;
             }
             return true;
         };
         let collision = false;
 
-        // this.eachPipe((pipe) => {
-        //check if the dino is overlapping (colliding) with either pipe
-
-        if (_overlap(this.platforms[0], dino)) {
-            collision = true;
-        }
-
-        // });
+        this.eachPlat((plat) => {
+            if (_overlap(plat, dino)) { 
+                collision = true; 
+            }
+        });
 
         return collision;
     }
