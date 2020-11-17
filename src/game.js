@@ -59,8 +59,7 @@ export default class Game {
 
     input(event) {
         if (event.keyCode === 65 || event.keyCode === 37) { // A or Arrow_Left
-            this.dino.jump();
-
+            this.dino.controlDino("left");
         }
         if (event.keyCode === 68 || event.keyCode === 39) { // D or Arrow_Right
             this.dino.controlDino("right");

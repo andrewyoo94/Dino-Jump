@@ -64,10 +64,10 @@ export default class Dino {
 
     controlDino(direction) {
         if(direction=="left") {
-            this.x -= -1;
+            this.x -= 5;
         } 
         if(direction=="right") {
-            this.x += 1;
+            this.x += 5;
         }
     }
 }
