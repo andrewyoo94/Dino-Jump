@@ -53,15 +53,30 @@ export default class Game {
     // }
 
     registerEvents() {
-        this.ctx.canvas.addEventListener("keydown", function(event) {
-            debugger
-            if (event.keyCode === 65 || event.keyCode === 37) { // A or Arrow_Left
-                this.dino.controlDino("left");
-
-            } 
-            if (event.keyCode === 68 || event.keyCode === 39) { // D or Arrow_Right
-                this.dino.controlDino("right");
-            }
-        });
+        this.boundClickHandler = this.input.bind(this);
+        document.addEventListener("keydown", this.boundClickHandler);
     }
+
+    input(event) {
+        if (event.keyCode === 65 || event.keyCode === 37) { // A or Arrow_Left
+            this.dino.jump();
+
+        }
+        if (event.keyCode === 68 || event.keyCode === 39) { // D or Arrow_Right
+            this.dino.controlDino("right");
+        }
+    }
+
+    // registerEvents() {
+    //     this.ctx.canvas.addEventListener("keydown", function(event) {
+    //         debugger
+    //         if (event.keyCode === 65 || event.keyCode === 37) { // A or Arrow_Left
+    //             this.dino.controlDino("left");
+
+    //         } 
+    //         if (event.keyCode === 68 || event.keyCode === 39) { // D or Arrow_Right
+    //             this.dino.controlDino("right");
+    //         }
+    //     });
+    // }
 }
