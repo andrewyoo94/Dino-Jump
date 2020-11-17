@@ -18,10 +18,6 @@ export default class Level {
                 width: CONSTANTS.PLAT_WIDTH,
                 height: CONSTANTS.PLAT_HEIGHT
             },
-
-            hitbox: {
-
-            }
         }
 
         return plat;
@@ -38,35 +34,6 @@ export default class Level {
         );
     }
 
-    // collidesWith(dino) {
-    //     //this function returns true if the the rectangles overlap
-    //     const _overlap = (plat, dino) => {
-    //         debugger
-    //         //check that they don't overlap in the x axis
-    //         if (plat.dim.x > dino.right || plat.dim.y < dino.left) {
-    //             return false;
-    //         }
-    //         //check that they don't overlap in the y axis
-    //         if (plat.dim.width > dino.bottom || plat.dim.height < dino.top) {
-    //             return false;
-    //         }
-    //         return true;
-    //     };
-    //     let collision = false;
-        
-    //     // this.eachPipe((pipe) => {
-    //         //check if the dino is overlapping (colliding) with either pipe
-
-    //     if (_overlap(this.platforms[0], dino) ) {
-    //         debugger 
-    //         collision = true; 
-    //     }
-
-    //     // });
-
-    //     return collision;
-    // }
-
     animate(ctx) {
         this.drawBackground(ctx);
         this.drawPlatforms(ctx);
@@ -82,15 +49,12 @@ export default class Level {
         const _overlap = (plat, dino) => {
             //check that they don't overlap in the x axis
 
-            // debugger
-            if(plat.dim.x > dino.x + 40 || plat.dim.x + 100 < dino.x) {
-                // debugger
+            if(plat.dim.x > dino.x + dino.width || plat.dim.x + CONSTANTS.PLAT_WIDTH < dino.x) {
                 return false;
             }
 
             //check that they don't overlap in the y axis
-            if (plat.dim.y > dino.y) {
-                // debugger
+            if (plat.dim.y > dino.y + dino.height) {
                 return false;
             }
             return true;

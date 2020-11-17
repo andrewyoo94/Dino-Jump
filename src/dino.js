@@ -13,6 +13,8 @@ export default class Dino {
         this.x = this.dimensions.width / 3;
         this.y = this.dimensions.height / 2;
         this.vel = 0;
+        this.width = CONSTANTS.DINO_WIDTH;
+        this.height = CONSTANTS.DINO_HEIGHT;
     }
 
     drawDino(ctx) {
@@ -58,5 +60,14 @@ export default class Dino {
     animate(ctx) {
         this.moveDino();
         this.drawDino(ctx);
+    }
+
+    controlDino(direction) {
+        if(direction=="left") {
+            this.x -= -1;
+        } 
+        if(direction=="right") {
+            this.x += 1;
+        }
     }
 }
