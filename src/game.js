@@ -51,5 +51,4 @@ export default class Game {
             this.dino.controlDino("right");
         }
     }
-
 }

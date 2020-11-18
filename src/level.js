@@ -114,11 +114,4 @@ export default class Level {
 
         return collision;
     }
-
-    isOutOfBounds(x) {
-        if(x > this.dimensions.x || x < 0) {
-            return true;
-        }
-        return false;
-    };
 }
