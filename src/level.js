@@ -59,23 +59,23 @@ export default class Level {
         });
     }
 
-    movePlats() {
-        this.eachPlat(function (plat) {
-            plat.y += CONSTANTS.PLAT_SPEED;
-        });
+    // movePlats() {
+    //     this.eachPlat(function (plat) {
+    //         plat.y += CONSTANTS.PLAT_SPEED;
+    //     });
 
-        //if a pipe has left the screen add a new one to the end
-        if (this.platforms[0].y <= this.dimensions.y) {
-            this.platforms.shift();
-            const newY = this.pipes[1].y + CONSTANTS.MIN_PLAT_DIST;
-            this.platforms.push(this.randomPlat(newY));
-        }
-    }
+    //     //if a pipe has left the screen add a new one to the end
+    //     if (this.platforms[0].y <= this.dimensions.y) {
+    //         this.platforms.shift();
+    //         const newY = this.pipes[1].y + CONSTANTS.MIN_PLAT_DIST;
+    //         this.platforms.push(this.randomPlat(newY));
+    //     }
+    // }
 
     animate(ctx) {
         this.drawBackground(ctx);
         this.drawPlatforms(ctx);
-        this.movePlats();
+        // this.movePlats();
     }
 
     drawBackground(ctx) {
@@ -93,9 +93,15 @@ export default class Level {
             }
 
             //check that they don't overlap in the y axis
-            if (plat.y > dino.y + dino.height) {
+
+            if (dino.y + dino.height < plat.y && plat.y - 1 > dino.y + dino.height) {
                 return false;
             }
+
+            // if (plat.y > dino.y + dino.height && ) {
+            //     return false;
+            // }
+
             return true;
         };
         let collision = false;
@@ -108,4 +114,11 @@ export default class Level {
 
         return collision;
     }
+
+    isOutOfBounds(x) {
+        if(x > this.dimensions.x || x < 0) {
+            return true;
+        }
+        return false;
+    };
 }
