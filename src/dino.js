@@ -1,7 +1,7 @@
 const CONSTANTS = {
     DINO_WIDTH: 40,
     DINO_HEIGHT: 60,
-    GRAVITY: 0.3,
+    GRAVITY: 0.25,
     TERMINAL_VEL: 10,
     JUMP_SPEED: 12,
 };

@@ -1,18 +1,20 @@
 const CONSTANTS = {
     PLAT_WIDTH: 100,
     PLAT_HEIGHT: 10,
-    PLAT_START_HEIGHT: 450  
+    PLAT_START_HEIGHT: 450,
+    MIN_PLAT_DIST: 330,
+    PLAT_SPEED: 2  
 };
 
 export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
 
-        const minPlatDistance = this.dimensions.height/2;
-
         this.platforms = [
             this.startPlat(),
-            this.randomPlat(minPlatDistance)
+                            // 640 - 60 
+            this.randomPlat(CONSTANTS.MIN_PLAT_DIST),
+            this.randomPlat(CONSTANTS.MIN_PLAT_DIST*2)
         ];
     }
 
@@ -28,8 +30,8 @@ export default class Level {
     }
 
     randomPlat(minPlatDistance) {
-        const randX = Math.floor(Math.random() * this.dimensions.width);
-        const randY = Math.floor(Math.random() * 100) + minPlatDistance;
+        let randX = Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
+        let randY = Math.floor(Math.random() * 100) + minPlatDistance;
 
         const plat = {
             x: randX,
@@ -57,9 +59,23 @@ export default class Level {
         });
     }
 
+    movePlats() {
+        this.eachPlat(function (plat) {
+            plat.y += CONSTANTS.PLAT_SPEED;
+        });
+
+        //if a pipe has left the screen add a new one to the end
+        if (this.platforms[0].y <= this.dimensions.y) {
+            this.platforms.shift();
+            const newY = this.pipes[1].y + CONSTANTS.MIN_PLAT_DIST;
+            this.platforms.push(this.randomPlat(newY));
+        }
+    }
+
     animate(ctx) {
         this.drawBackground(ctx);
         this.drawPlatforms(ctx);
+        this.movePlats();
     }
 
     drawBackground(ctx) {
