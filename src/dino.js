@@ -39,6 +39,10 @@ export default class Dino {
                 this.vel = CONSTANTS.TERMINAL_VEL * -1;
             }
         }
+
+        if (this.isOutOfBounds(this.x)) {
+            this.wrap(this.x);
+        };
     }
 
     jump() {
@@ -54,10 +58,6 @@ export default class Dino {
     }
 
     controlDino(direction) {
-        if(this.isOutOfBounds(this.x)) {
-            this.wrap(this.x)
-        }
-
         if(direction=="left") {
             this.x -= 9;
         } 
@@ -68,7 +68,7 @@ export default class Dino {
     }
 
     isOutOfBounds(x) {
-        if (x < 0 || x > this.dimensions.x) {
+        if (x < 0 || x > this.dimensions.width) {
             return true;
         };
         return false;
@@ -76,10 +76,10 @@ export default class Dino {
 
     wrap(x) {
         if (x > this.dimensions.x) {
-            return 0;
+            this.x = 0;
         }
         if (x < 0) {
-            return this.dimensions.x;
+            this.x = this.dimensions.x;
         }
     }
 }
