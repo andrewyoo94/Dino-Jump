@@ -14,7 +14,7 @@ export default class Level {
             this.startPlat(),
                             // 640 - 60 
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST),
-            this.randomPlat(CONSTANTS.MIN_PLAT_DIST*2)
+            this.randomPlat(CONSTANTS.MIN_PLAT_DIST/2)
         ];
     }
 
@@ -59,23 +59,23 @@ export default class Level {
         });
     }
 
-    // movePlats() {
-    //     this.eachPlat(function (plat) {
-    //         plat.y += CONSTANTS.PLAT_SPEED;
-    //     });
+    movePlats() {
+        this.eachPlat(function (plat) {
+            plat.y += CONSTANTS.PLAT_SPEED;
+        });
 
-    //     //if a pipe has left the screen add a new one to the end
-    //     if (this.platforms[0].y <= this.dimensions.y) {
-    //         this.platforms.shift();
-    //         const newY = this.pipes[1].y + CONSTANTS.MIN_PLAT_DIST;
-    //         this.platforms.push(this.randomPlat(newY));
-    //     }
-    // }
+        //if a pipe has left the screen add a new one to the end
+        if (this.platforms[0].y >= this.dimensions.height) {
+            this.platforms.shift();
+            const newY = this.platforms[1].y + CONSTANTS.MIN_PLAT_DIST;
+            this.platforms.push(this.startPlat());
+        }
+    }
 
     animate(ctx) {
         this.drawBackground(ctx);
         this.drawPlatforms(ctx);
-        // this.movePlats();
+        this.movePlats();
     }
 
     drawBackground(ctx) {
