@@ -14,7 +14,8 @@ export default class Level {
             this.startPlat(),
                             // 640 - 60 
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST),
-            this.randomPlat(CONSTANTS.MIN_PLAT_DIST/2)
+            this.randomPlat(CONSTANTS.MIN_PLAT_DIST / 2),
+            this.randomPlat(CONSTANTS.MIN_PLAT_DIST / 4)
         ];
     }
 
@@ -39,7 +40,19 @@ export default class Level {
             width: CONSTANTS.PLAT_WIDTH,
             height: CONSTANTS.PLAT_HEIGHT
         }
-        return plat
+        return plat;
+    }
+
+    pushNewPlat() {
+        let randX = Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
+
+        const plat = {
+            x: randX,
+            y: 0,
+            width: CONSTANTS.PLAT_WIDTH,
+            height: CONSTANTS.PLAT_HEIGHT
+        }
+        return plat;
     }
 
     eachPlat(callback) {
@@ -68,7 +81,7 @@ export default class Level {
         if (this.platforms[0].y >= this.dimensions.height) {
             this.platforms.shift();
             const newY = this.platforms[1].y + CONSTANTS.MIN_PLAT_DIST;
-            this.platforms.push(this.startPlat());
+            this.platforms.push(this.pushNewPlat());
         }
     }
 
