@@ -17,7 +17,7 @@ export default class Dino {
         this.height = CONSTANTS.DINO_HEIGHT;
     }
 
-    drawDino(ctx) {
+    drawDino(ctx, x) {
         ctx.fillStyle = "grey";
         ctx.fillRect(this.x, this.y, CONSTANTS.DINO_WIDTH, CONSTANTS.DINO_HEIGHT);
     }
@@ -40,9 +40,9 @@ export default class Dino {
             }
         }
 
-        if (this.isOutOfBounds(this.x)) {
-            this.wrap(this.x);
-        };
+        // if (this.isOutOfBounds(this.x)) {
+        //     this.wrap(this.x);
+        // };
     }
 
     jump() {
@@ -54,6 +54,12 @@ export default class Dino {
 
     animate(ctx) {
         this.moveDino();
+        if (this.isOutOfBounds(this.x) == "left") {
+            this.drawDino(ctx, this.dimensions.x);
+        }  
+        if (this.isOutOfBounds(this.x) == "right"){
+            this.drawDino(ctx, 0);
+        }
         this.drawDino(ctx);
     }
 
@@ -67,9 +73,19 @@ export default class Dino {
         }
     }
 
+    // isOutOfBounds(x) {
+    //     if (x < 0 || x > this.dimensions.width) {
+    //         return true;
+    //     };
+    //     return false;
+    // };
+
     isOutOfBounds(x) {
-        if (x < 0 || x > this.dimensions.width) {
-            return true;
+        if (x < 0) {
+            return "left"
+        };
+        if (x > this.dimensions.width) {
+            return "right";
         };
         return false;
     };
