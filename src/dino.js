@@ -11,7 +11,7 @@ export default class Dino {
     constructor(dimensions) {
         this.dimensions = dimensions;
         this.x = this.dimensions.width / 3;
-        this.y = this.dimensions.height / 2;
+        this.y = 450;
         this.vel = 0;
         this.width = CONSTANTS.DINO_WIDTH;
         this.height = CONSTANTS.DINO_HEIGHT;
@@ -91,6 +91,7 @@ export default class Dino {
     };
 
     wrap(x) {
+        debugger
         if (x > this.dimensions.x) {
             this.x = 0;
         }

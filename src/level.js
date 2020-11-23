@@ -106,8 +106,7 @@ export default class Level {
             }
 
             //check that they don't overlap in the y axis
-
-            if (dino.y + dino.height < plat.y && plat.y - 1 > dino.y + dino.height) {
+            if (dino.y + 60 > plat.y + CONSTANTS.PLAT_HEIGHT || dino.y + 60 < plat.y ) {
                 return false;
             }
 
