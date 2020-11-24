@@ -6,6 +6,9 @@ const CONSTANTS = {
     JUMP_SPEED: 12,
 };
 
+const dinoSprite = new Image();
+dinoSprite.src = "img/dino_sprite.png";
+
 export default class Dino {
 
     constructor(dimensions) {
@@ -20,6 +23,7 @@ export default class Dino {
     drawDino(ctx, x) {
         ctx.fillStyle = "grey";
         ctx.fillRect(this.x, this.y, CONSTANTS.DINO_WIDTH, CONSTANTS.DINO_HEIGHT);
+        ctx.drawImage(dinoSprite, 2122, 6, 80, 86, this.x, this.y, this.width, this.height);
     }
 
     moveDino() {
