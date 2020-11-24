@@ -7,12 +7,20 @@ export default class Game {
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.registerEvents();
         this.restart();
+        this.dinoSprite = new Image(); 
+        dinoSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+    }
+
+    drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
+        this.ctx.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
     }
     
     animate() {
         //first we move and draw the level
         this.level.animate(this.ctx);
         this.dino.animate(this.ctx);
+
+        this.ctx.drawSprite(this.dinoSprite, 0, 0, 50, 50, 0, 0)
 
         if (this.level.collidesWith(this.dino)) {
             this.dino.jump();
