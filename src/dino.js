@@ -7,7 +7,7 @@ const CONSTANTS = {
 };
 
 const dinoSprite = new Image();
-dinoSprite.src = "img/dino_sprite.png";
+dinoSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 
 export default class Dino {
 
