@@ -8,10 +8,6 @@ export default class Game {
         this.registerEvents();
         this.restart();
     }
-
-    // drawSprite(img, sX, sY, sW, sH, dX, dY, dW, dH) {
-    //     this.ctx.drawImage(img, sX, sY, sW, sH, dX, dY, dW, dH);
-    // }
     
     animate() {
         //first we move and draw the level

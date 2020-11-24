@@ -6,17 +6,22 @@ const CONSTANTS = {
     PLAT_SPEED: 2  
 };
 
+const cloudSprite = new Image();
+cloudSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+
 export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
 
         this.platforms = [
             this.startPlat(),
-                            // 640 - 60 
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST),
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST / 2),
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST / 4)
         ];
+
+        // this.clouds = [
+        // ];
     }
 
     startPlat() {
@@ -92,8 +97,10 @@ export default class Level {
     }
 
     drawBackground(ctx) {
-        ctx.fillStyle = "skyblue";
+        ctx.fillStyle = "white";
         ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
+
+        ctx.drawImage(cloudSprite, 174, 2, 84, 27, this.x, this.y, 84, 27);
     }
 
     collidesWith(dino) {

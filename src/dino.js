@@ -23,7 +23,7 @@ export default class Dino {
     drawDino(ctx, x) {
         ctx.fillStyle = "grey";
         ctx.fillRect(this.x, this.y, CONSTANTS.DINO_WIDTH, CONSTANTS.DINO_HEIGHT);
-        ctx.drawImage(dinoSprite, 2122, 6, 80, 86, this.x, this.y, this.width, this.height);
+        ctx.drawImage(dinoSprite, 2122, 6, 80, 86, this.x, this.y, this.width + 8, this.height + 8);
     }
 
     moveDino() {
