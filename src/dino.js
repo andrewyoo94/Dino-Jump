@@ -1,9 +1,11 @@
 const CONSTANTS = {
-    DINO_WIDTH: 40,
-    DINO_HEIGHT: 60,
+    DINO_WIDTH: 70,
+    DINO_HEIGHT: 75,
     GRAVITY: 0.25,
     TERMINAL_VEL: 10,
     JUMP_SPEED: 12,
+    FRAME_X: 0,
+    FRAME_Y: 0
 };
 
 const dinoSprite = new Image();
@@ -22,8 +24,8 @@ export default class Dino {
 
     drawDino(ctx, x) {
         ctx.fillStyle = "grey";
-        ctx.fillRect(this.x, this.y, CONSTANTS.DINO_WIDTH, CONSTANTS.DINO_HEIGHT);
-        ctx.drawImage(dinoSprite, 2122, 6, 80, 86, this.x, this.y, this.width + 8, this.height + 8);
+        // ctx.fillRect(this.x, this.y, CONSTANTS.DINO_WIDTH, CONSTANTS.DINO_HEIGHT);
+        ctx.drawImage(dinoSprite, 1678 + (CONSTANTS.FRAME_X * 88), 6, 88, 94, this.x, this.y, 70, 75);
     }
 
     moveDino() {
@@ -70,10 +72,18 @@ export default class Dino {
     controlDino(direction) {
         if(direction=="left") {
             this.x -= 9;
+            CONSTANTS.FRAME_X += 1;
+            if(CONSTANTS.FRAME_X == 4) {
+                CONSTANTS.FRAME_X = 0;
+            }
         } 
 
         if(direction=="right") {
             this.x += 9;
+            CONSTANTS.FRAME_X += 1;
+            if (CONSTANTS.FRAME_X == 4) {
+                CONSTANTS.FRAME_X = 0;
+            }
         }
     }
 

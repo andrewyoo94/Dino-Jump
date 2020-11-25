@@ -93,7 +93,7 @@ export default class Level {
     animate(ctx) {
         this.drawBackground(ctx);
         this.drawPlatforms(ctx);
-        this.movePlats();
+        // this.movePlats();
     }
 
     drawBackground(ctx) {
