@@ -20,12 +20,23 @@ export default class Dino {
         this.vel = 0;
         this.width = CONSTANTS.DINO_WIDTH;
         this.height = CONSTANTS.DINO_HEIGHT;
+        this.direction = ""
     }
 
-    drawDino(ctx, x) {
+    drawDino(ctx) {
         ctx.fillStyle = "grey";
-        // ctx.fillRect(this.x, this.y, CONSTANTS.DINO_WIDTH, CONSTANTS.DINO_HEIGHT);
-        ctx.drawImage(dinoSprite, 1678 + (CONSTANTS.FRAME_X * 88), 6, 88, 94, this.x, this.y, 70, 75);
+        ctx.fillRect(this.x, this.y, CONSTANTS.DINO_WIDTH, CONSTANTS.DINO_HEIGHT);
+        debugger
+        if(this.direction==="left") {
+            debugger
+            ctx.save();
+            ctx.translate(1678 + 44, 6 + 94/2);
+            ctx.rotate(180 * Math.PI / 180);
+            ctx.drawImage(dinoSprite, 1678 + (CONSTANTS.FRAME_X * 88), 6, 88, 94, -this.x / 2, -this.y / 2, 70, 75);
+            ctx.restore();
+        } else {
+            ctx.drawImage(dinoSprite, 1678 + (CONSTANTS.FRAME_X * 88), 6, 88, 94, this.x, this.y, 70, 75);
+        }
     }
 
     moveDino() {
@@ -71,14 +82,19 @@ export default class Dino {
 
     controlDino(direction) {
         if(direction=="left") {
+            this.direction="left";
+
             this.x -= 9;
             CONSTANTS.FRAME_X += 1;
+
             if(CONSTANTS.FRAME_X == 4) {
                 CONSTANTS.FRAME_X = 0;
             }
         } 
 
         if(direction=="right") {
+            this.direction = "right";
+
             this.x += 9;
             CONSTANTS.FRAME_X += 1;
             if (CONSTANTS.FRAME_X == 4) {
