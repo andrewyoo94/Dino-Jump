@@ -27,12 +27,11 @@ export default class Dino {
     }
 
     drawDino(ctx) { 
-
         ctx.fillStyle = "grey";
         ctx.fillRect(this.x, this.y, CONSTANTS.DINO_WIDTH, CONSTANTS.DINO_HEIGHT);
         
         if(this.direction==="left") {
-            ctx.drawImage(dinoLeftSprite, 323 + (CONSTANTS.FRAME_X * 88), 6, 88, 94, this.x, this.y, 70, 75);
+            ctx.drawImage(dinoLeftSprite, 411 + (CONSTANTS.FRAME_X * 88), 6, 88, 94, this.x, this.y, 70, 75);
         } else {
             ctx.drawImage(dinoSprite, 1678 + (CONSTANTS.FRAME_X * 88), 6, 88, 94, this.x, this.y, 70, 75);
         }
