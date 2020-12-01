@@ -27,22 +27,44 @@ export default class Level {
         ];
     }
 
+    
     createBird() {
-        if (this.birds[0].y >= this.dimensions.height || this.birds.length == 0) {
+        if (this.birds.length == 0 || this.birds[0].y >= this.dimensions.height) {
             this.birds.shift();
             const newY = this.birds[1].y + CONSTANTS.MIN_PLAT_DIST;
             this.birds.push(this.newBird());
         }
     }
 
+    moveBirds() {
+        this.eachBird(function (bird) {
+            if(bird.pos == "left") {
+                // debugger
+                bird.x += CONSTANTS.PLAT_SPEED;
+            } else {
+                // debugger
+                bird.x -= CONSTANTS.PLAT_SPEED;
+            }
+        })
+    }
+
     newBird() {
-        let randX = Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
+        let randX = Math.random() < 0.5 ? -74 : 480;
+        let randY = Math.floor(Math.random() * 640);     // returns a random integer from 0 to 640
+        let pos = ""
+
+        if(randX == -74) {
+            pos = "left";
+        } else {
+            pos = "right";
+        }
 
         const bird = {
             x: randX,
-            y: 200,
+            y: randY,
             width: CONSTANTS.BIRD_WIDTH,
-            height: CONSTANTS.BIRD_HEIGHT
+            height: CONSTANTS.BIRD_HEIGHT,
+            pos: pos
         }
         return bird;
     }
@@ -135,6 +157,7 @@ export default class Level {
         this.drawPlatforms(ctx);
         this.drawBirds(ctx);
         // this.movePlats();
+        this.moveBirds();
     }
 
     drawBackground(ctx) {
