@@ -3,13 +3,20 @@ const CONSTANTS = {
     PLAT_HEIGHT: 10,
     PLAT_START_HEIGHT: 450,
     MIN_PLAT_DIST: 330,
-    PLAT_SPEED: 2,
+    PLAT_SPEED: 1,
     BIRD_WIDTH: 74,
-    BIRD_HEIGHT: 54
+    BIRD_HEIGHT: 54,
+    BIRD_SPEED: 2
 };
 
-const cloudSprite = new Image();
-cloudSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+// const cloudSprite = new Image();
+// cloudSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+
+const birdSprite = new Image();
+birdSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+
+// const dinoLeftSprite = new Image();
+// dinoLeftSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
 
 export default class Level {
     constructor(dimensions) {
@@ -26,26 +33,27 @@ export default class Level {
             this.newBird()
         ];
     }
-
     
-    createBird() {
-        if (this.birds.length == 0 || this.birds[0].y >= this.dimensions.height) {
-            this.birds.shift();
-            const newY = this.birds[1].y + CONSTANTS.MIN_PLAT_DIST;
-            this.birds.push(this.newBird());
-        }
-    }
+    // createBird() {
+    //     if (this.birds.length == 0 || this.birds[0].y >= this.dimensions.height) {
+    //         this.birds.shift();
+    //         this.birds.push(this.newBird());
+    //     }
+    // }
 
     moveBirds() {
         this.eachBird(function (bird) {
             if(bird.pos == "left") {
-                // debugger
-                bird.x += CONSTANTS.PLAT_SPEED;
+                bird.x += CONSTANTS.BIRD_SPEED;
             } else {
-                // debugger
-                bird.x -= CONSTANTS.PLAT_SPEED;
+                bird.x -= CONSTANTS.BIRD_SPEED;
             }
         })
+
+        if (this.birds.length == 0) {
+            this.birds.shift();
+            this.birds.push(this.newBird());
+        }
     }
 
     newBird() {
@@ -83,6 +91,18 @@ export default class Level {
                 bird.width,
                 bird.height
             )
+
+            ctx.drawImage(
+                birdSprite, 
+                260, 
+                12, 
+                bird.width, 
+                bird.height, 
+                bird.x, 
+                bird.y,
+                CONSTANTS.BIRD_WIDTH, 
+                CONSTANTS.BIRD_HEIGHT
+            );
         });
     }
 
@@ -156,7 +176,7 @@ export default class Level {
         this.drawBackground(ctx);
         this.drawPlatforms(ctx);
         this.drawBirds(ctx);
-        // this.movePlats();
+        this.movePlats();
         this.moveBirds();
     }
 
@@ -164,7 +184,7 @@ export default class Level {
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
 
-        ctx.drawImage(cloudSprite, 174, 2, 84, 27, this.x, this.y, 84, 27);
+        // ctx.drawImage(cloudSprite, 174, 2, 84, 27, this.x, this.y, 84, 27);
     }
 
     collidesWith(dino) {
