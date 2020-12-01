@@ -3,7 +3,9 @@ const CONSTANTS = {
     PLAT_HEIGHT: 10,
     PLAT_START_HEIGHT: 450,
     MIN_PLAT_DIST: 330,
-    PLAT_SPEED: 2  
+    PLAT_SPEED: 2,
+    BIRD_WIDTH: 74,
+    BIRD_HEIGHT: 54
 };
 
 const cloudSprite = new Image();
@@ -20,8 +22,46 @@ export default class Level {
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST / 4)
         ];
 
-        // this.clouds = [
-        // ];
+        this.birds = [
+            this.newBird()
+        ];
+    }
+
+    createBird() {
+        if (this.birds[0].y >= this.dimensions.height || this.birds.length == 0) {
+            this.birds.shift();
+            const newY = this.birds[1].y + CONSTANTS.MIN_PLAT_DIST;
+            this.birds.push(this.newBird());
+        }
+    }
+
+    newBird() {
+        let randX = Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
+
+        const bird = {
+            x: randX,
+            y: 200,
+            width: CONSTANTS.BIRD_WIDTH,
+            height: CONSTANTS.BIRD_HEIGHT
+        }
+        return bird;
+    }
+
+    eachBird(callback) {
+        this.birds.forEach(callback.bind(this));
+    }
+
+    drawBirds(ctx) {
+        this.eachBird(function (bird) {
+            ctx.fillStyle = "black";
+
+            ctx.fillRect(
+                bird.x,
+                bird.y,
+                bird.width,
+                bird.height
+            )
+        });
     }
 
     startPlat() {
@@ -93,6 +133,7 @@ export default class Level {
     animate(ctx) {
         this.drawBackground(ctx);
         this.drawPlatforms(ctx);
+        this.drawBirds(ctx);
         // this.movePlats();
     }
 

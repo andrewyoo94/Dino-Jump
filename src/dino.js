@@ -1,6 +1,6 @@
 const CONSTANTS = {
     DINO_WIDTH: 70,
-    DINO_HEIGHT: 75,
+    DINO_HEIGHT: 72,
     GRAVITY: 0.25,
     TERMINAL_VEL: 10,
     JUMP_SPEED: 12,
@@ -54,10 +54,6 @@ export default class Dino {
                 this.vel = CONSTANTS.TERMINAL_VEL * -1;
             }
         }
-
-        // if (this.isOutOfBounds(this.x)) {
-        //     this.wrap(this.x);
-        // };
     }
 
     jump() {
@@ -84,7 +80,7 @@ export default class Dino {
             
             this.x -= 9;
             CONSTANTS.FRAME_X += 1;
-
+            
             if(CONSTANTS.FRAME_X == 4) {
                 CONSTANTS.FRAME_X = 0;
             }
