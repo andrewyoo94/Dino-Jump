@@ -7,7 +7,8 @@ const CONSTANTS = {
     BIRD_WIDTH: 74,
     BIRD_HEIGHT: 54,
     BIRD_SPEED: 2,
-    FRAME_X: 0
+    FRAME_X: 0,
+    COUNTER: 0
 };
 
 // const cloudSprite = new Image();
@@ -86,6 +87,9 @@ export default class Level {
     }
 
     drawBirds(ctx) {
+        let startingSX = CONSTANTS.COUNTER % 10 === 0 ? 260 : 352;
+
+        debugger
         this.eachBird(function (bird) {
             ctx.fillStyle = "white";
 
@@ -109,9 +113,10 @@ export default class Level {
                     CONSTANTS.BIRD_HEIGHT
                 );
             } else {
+
                 ctx.drawImage(
                     birdSprite, 
-                    260 + (CONSTANTS.FRAME_X * 92), 
+                    startingSX, 
                     14, 
                     92, 
                     70, 
@@ -122,10 +127,8 @@ export default class Level {
                 );
             }
 
-            if (CONSTANTS.FRAME_X == 1) {
-                CONSTANTS.FRAME_X = 0;
-            }
         });
+        CONSTANTS.COUNTER += 1;
     }
 
     startPlat() {

@@ -75,10 +75,14 @@ export default class Dino {
     }
 
     controlDino(direction) {
+        let acc = 0;
+
         if(direction=="left") {
             this.direction="left";
             
-            this.x -= 9;
+            acc = 9;
+
+            this.x -= acc;
             CONSTANTS.FRAME_X += 1;
             
             if(CONSTANTS.FRAME_X == 4) {
@@ -88,8 +92,9 @@ export default class Dino {
 
         if(direction=="right") {
             this.direction = "right";
+            acc = 9;
 
-            this.x += 9;
+            this.x += acc;
             CONSTANTS.FRAME_X += 1;
             if (CONSTANTS.FRAME_X == 4) {
                 CONSTANTS.FRAME_X = 0;

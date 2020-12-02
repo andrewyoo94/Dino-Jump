@@ -64,14 +64,22 @@ export default class Game {
     registerEvents() {
         this.boundClickHandler = this.input.bind(this);
         document.addEventListener("keydown", this.boundClickHandler);
+        document.addEventListener("keyup", this.boundClickHandler);
     }
 
     input(event) {
-        if (event.keyCode === 65 || event.keyCode === 37) { // A or Arrow_Left
+        let leftKey = event.keyCode === 65 || event.keyCode === 37; // A or Arrow_Left
+        let rightKey = event.keyCode === 68 || event.keyCode === 39; // D or Arrow_Right
+
+        if (leftKey) {
             this.dino.controlDino("left");
         }
-        if (event.keyCode === 68 || event.keyCode === 39) { // D or Arrow_Right
+        if (rightKey) {
             this.dino.controlDino("right");
+        }
+
+        if (event.type === "keyup" && ( leftKey || rightKey)) {
+            this.dino.controlDino("")
         }
     }
 }
