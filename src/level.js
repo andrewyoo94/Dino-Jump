@@ -6,7 +6,8 @@ const CONSTANTS = {
     PLAT_SPEED: 1,
     BIRD_WIDTH: 74,
     BIRD_HEIGHT: 54,
-    BIRD_SPEED: 2
+    BIRD_SPEED: 2,
+    FRAME_X: 0
 };
 
 // const cloudSprite = new Image();
@@ -14,6 +15,9 @@ const CONSTANTS = {
 
 const birdSprite = new Image();
 birdSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+
+const birdLeftSprite = new Image();
+birdLeftSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
 
 // const dinoLeftSprite = new Image();
 // dinoLeftSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
@@ -83,7 +87,7 @@ export default class Level {
 
     drawBirds(ctx) {
         this.eachBird(function (bird) {
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "white";
 
             ctx.fillRect(
                 bird.x,
@@ -91,18 +95,36 @@ export default class Level {
                 bird.width,
                 bird.height
             )
+            
+            if(bird.pos == "left") {
+                ctx.drawImage(
+                    birdLeftSprite,
+                    1997,
+                    14,
+                    92,
+                    70,
+                    bird.x,
+                    bird.y,
+                    CONSTANTS.BIRD_WIDTH,
+                    CONSTANTS.BIRD_HEIGHT
+                );
+            } else {
+                ctx.drawImage(
+                    birdSprite, 
+                    260 + (CONSTANTS.FRAME_X * 92), 
+                    14, 
+                    92, 
+                    70, 
+                    bird.x, 
+                    bird.y,
+                    CONSTANTS.BIRD_WIDTH, 
+                    CONSTANTS.BIRD_HEIGHT
+                );
+            }
 
-            ctx.drawImage(
-                birdSprite, 
-                260, 
-                12, 
-                bird.width, 
-                bird.height, 
-                bird.x, 
-                bird.y,
-                CONSTANTS.BIRD_WIDTH, 
-                CONSTANTS.BIRD_HEIGHT
-            );
+            if (CONSTANTS.FRAME_X == 1) {
+                CONSTANTS.FRAME_X = 0;
+            }
         });
     }
 
