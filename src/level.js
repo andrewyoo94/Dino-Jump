@@ -244,7 +244,7 @@ export default class Level {
         this.eachPlat((plat) => {
             if (_overlap(plat, dino)) { 
                 collision = true; 
-            }
+            } 
         });
 
         this.eachBird((bird) => {
