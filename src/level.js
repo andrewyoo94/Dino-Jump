@@ -84,10 +84,7 @@ export default class Level {
         return bird;
     }
 
-    eachBird(callback) {
-        this.birds.forEach(callback.bind(this));
-    }
-
+    
     drawBirds(ctx) {
         if(CONSTANTS.COUNTER < 5) {
             CONSTANTS.STARTING_SX = 260;
@@ -96,24 +93,24 @@ export default class Level {
             CONSTANTS.STARTING_SX = 352;
             CONSTANTS.STARTING_SX_LEFT = 2089;
         }
-
+        
         this.eachBird(function (bird) {
             ctx.fillStyle = "white";
-
+            
             ctx.fillRect(
                 bird.x,
                 bird.y,
                 bird.width,
                 bird.height
-            )
-            
-            if(bird.pos == "left") {
-                ctx.drawImage(
-                    birdLeftSprite,
-                    CONSTANTS.STARTING_SX_LEFT,
-                    14,
-                    92,
-                    70,
+                )
+                
+                if(bird.pos == "left") {
+                    ctx.drawImage(
+                        birdLeftSprite,
+                        CONSTANTS.STARTING_SX_LEFT,
+                        14,
+                        92,
+                        70,
                     bird.x,
                     bird.y,
                     CONSTANTS.BIRD_WIDTH,
@@ -131,16 +128,16 @@ export default class Level {
                     bird.y,
                     CONSTANTS.BIRD_WIDTH, 
                     CONSTANTS.BIRD_HEIGHT
-                );
+                    );
             }
-
+            
         });
         CONSTANTS.COUNTER += 1;
         if (CONSTANTS.COUNTER >= 10) {
             CONSTANTS.COUNTER = 0;
         }
     }
-
+    
     startPlat() {
         const plat = {
             x: 125,
@@ -148,14 +145,14 @@ export default class Level {
             width: CONSTANTS.PLAT_WIDTH,
             height: CONSTANTS.PLAT_HEIGHT
         }
-
+        
         return plat
     }
-
+    
     randomPlat(minPlatDistance) {
         let randX = Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
         let randY = Math.floor(Math.random() * 100) + minPlatDistance;
-
+        
         const plat = {
             x: randX,
             y: randY,
@@ -164,10 +161,10 @@ export default class Level {
         }
         return plat;
     }
-
+    
     pushNewPlat() {
         let randX = Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
-
+        
         const plat = {
             x: randX,
             y: 0,
@@ -176,24 +173,28 @@ export default class Level {
         }
         return plat;
     }
-
+    
     eachPlat(callback) {
         this.platforms.forEach(callback.bind(this));
+    }
+    
+    eachBird(callback) {
+        this.birds.forEach(callback.bind(this));
     }
 
     drawPlatforms(ctx) {
         this.eachPlat(function (plat) {
             ctx.fillStyle = "black";
-
+            
             ctx.fillRect(
                 plat.x,
                 plat.y,
                 plat.width,
                 plat.height
-            )
+                )
         });
     }
-
+    
     movePlats() {
         this.eachPlat(function (plat) {
             plat.y += CONSTANTS.PLAT_SPEED;
@@ -236,10 +237,6 @@ export default class Level {
                 return false;
             }
 
-            // if (plat.y > dino.y + dino.height && ) {
-            //     return false;
-            // }
-
             return true;
         };
         let collision = false;
@@ -249,6 +246,12 @@ export default class Level {
                 collision = true; 
             }
         });
+
+        this.eachBird((bird) => {
+            if (_overlap(bird, dino)) {
+                collision = true;
+            }
+        })
 
         return collision;
     }
