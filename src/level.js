@@ -10,7 +10,8 @@ const CONSTANTS = {
     FRAME_X: 0,
     COUNTER: 0,
     STARTING_SX: 260,
-    STARTING_SX_LEFT: 1997
+    STARTING_SX_LEFT: 1997,
+    CLOUD_SPEED: 0.5
 };
 
 const birdSprite = new Image();
@@ -102,14 +103,14 @@ export default class Level {
         }
         
         this.eachBird(function (bird) {
-            ctx.fillStyle = "white";
+            // ctx.fillStyle = "white";
             
-            ctx.fillRect(
-                bird.x,
-                bird.y,
-                bird.width,
-                bird.height
-                )
+            // ctx.fillRect(
+            //     bird.x,
+            //     bird.y,
+            //     bird.width,
+            //     bird.height
+            //     )
                 
                 if(bird.pos == "left") {
                     ctx.drawImage(
@@ -123,19 +124,18 @@ export default class Level {
                     CONSTANTS.BIRD_WIDTH,
                     CONSTANTS.BIRD_HEIGHT
                 );
-            } else {
-                
-                ctx.drawImage(
-                    birdSprite, 
-                    CONSTANTS.STARTING_SX, 
-                    14, 
-                    92, 
-                    70, 
-                    bird.x, 
-                    bird.y,
-                    CONSTANTS.BIRD_WIDTH, 
-                    CONSTANTS.BIRD_HEIGHT
-                    );
+                } else {
+                    ctx.drawImage(
+                        birdSprite, 
+                        CONSTANTS.STARTING_SX, 
+                        14, 
+                        92, 
+                        70, 
+                        bird.x, 
+                        bird.y,
+                        CONSTANTS.BIRD_WIDTH, 
+                        CONSTANTS.BIRD_HEIGHT
+                 );
             }
             
         });
@@ -152,8 +152,8 @@ export default class Level {
         const cloud = {
             x: randX,
             y: y,
-            width: CONSTANTS.PLAT_WIDTH,
-            height: CONSTANTS.PLAT_HEIGHT
+            width: 84,
+            height: 27
         }
         return cloud;
     }
@@ -164,12 +164,13 @@ export default class Level {
     
     moveClouds() {
         this.eachCloud(function (cloud) {
-            cloud.y += CONSTANTS.PLAT_SPEED;
+            cloud.y += CONSTANTS.CLOUD_SPEED;
+            debugger
         });
 
-        //if a cloud has left the screen add a new one to the end
-        if (this.cloud[0].y >= this.dimensions.height) {
-            this.cloud.shift();
+        //if a cloud has left the bottom of the screen add a new one to the end
+        if (this.clouds[0].y >= this.dimensions.height) {
+            this.clouds.shift();
             this.clouds.push(this.randomCloud());
         }
     }
@@ -180,12 +181,12 @@ export default class Level {
                 cloudSprite,
                 174,
                 2,
-                84,
-                27,
+                cloud.width,
+                cloud.height,
                 cloud.x,
-                0,
-                84,
-                27
+                cloud.y,
+                cloud.width,
+                cloud.height
             );
         });
     }
@@ -299,10 +300,11 @@ export default class Level {
     
     animate(ctx) {
         this.drawBackground(ctx);
+        this.drawClouds(ctx);
         this.drawPlatforms(ctx);
         this.drawBirds(ctx);
-        this.drawClouds(ctx);
         this.movePlats();
         this.moveBirds();
+        this.moveClouds();
     }
 }
