@@ -13,6 +13,7 @@ export default class Game {
         //first we move and draw the level
         this.level.animate(this.ctx);
         this.dino.animate(this.ctx);
+        this.drawScore(this.ctx);
 
         // this.ctx.drawSprite(this.dinoSprite, 0, 0, 50, 50, 0, 0)
 
@@ -28,6 +29,7 @@ export default class Game {
 
     restart() {
         this.running = true;
+        this.score = 0;
         
         this.level = new Level(this.dimensions);
         this.dino = new Dino(this.dimensions);
@@ -81,5 +83,11 @@ export default class Game {
         if (event.type === "keyup" && ( leftKey || rightKey)) {
             this.dino.controlDino("")
         }
+    }
+
+    drawScore(ctx) {
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Score: " + this.score, 10, 20);
     }
 }

@@ -267,7 +267,6 @@ export default class Level {
         // ctx.drawImage(groundSprite, 174, 2, 84, 27, randX, y, 84, 27);
     }
 
-    
     collidesWith(dino) {
         //this function returns true if the the rectangles overlap
         const _overlap = (plat, dino) => {
