@@ -13,17 +13,17 @@ const CONSTANTS = {
     STARTING_SX_LEFT: 1997
 };
 
-// const cloudSprite = new Image();
-// cloudSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
-
 const birdSprite = new Image();
 birdSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 
 const birdLeftSprite = new Image();
 birdLeftSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
 
-// const dinoLeftSprite = new Image();
-// dinoLeftSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
+const cloudSprite = new Image();
+cloudSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+
+const groundSprite = new Image();
+groundSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
 
 export default class Level {
     constructor(dimensions) {
@@ -220,7 +220,11 @@ export default class Level {
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
 
-        // ctx.drawImage(cloudSprite, 174, 2, 84, 27, this.x, this.y, 84, 27);
+        let randX = Math.floor(Math.random() * 480);
+        let randY = Math.floor(Math.random() * 640);     // returns a random integer from 0 to 640
+
+        ctx.drawImage(cloudSprite, 174, 2, 84, 27, this.x, this.y, 84, 27);
+        ctx.drawImage(groundSprite, 174, 2, 84, 27, this.x, this.y, 84, 27);
     }
 
     collidesWith(dino) {
