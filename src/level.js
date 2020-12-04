@@ -28,17 +28,21 @@ groundSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
 export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
-
+        
         this.platforms = [
             this.startPlat(),
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST),
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST / 2),
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST / 4)
         ];
-
+        
         this.birds = [
             this.newBird()
         ];
+        
+        this.clouds = [
+            this.randomCloud()
+        ]
     }
     
     // createBird() {
@@ -47,7 +51,7 @@ export default class Level {
     //         this.birds.push(this.newBird());
     //     }
     // }
-
+        
     moveBirds() {
         this.eachBird(function (bird) {
             if(bird.pos == "left") {
@@ -56,24 +60,28 @@ export default class Level {
                 bird.x -= CONSTANTS.BIRD_SPEED;
             }
         })
-
+        
         if (this.birds.length == 0) {
             this.birds.shift();
             this.birds.push(this.newBird());
         }
     }
-
+    
+    eachBird(callback) {
+        this.birds.forEach(callback.bind(this));
+    }
+    
     newBird() {
         let randX = Math.random() < 0.5 ? -74 : 480;
         let randY = Math.floor(Math.random() * 640);     // returns a random integer from 0 to 640
         let pos = ""
-
+        
         if(randX == -74) {
             pos = "left";
         } else {
             pos = "right";
         }
-
+        
         const bird = {
             x: randX,
             y: randY,
@@ -83,7 +91,6 @@ export default class Level {
         }
         return bird;
     }
-
     
     drawBirds(ctx) {
         if(CONSTANTS.COUNTER < 5) {
@@ -117,7 +124,7 @@ export default class Level {
                     CONSTANTS.BIRD_HEIGHT
                 );
             } else {
-
+                
                 ctx.drawImage(
                     birdSprite, 
                     CONSTANTS.STARTING_SX, 
@@ -137,7 +144,52 @@ export default class Level {
             CONSTANTS.COUNTER = 0;
         }
     }
+
+    randomCloud() {
+        let randX = Math.floor(Math.random() * 480) - 84;
+        let y = -27; //draw cloud above canvas so it drops down into view
+
+        const cloud = {
+            x: randX,
+            y: y,
+            width: CONSTANTS.PLAT_WIDTH,
+            height: CONSTANTS.PLAT_HEIGHT
+        }
+        return cloud;
+    }
+
+    eachCloud(callback) {
+        this.clouds.forEach(callback.bind(this));
+    }
     
+    moveClouds() {
+        this.eachCloud(function (cloud) {
+            cloud.y += CONSTANTS.PLAT_SPEED;
+        });
+
+        //if a cloud has left the screen add a new one to the end
+        if (this.cloud[0].y >= this.dimensions.height) {
+            this.cloud.shift();
+            this.clouds.push(this.randomCloud());
+        }
+    }
+
+    drawClouds(ctx) {
+        this.eachCloud(function (cloud) {
+            ctx.drawImage(
+                cloudSprite,
+                174,
+                2,
+                84,
+                27,
+                cloud.x,
+                0,
+                84,
+                27
+            );
+        });
+    }
+
     startPlat() {
         const plat = {
             x: 125,
@@ -177,10 +229,6 @@ export default class Level {
     eachPlat(callback) {
         this.platforms.forEach(callback.bind(this));
     }
-    
-    eachBird(callback) {
-        this.birds.forEach(callback.bind(this));
-    }
 
     drawPlatforms(ctx) {
         this.eachPlat(function (plat) {
@@ -191,10 +239,10 @@ export default class Level {
                 plat.y,
                 plat.width,
                 plat.height
-                )
+            )
         });
     }
-    
+
     movePlats() {
         this.eachPlat(function (plat) {
             plat.y += CONSTANTS.PLAT_SPEED;
@@ -207,26 +255,15 @@ export default class Level {
             this.platforms.push(this.pushNewPlat());
         }
     }
-
-    animate(ctx) {
-        this.drawBackground(ctx);
-        this.drawPlatforms(ctx);
-        this.drawBirds(ctx);
-        this.movePlats();
-        this.moveBirds();
-    }
-
+    
     drawBackground(ctx) {
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
 
-        let randX = Math.floor(Math.random() * 480);
-        let randY = Math.floor(Math.random() * 640);     // returns a random integer from 0 to 640
-
-        ctx.drawImage(cloudSprite, 174, 2, 84, 27, this.x, this.y, 84, 27);
-        ctx.drawImage(groundSprite, 174, 2, 84, 27, this.x, this.y, 84, 27);
+        // ctx.drawImage(groundSprite, 174, 2, 84, 27, randX, y, 84, 27);
     }
 
+    
     collidesWith(dino) {
         //this function returns true if the the rectangles overlap
         const _overlap = (plat, dino) => {
@@ -240,11 +277,11 @@ export default class Level {
             if (dino.y + 60 > plat.y + CONSTANTS.PLAT_HEIGHT || dino.y + 60 < plat.y ) {
                 return false;
             }
-
+            
             return true;
         };
         let collision = false;
-
+        
         this.eachPlat((plat) => {
             if (_overlap(plat, dino)) { 
                 collision = true; 
@@ -256,7 +293,16 @@ export default class Level {
                 collision = true;
             }
         })
-
+        
         return collision;
+    }
+    
+    animate(ctx) {
+        this.drawBackground(ctx);
+        this.drawPlatforms(ctx);
+        this.drawBirds(ctx);
+        this.drawClouds(ctx);
+        this.movePlats();
+        this.moveBirds();
     }
 }
