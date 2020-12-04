@@ -14,6 +14,7 @@ export default class Game {
         this.level.animate(this.ctx);
         this.dino.animate(this.ctx);
         this.drawScore(this.ctx);
+        this.score += 0.15
 
         // this.ctx.drawSprite(this.dinoSprite, 0, 0, 50, 50, 0, 0)
 
@@ -88,6 +89,6 @@ export default class Game {
     drawScore(ctx) {
         ctx.font = "16px Arial";
         ctx.fillStyle = "#0095DD";
-        ctx.fillText("Score: " + this.score, 10, 20);
+        ctx.fillText("Score: " + Math.round(this.score), 10, 20);
     }
 }
