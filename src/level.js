@@ -11,7 +11,7 @@ const CONSTANTS = {
     COUNTER: 0,
     STARTING_SX: 260,
     STARTING_SX_LEFT: 1997,
-    CLOUD_SPEED: 0.5
+    CLOUD_SPEED: 0.8
 };
 
 const birdSprite = new Image();
@@ -42,7 +42,9 @@ export default class Level {
         ];
         
         this.clouds = [
-            this.randomCloud()
+            this.randomCloud(1),
+            this.randomCloud(Math.random() * (12 - 10) + 10),
+            this.randomCloud(Math.random() * (24 - 20) + 20)
         ]
     }
     
@@ -145,9 +147,9 @@ export default class Level {
         }
     }
 
-    randomCloud() {
-        let randX = Math.floor(Math.random() * 480) - 84;
-        let y = -27; //draw cloud above canvas so it drops down into view
+    randomCloud(buffer) {
+        let randX = Math.floor(Math.random() * 500) - 42;
+        let y = -27 * buffer; //draw cloud above canvas so it drops down into view
 
         const cloud = {
             x: randX,
@@ -170,8 +172,9 @@ export default class Level {
 
         //if a cloud has left the bottom of the screen add a new one to the end
         if (this.clouds[0].y >= this.dimensions.height) {
+            debugger
             this.clouds.shift();
-            this.clouds.push(this.randomCloud());
+            this.clouds.push(this.randomCloud(1));
         }
     }
 
