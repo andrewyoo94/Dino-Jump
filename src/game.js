@@ -13,9 +13,20 @@ export default class Game {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.registerEvents();
-        this.restart();
         this.score = 0;
+        
+        this.scorePlaceValues = [
+            Math.floor(this.score % 10),
+            Math.floor(this.score / 10 % 10),
+            Math.floor(this.score / 100 % 10),
+            Math.floor(this.score / 1000 % 10),
+            Math.floor(this.score / 10000 % 10)
+        ];
+        
+        this.restart();
+    }
 
+    updateScore() {
         this.scorePlaceValues = [
             Math.floor(this.score % 10),
             Math.floor(this.score / 10 % 10),
@@ -43,7 +54,8 @@ export default class Game {
         this.level.animate(this.ctx);
         this.dino.animate(this.ctx);
         this.drawScore(this.ctx);
-        this.score += 0.15
+        this.score += 0.15;
+        this.updateScore();
 
         // this.ctx.drawSprite(this.dinoSprite, 0, 0, 50, 50, 0, 0)
 
