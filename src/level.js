@@ -20,6 +20,9 @@ birdSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 const birdLeftSprite = new Image();
 birdLeftSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
 
+const deadBirdSprite = new Image();
+deadBirdSprite.src = "/home/andrew/Desktop/dino_jump/img/deadBird.png";
+
 const cloudSprite = new Image();
 cloudSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 
@@ -59,12 +62,14 @@ export default class Level {
         this.eachBird(function (bird) {
             if(bird.pos == "left") {
                 bird.x += CONSTANTS.BIRD_SPEED;
-            } else {
+            } if(bird.pos == "right") {
                 bird.x -= CONSTANTS.BIRD_SPEED;
+            } if(bird.pos == "dead") {
+                bird.y += 7;
             }
         })
         
-        if (this.birds[0].x + CONSTANTS.BIRD_WIDTH < 0 || this.birds[0].x > this.dimensions.width) {
+        if (this.birds[0].x + CONSTANTS.BIRD_WIDTH < 0 || this.birds[0].x > this.dimensions.width || this.birds[0].y > this.dimensions.height) {
             this.birds.shift();
             this.birds.push(this.newBird());
         }
@@ -105,42 +110,45 @@ export default class Level {
         }
         
         this.eachBird(function (bird) {
-            // ctx.fillStyle = "white";
-            
-            // ctx.fillRect(
-            //     bird.x,
-            //     bird.y,
-            //     bird.width,
-            //     bird.height
-            //     )
-                
-                if(bird.pos == "left") {
-                    ctx.drawImage(
-                        birdLeftSprite,
-                        CONSTANTS.STARTING_SX_LEFT,
-                        14,
-                        92,
-                        70,
+            if(bird.pos == "left") {
+                ctx.drawImage(
+                    birdLeftSprite,
+                    CONSTANTS.STARTING_SX_LEFT,
+                    14,
+                    92,
+                    70,
                     bird.x,
                     bird.y,
                     CONSTANTS.BIRD_WIDTH,
                     CONSTANTS.BIRD_HEIGHT
                 );
-                } else {
-                    ctx.drawImage(
-                        birdSprite, 
-                        CONSTANTS.STARTING_SX, 
-                        14, 
-                        92, 
-                        70, 
-                        bird.x, 
-                        bird.y,
-                        CONSTANTS.BIRD_WIDTH, 
-                        CONSTANTS.BIRD_HEIGHT
-                 );
+            } if(bird.pos == "right") {
+                ctx.drawImage(
+                    birdSprite, 
+                    CONSTANTS.STARTING_SX, 
+                    14, 
+                    92, 
+                    70, 
+                    bird.x, 
+                    bird.y,
+                    CONSTANTS.BIRD_WIDTH, 
+                    CONSTANTS.BIRD_HEIGHT
+                );
+            } if (bird.pos == "dead") {
+                ctx.drawImage(
+                    deadBirdSprite,
+                    2,
+                    2089,
+                    80,
+                    92,
+                    bird.x,
+                    bird.y,
+                    64,
+                    74
+                );
             }
-            
         });
+
         CONSTANTS.COUNTER += 1;
         if (CONSTANTS.COUNTER >= 10) {
             CONSTANTS.COUNTER = 0;
@@ -292,6 +300,7 @@ export default class Level {
         this.eachBird((bird) => {
             if (_overlap(bird, dino)) {
                 collision = true;
+                bird.pos = "dead";
             }
         })
         
