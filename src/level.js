@@ -167,12 +167,10 @@ export default class Level {
     moveClouds() {
         this.eachCloud(function (cloud) {
             cloud.y += CONSTANTS.CLOUD_SPEED;
-            debugger
         });
 
         //if a cloud has left the bottom of the screen add a new one to the end
         if (this.clouds[0].y >= this.dimensions.height) {
-            debugger
             this.clouds.shift();
             this.clouds.push(this.randomCloud(1));
         }

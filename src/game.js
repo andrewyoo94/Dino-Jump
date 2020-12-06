@@ -2,19 +2,11 @@ import Level from "./level";
 import Dino from "./dino";
 
 const CONSTANTS = {
-    SCORE_WIDTH = 18
+    SCORE_WIDTH: 18
 };
 
 const scoreSprite = new Image();
 scoreSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
-
-const scoreSprites = [
-    tenThousand = ctx.drawImage(scoreSprite, 1294, 2, 18 + (CONSTANTS.SCORE_WIDTH * i), 21, this.x, this.y, 18, 21),
-    thousand = ctx.drawImage(scoreSprite, 1294, 2, 18, 21, this.x, this.y, 18, 21),
-    hundred = ctx.drawImage(scoreSprite, 1294, 2, 18, 21, this.x, this.y, 18, 21),
-    ten = ctx.drawImage(scoreSprite, 1294, 2, 18, 21, this.x, this.y, 18, 21),
-    one = ctx.drawImage(scoreSprite, 1294, 2, 18, 21, this.x, this.y, 18, 21)
-]
 
 export default class Game {
     constructor(canvas) {
@@ -22,6 +14,28 @@ export default class Game {
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.registerEvents();
         this.restart();
+        this.score = 0;
+
+        this.scorePlaceValues = [
+            Math.floor(this.score % 10),
+            Math.floor(this.score / 10 % 10),
+            Math.floor(this.score / 100 % 10),
+            Math.floor(this.score / 1000 % 10),
+            Math.floor(this.score / 10000 % 10)
+        ];
+    }
+
+    drawScore(ctx) {
+        for(let i = 0; i < 5; i++) {
+            debugger
+            ctx.drawImage(
+                scoreSprite, 
+                1294 + (CONSTANTS.SCORE_WIDTH * this.scorePlaceValues[i]), 2, 
+                18, 21, 
+                10 + (CONSTANTS.SCORE_WIDTH * i), 100, 
+                18, 21
+            )
+        }
     }
     
     animate() {
@@ -101,9 +115,9 @@ export default class Game {
         }
     }
 
-    drawScore(ctx) {
-        ctx.font = "16px Arial";
-        ctx.fillStyle = "#0095DD";
-        ctx.fillText("Score: " + Math.round(this.score), 10, 20);
-    }
+    // drawScore(ctx) {
+    //     ctx.font = "16px Arial";
+    //     ctx.fillStyle = "#0095DD";
+    //     ctx.fillText("Score: " + Math.round(this.score), 10, 20);
+    // }
 }
