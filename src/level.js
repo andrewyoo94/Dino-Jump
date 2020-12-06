@@ -64,7 +64,7 @@ export default class Level {
             }
         })
         
-        if (this.birds.length == 0) {
+        if (this.birds[0].x + CONSTANTS.BIRD_WIDTH < 0 || this.birds[0].x > this.dimensions.width) {
             this.birds.shift();
             this.birds.push(this.newBird());
         }
