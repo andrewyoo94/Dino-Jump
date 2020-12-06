@@ -1,6 +1,21 @@
 import Level from "./level";
 import Dino from "./dino";
 
+const CONSTANTS = {
+    SCORE_WIDTH = 18
+};
+
+const scoreSprite = new Image();
+scoreSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+
+const scoreSprites = [
+    tenThousand = ctx.drawImage(scoreSprite, 1294, 2, 18 + (CONSTANTS.SCORE_WIDTH * i), 21, this.x, this.y, 18, 21),
+    thousand = ctx.drawImage(scoreSprite, 1294, 2, 18, 21, this.x, this.y, 18, 21),
+    hundred = ctx.drawImage(scoreSprite, 1294, 2, 18, 21, this.x, this.y, 18, 21),
+    ten = ctx.drawImage(scoreSprite, 1294, 2, 18, 21, this.x, this.y, 18, 21),
+    one = ctx.drawImage(scoreSprite, 1294, 2, 18, 21, this.x, this.y, 18, 21)
+]
+
 export default class Game {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");

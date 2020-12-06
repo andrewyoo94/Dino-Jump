@@ -120,7 +120,6 @@ export default class Dino {
     };
 
     wrap(x) {
-        debugger
         if (x > this.dimensions.x) {
             this.x = 0;
         }
