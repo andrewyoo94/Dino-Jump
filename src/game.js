@@ -2,7 +2,7 @@ import Level from "./level";
 import Dino from "./dino";
 
 const CONSTANTS = {
-    SCORE_WIDTH: 18
+    SCORE_WIDTH: 20
 };
 
 const scoreSprite = new Image();
@@ -28,22 +28,21 @@ export default class Game {
 
     updateScore() {
         this.scorePlaceValues = [
-            Math.floor(this.score % 10),
-            Math.floor(this.score / 10 % 10),
-            Math.floor(this.score / 100 % 10),
+            Math.floor(this.score / 10000 % 10),
             Math.floor(this.score / 1000 % 10),
-            Math.floor(this.score / 10000 % 10)
+            Math.floor(this.score / 100 % 10),
+            Math.floor(this.score / 10 % 10),
+            Math.floor(this.score % 10)
         ];
     }
 
     drawScore(ctx) {
         for(let i = 0; i < 5; i++) {
-            debugger
             ctx.drawImage(
                 scoreSprite, 
-                1294 + (CONSTANTS.SCORE_WIDTH * this.scorePlaceValues[i]), 2, 
+                1294 + (CONSTANTS.SCORE_WIDTH * this.scorePlaceValues[i]), 2,  //sX, sY
                 18, 21, 
-                10 + (CONSTANTS.SCORE_WIDTH * i), 100, 
+                100 + (25 * i), 100, 
                 18, 21
             )
         }
