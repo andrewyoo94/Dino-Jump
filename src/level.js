@@ -66,17 +66,33 @@ export default class Level {
 
     drawCactus(ctx) {
         this.eachCactus(function(cactus) {
-            ctx.drawImage(
-                cactusSprite,
-                1791,
-                60,
-                32,
-                70,
-                cactus.x,
-                cactus.y,
-                cactus.width,
-                cactus.height
-            );
+            if(cactus.timer % 8 && cactus.timer < 50) {
+                ctx.drawImage(
+                    cactusSprite,
+                    1791,
+                    60,
+                    32,
+                    70,
+                    cactus.x,
+                    cactus.y,
+                    cactus.width,
+                    cactus.height
+                );
+            } 
+            if(cactus.timer >= 50) {
+                ctx.drawImage(
+                    cactusSprite,
+                    1791,
+                    60,
+                    32,
+                    70,
+                    cactus.x,
+                    cactus.y,
+                    cactus.width,
+                    cactus.height
+                );
+            }
+            cactus.timer += 1;
         });
     }
 
@@ -95,7 +111,9 @@ export default class Level {
 
     moveCactus() {
         this.eachCactus(function (cactus) {
-            cactus.y += 7;
+            if(cactus.timer > 50) {
+                cactus.y += 7;
+            }
         });
 
         if (this.cactus[0].y > this.dimensions.height) {
