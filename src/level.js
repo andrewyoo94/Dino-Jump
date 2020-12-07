@@ -11,7 +11,9 @@ const CONSTANTS = {
     COUNTER: 0,
     STARTING_SX: 260,
     STARTING_SX_LEFT: 1997,
-    CLOUD_SPEED: 0.8
+    CLOUD_SPEED: 0.8,
+    // CACTUS_WIDTH: ,
+    // CACTUS_HEIGHT: 
 };
 
 const birdSprite = new Image();
@@ -28,6 +30,9 @@ cloudSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 
 const groundSprite = new Image();
 groundSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
+
+const cactusSprite = newImage();
+cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png"
 
 export default class Level {
     constructor(dimensions) {
@@ -48,15 +53,25 @@ export default class Level {
             this.randomCloud(1),
             this.randomCloud(Math.random() * (12 - 10) + 10),
             this.randomCloud(Math.random() * (24 - 20) + 20)
-        ]
+        ];
+
+        this.cactus = [
+            this.newCactus()
+        ];
     }
-    
-    // createBird() {
-    //     if (this.birds.length == 0 || this.birds[0].y >= this.dimensions.height) {
-    //         this.birds.shift();
-    //         this.birds.push(this.newBird());
-    //     }
-    // }
+
+    newCactus() {
+        let randX = Math.floor(Math.random() * 480);
+
+        const cactus = {
+            x: randX,
+            y: 0,
+            width: CONSTANTS.CACTUS_WIDTH,
+            height: CONSTANTS.CACTUS_HEIGHT,
+            pos: pos
+        }
+        return cactus;
+    }
         
     moveBirds() {
         this.eachBird(function (bird) {
