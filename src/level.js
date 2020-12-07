@@ -32,7 +32,7 @@ const groundSprite = new Image();
 groundSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
 
 const cactusSprite = new Image();
-cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png"
+cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png"
 
 export default class Level {
     constructor(dimensions) {
@@ -59,6 +59,26 @@ export default class Level {
             this.newCactus()
         ];
     }
+    
+    eachCactus(callback) {
+        this.cactus.forEach(callback.bind(this));   
+    }
+
+    drawCactus(ctx) {
+        this.eachCactus(function(cactus) {
+            ctx.drawImage(
+                cactusSprite,
+                1791,
+                58,
+                32,
+                70,
+                cactus.x,
+                cactus.y,
+                cactus.width,
+                cactus.height
+            );
+        });
+    }
 
     newCactus() {
         let randX = Math.floor(Math.random() * 480);
@@ -66,8 +86,8 @@ export default class Level {
         const cactus = {
             x: randX,
             y: 0,
-            width: CONSTANTS.CACTUS_WIDTH,
-            height: CONSTANTS.CACTUS_HEIGHT
+            width: 40.8,
+            height: 70
         }
         return cactus;
     }
@@ -325,6 +345,7 @@ export default class Level {
         this.drawBackground(ctx);
         this.drawClouds(ctx);
         this.drawPlatforms(ctx);
+        this.drawCactus(ctx);
         this.drawBirds(ctx);
         this.movePlats();
         this.moveBirds();
