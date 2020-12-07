@@ -69,7 +69,7 @@ export default class Level {
             ctx.drawImage(
                 cactusSprite,
                 1791,
-                58,
+                60,
                 32,
                 70,
                 cactus.x,
@@ -86,10 +86,22 @@ export default class Level {
         const cactus = {
             x: randX,
             y: 0,
-            width: 40.8,
-            height: 70
+            width: 37,
+            height: 63,
+            timer: 0
         }
         return cactus;
+    }
+
+    moveCactus() {
+        this.eachCactus(function (cactus) {
+            cactus.y += 7;
+        });
+
+        if (this.cactus[0].y > this.dimensions.height) {
+            this.cactus.shift();
+            this.cactus.push(this.newCactus());
+        };
     }
         
     moveBirds() {
@@ -349,6 +361,7 @@ export default class Level {
         this.drawBirds(ctx);
         this.movePlats();
         this.moveBirds();
+        this.moveCactus();
         this.moveClouds();
     }
 }
