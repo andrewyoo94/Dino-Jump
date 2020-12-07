@@ -53,7 +53,7 @@ export default class Game {
         this.level.animate(this.ctx);
         this.dino.animate(this.ctx);
         this.drawScore(this.ctx);
-        this.score += 0.15;
+        this.score += 0.2;
         this.updateScore();
 
         // this.ctx.drawSprite(this.dinoSprite, 0, 0, 50, 50, 0, 0)

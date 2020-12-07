@@ -11,7 +11,7 @@ const CONSTANTS = {
     COUNTER: 0,
     STARTING_SX: 260,
     STARTING_SX_LEFT: 1997,
-    CLOUD_SPEED: 0.8,
+    CLOUD_SPEED: 0.5,
     // CACTUS_WIDTH: ,
     // CACTUS_HEIGHT: 
 };
@@ -31,7 +31,7 @@ cloudSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 const groundSprite = new Image();
 groundSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
 
-const cactusSprite = newImage();
+const cactusSprite = new Image();
 cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png"
 
 export default class Level {
@@ -67,8 +67,7 @@ export default class Level {
             x: randX,
             y: 0,
             width: CONSTANTS.CACTUS_WIDTH,
-            height: CONSTANTS.CACTUS_HEIGHT,
-            pos: pos
+            height: CONSTANTS.CACTUS_HEIGHT
         }
         return cactus;
     }
