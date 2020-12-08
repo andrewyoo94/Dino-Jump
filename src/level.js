@@ -145,7 +145,7 @@ export default class Level {
     
     newBird() {
         let randX = Math.random() < 0.5 ? -74 : 480;
-        let randY = Math.floor(Math.random() * 640);     // returns a random integer from 0 to 640
+        let randY = Math.floor(Math.random() * 586);     // returns a random integer from 0 to 640
         let pos = ""
         
         if(randX == -74) {
@@ -156,7 +156,7 @@ export default class Level {
         
         const bird = {
             x: randX,
-            y: randY,
+            y: randY, 
             width: CONSTANTS.BIRD_WIDTH,
             height: CONSTANTS.BIRD_HEIGHT,
             pos: pos
