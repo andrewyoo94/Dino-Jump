@@ -1,6 +1,6 @@
 const CONSTANTS = {
     PLAT_WIDTH: 100,
-    PLAT_HEIGHT: 10,
+    PLAT_HEIGHT: 15,
     PLAT_START_HEIGHT: 450,
     MIN_PLAT_DIST: 330,
     PLAT_SPEED: 1,
@@ -35,7 +35,7 @@ const cactusSprite = new Image();
 cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
 
 const platformSprite = new Image();
-platformSprite = "/home/andrew/Desktop/dino_jump/img/platform.png";
+platformSprite.src = "/home/andrew/Desktop/dino_jump/img/plat5.png";
 
 export default class Level {
     constructor(dimensions) {
@@ -309,14 +309,26 @@ export default class Level {
 
     drawPlatforms(ctx) {
         this.eachPlat(function (plat) {
-            ctx.fillStyle = "black";
+            // ctx.fillStyle = "black";
             
-            ctx.fillRect(
+            // ctx.fillRect(
+            //     plat.x,
+            //     plat.y,
+            //     plat.width,
+            //     plat.height
+            // )
+
+            ctx.drawImage(
+                platformSprite,
+                0,
+                0,
+                100,
+                15,
                 plat.x,
                 plat.y,
                 plat.width,
                 plat.height
-            )
+            );
         });
     }
 
