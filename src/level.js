@@ -66,7 +66,7 @@ export default class Level {
 
     drawCactus(ctx) {
         this.eachCactus(function(cactus) {
-            if(cactus.timer % 8 && cactus.timer < 50) {
+            if(cactus.timer % 6 && cactus.timer < 50) {
                 ctx.drawImage(
                     cactusSprite,
                     1791,
@@ -97,7 +97,7 @@ export default class Level {
     }
 
     newCactus() {
-        let randX = Math.floor(Math.random() * 480);
+        let randX = Math.floor(Math.random() * 443);
 
         const cactus = {
             x: randX,
@@ -111,7 +111,7 @@ export default class Level {
 
     moveCactus() {
         this.eachCactus(function (cactus) {
-            if(cactus.timer > 50) {
+            if(cactus.timer > 55) {
                 cactus.y += 7;
             }
         });
