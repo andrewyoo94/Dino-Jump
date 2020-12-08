@@ -26,6 +26,12 @@ export default class Game {
         this.restart();
     }
 
+    gameOver() {
+        return (
+            this.level.collidesWith(this.dino) === "cactus" || this.dino.isOutOfBounds() || this.level.deathFromBirdCheck(this.dino)
+        );
+    }
+
     updateScore() {
         this.scorePlaceValues = [
             Math.floor(this.score / 10000 % 10),

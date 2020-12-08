@@ -65,12 +65,7 @@ export default class Dino {
 
     animate(ctx) {
         this.moveDino();
-        if (this.isOutOfBounds(this.x) == "left") {
-            this.drawDino(ctx, this.dimensions.x);
-        }  
-        if (this.isOutOfBounds(this.x) == "right"){
-            this.drawDino(ctx, 0);
-        }
+
         this.drawDino(ctx);
     }
 
@@ -102,29 +97,9 @@ export default class Dino {
         }
     }
 
-    // isOutOfBounds(x) {
-    //     if (x < 0 || x > this.dimensions.width) {
-    //         return true;
-    //     };
-    //     return false;
-    // };
-
-    isOutOfBounds(x) {
-        if (x < 0) {
-            return "left"
+    isOutOfBounds() {
+        if (this.y + CONSTANTS.DINO_HEIGHT > 640) {
+            return true;
         };
-        if (x > this.dimensions.width) {
-            return "right";
-        };
-        return false;
     };
-
-    wrap(x) {
-        if (x > this.dimensions.x) {
-            this.x = 0;
-        }
-        if (x < 0) {
-            this.x = this.dimensions.x;
-        }
-    }
 }

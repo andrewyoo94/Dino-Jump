@@ -32,7 +32,10 @@ const groundSprite = new Image();
 groundSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
 
 const cactusSprite = new Image();
-cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png"
+cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
+
+const platformSprite = new Image();
+platformSprite = "/home/andrew/Desktop/dino_jump/img/platform.png";
 
 export default class Level {
     constructor(dimensions) {
@@ -366,9 +369,37 @@ export default class Level {
                 collision = true;
                 bird.pos = "dead";
             }
-        })
+        });
+
+        this.eachCactus((cactus) => {
+            if(_overlap(cactus, dino)) {
+                return "cactus";
+            }
+        });
         
         return collision;
+    }
+
+    deathFromBirdCheck(dino) {
+        const check = (obj, dino) => {
+            //check that they don't overlap in the x axis
+            if (plat.x > dino.x + dino.width || plat.x + CONSTANTS.PLAT_WIDTH < dino.x) {
+                return false;
+            }
+
+            //check that they don't overlap in the y axis
+            if (dino.y + 60 > plat.y + CONSTANTS.PLAT_HEIGHT || dino.y + 60 < plat.y) {
+                return false;
+            }
+
+            return true;
+        };
+
+        this.eachBird((bird) => {
+            if (check(bird, dino)) {
+                return true;
+            }
+        });
     }
     
     animate(ctx) {
