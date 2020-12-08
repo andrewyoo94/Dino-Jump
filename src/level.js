@@ -153,7 +153,7 @@ export default class Level {
         } else {
             pos = "right";
         }
-        
+         
         const bird = {
             x: randX,
             y: randY, 
