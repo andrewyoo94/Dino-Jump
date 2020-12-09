@@ -12,8 +12,8 @@ const CONSTANTS = {
     STARTING_SX: 260,
     STARTING_SX_LEFT: 1997,
     CLOUD_SPEED: 0.5,
-    // CACTUS_WIDTH: ,
-    // CACTUS_HEIGHT: 
+    PLAT_ARR: [1, 103, 205, 307],
+    PLAT_COUNTER: 0
 };
 
 const birdSprite = new Image();
@@ -35,7 +35,7 @@ const cactusSprite = new Image();
 cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
 
 const platformSprite = new Image();
-platformSprite.src = "/home/andrew/Desktop/dino_jump/img/plat5.png";
+platformSprite.src = "/home/andrew/Desktop/dino_jump/img/platforms.png";
 
 export default class Level {
     constructor(dimensions) {
@@ -272,8 +272,11 @@ export default class Level {
             x: 125,
             y: 550,
             width: CONSTANTS.PLAT_WIDTH,
-            height: CONSTANTS.PLAT_HEIGHT
+            height: CONSTANTS.PLAT_HEIGHT,
+            counter: 0
         }
+
+        CONSTANTS.PLAT_COUNTER += 1;
         
         return plat
     }
@@ -286,8 +289,15 @@ export default class Level {
             x: randX,
             y: randY,
             width: CONSTANTS.PLAT_WIDTH,
-            height: CONSTANTS.PLAT_HEIGHT
+            height: CONSTANTS.PLAT_HEIGHT,
+            counter: CONSTANTS.PLAT_COUNTER
         }
+
+        CONSTANTS.PLAT_COUNTER += 1;
+        if(CONSTANTS.PLAT_COUNTER === 3) {
+            CONSTANTS.PLAT_COUNTER = 0;
+        }
+
         return plat;
     }
     
@@ -298,8 +308,15 @@ export default class Level {
             x: randX,
             y: 0,
             width: CONSTANTS.PLAT_WIDTH,
-            height: CONSTANTS.PLAT_HEIGHT
+            height: CONSTANTS.PLAT_HEIGHT,
+            counter: CONSTANTS.PLAT_COUNTER
         }
+
+        CONSTANTS.PLAT_COUNTER += 1;
+        if (CONSTANTS.PLAT_COUNTER === 3) {
+            CONSTANTS.PLAT_COUNTER = 0;
+        }
+        
         return plat;
     }
     
@@ -318,10 +335,12 @@ export default class Level {
             //     plat.height
             // )
 
+            let x = CONSTANTS.PLAT_ARR[plat.counter]
+
             ctx.drawImage(
                 platformSprite,
-                0,
-                0,
+                x,
+                1,
                 100,
                 15,
                 plat.x,
@@ -337,7 +356,6 @@ export default class Level {
             plat.y += CONSTANTS.PLAT_SPEED;
         });
 
-        //if a pipe has left the screen add a new one to the end
         if (this.platforms[0].y >= this.dimensions.height) {
             this.platforms.shift();
             const newY = this.platforms[1].y + CONSTANTS.MIN_PLAT_DIST;
