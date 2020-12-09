@@ -50,9 +50,10 @@ export default class Game {
 
     isGameOver() {
         return (
-            this.dino.isOutOfBounds() || this.level.deathFromBirdCheck(this.dino)
+            this.dino.isOutOfBounds() || this.level.collidesWith(this.dino) === "cactus"
         );
         // this.level.collidesWith(this.dino) === "cactus" || 
+        // this.level.deathFromBirdCheck(this.dino)
     }
     
     animate() {
