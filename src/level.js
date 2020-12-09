@@ -14,7 +14,7 @@ const CONSTANTS = {
     CLOUD_SPEED: 0.5,
     PLAT_ARR: [1, 103, 205, 307],
     PLAT_COUNTER: 0
-};   
+};
 
 const birdSprite = new Image();
 birdSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
