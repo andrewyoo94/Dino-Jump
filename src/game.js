@@ -56,7 +56,6 @@ export default class Game {
     }
 
     drawGameOver(ctx) {
-        debugger
         ctx.drawImage(
             scoreSprite,
             1294,
@@ -67,6 +66,18 @@ export default class Game {
             100,
             381,
             21
+        );
+
+        ctx.drawImage(
+            scoreSprite,
+            2,
+            2,
+            72,
+            64,
+            204,
+            175,
+            72,
+            64
         );
     }
     
