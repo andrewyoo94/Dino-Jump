@@ -358,8 +358,6 @@ export default class Level {
     drawBackground(ctx) {
         ctx.fillStyle = "white";
         ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
-
-        // ctx.drawImage(groundSprite, 174, 2, 84, 27, randX, y, 84, 27);
     }
 
     collidesWith(dino) {

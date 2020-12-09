@@ -52,8 +52,22 @@ export default class Game {
         return (
             this.dino.isOutOfBounds() || this.level.collidesWith(this.dino) === "cactus"
         );
-        // this.level.collidesWith(this.dino) === "cactus" || 
         // this.level.deathFromBirdCheck(this.dino)
+    }
+
+    drawGameOver(ctx) {
+        debugger
+        ctx.drawImage(
+            scoreSprite,
+            1294,
+            29,
+            381,
+            21,
+            49.5,
+            100,
+            381,
+            21
+        );
     }
     
     animate() {
@@ -68,8 +82,8 @@ export default class Game {
         }
 
         if (this.isGameOver()) {
-            alert(this.score);
-            this.restart();
+            this.drawGameOver(this.ctx);
+            this.running = false;
         }
     
         if (this.running) {
