@@ -23,7 +23,7 @@ export default class Dino {
         this.vel = 0;
         this.width = CONSTANTS.DINO_WIDTH;
         this.height = CONSTANTS.DINO_HEIGHT;
-        this.direction = ""
+        this.direction = "";
     }
 
     drawDino(ctx) { 
@@ -102,4 +102,8 @@ export default class Dino {
             return true;
         };
     };
+
+    // reduceGravity() {
+    //     this.vel += 0.002;
+    // }
 }

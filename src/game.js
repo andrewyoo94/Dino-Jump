@@ -26,12 +26,6 @@ export default class Game {
         this.restart();
     }
 
-    gameOver() {
-        return (
-            this.level.collidesWith(this.dino) === "cactus" || this.dino.isOutOfBounds() || this.level.deathFromBirdCheck(this.dino)
-        );
-    }
-
     updateScore() {
         this.scorePlaceValues = [
             Math.floor(this.score / 10000 % 10),
@@ -53,6 +47,13 @@ export default class Game {
             )
         }
     }
+
+    isGameOver() {
+        return (
+            this.dino.isOutOfBounds() || this.level.deathFromBirdCheck(this.dino)
+        );
+        // this.level.collidesWith(this.dino) === "cactus" || 
+    }
     
     animate() {
         this.level.animate(this.ctx);
@@ -63,6 +64,11 @@ export default class Game {
 
         if (this.level.collidesWith(this.dino)) {
             this.dino.jump();
+        }
+
+        if (this.isGameOver()) {
+            alert(this.score);
+            this.restart();
         }
     
         if (this.running) {

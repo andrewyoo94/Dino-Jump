@@ -403,24 +403,78 @@ export default class Level {
     }
 
     deathFromBirdCheck(dino) {
-        const check = (obj, dino) => {
+        // const check = (bird, dino) => {
+        //     // let dinoTopBirdBottom = 
+        //     //     bird.y + CONSTANTS.BIRD_HEIGHT > dino.y &&
+        //     //     (bird.x < dino.x + dino.width || bird.x + CONSTANTS.BIRD_WIDTH > dino.x);
+
+        //     const adjustedHitboxBottom = 2;
+        //     const adjustedHitboxRight = 2;
+            
+        //     // if (bird.y + CONSTANTS.BIRD_HEIGHT - adjustedHitbox > dino.y) {
+        //     //     debugger
+        //     //     return true;
+        //     // }
+
+        //     let testCollision = 0;
+        //     let test1 = 0;
+        //     let test2 = 0;
+        //     let test3 = 0;
+        //     let test4 = 0;
+
+        //     if (bird.y + CONSTANTS.BIRD_HEIGHT - 25 > dino.y && dino.y > bird.y + CONSTANTS.BIRD_HEIGHT - 25) {
+        //         testCollision += 1; 
+        //         test1 += 1;
+        //     }
+
+        //     if (bird.x < dino.x + dino.width) {
+        //         testCollision += 1;
+        //         test2 += 1;
+        //     }
+
+        //     if (bird.x + CONSTANTS.BIRD_WIDTH > dino.x) {
+        //         testCollision += 1;
+        //         test3 += 1;
+        //     }
+
+        //     // if ( bird.y < (dino.y + 50) < bird.y + 60) {
+        //     //     test4 += 1;
+        //     //     testCollision += 1;
+        //     // }
+
+        //     // if (dinoTopBirdBottom) {
+        //     //     debugger
+        //     //     return true;
+        //     // }
+
+        //     if (testCollision === 3) {
+        //         debugger
+        //         console.log(test1,test2,test3,test4)
+        //         return true;
+        //     }
+
+        //     return false;
+        // };
+
+
+        const check = (bird, dino) => {
+
             //check that they don't overlap in the x axis
-            if (plat.x > dino.x + dino.width || plat.x + CONSTANTS.PLAT_WIDTH < dino.x) {
+            if (bird.x > dino.x + dino.width || bird.x + CONSTANTS.BIRD_WIDTH < dino.x) {
                 return false;
             }
 
             //check that they don't overlap in the y axis
-            if (dino.y + 60 > plat.y + CONSTANTS.PLAT_HEIGHT || dino.y + 60 < plat.y) {
+            if (dino.y + 60 > bird.y + CONSTANTS.BIRD_HEIGHT || dino.y + 60 < bird.y + 25) {
                 return false;
             }
 
             return true;
         };
+        let collision = false;
 
         this.eachBird((bird) => {
-            if (check(bird, dino)) {
-                return true;
-            }
+            return check(bird, dino);
         });
     }
     
