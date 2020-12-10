@@ -95,6 +95,7 @@ export default class Game {
         if (this.isGameOver()) {
             this.drawGameOver(this.ctx);
             this.running = false;
+
         }
     
         if (this.running) {
@@ -126,6 +127,7 @@ export default class Game {
     input(event) {
         let leftKey = event.keyCode === 65 || event.keyCode === 37; // A or Arrow_Left
         let rightKey = event.keyCode === 68 || event.keyCode === 39; // D or Arrow_Right
+        let spaceKey = event.keyCode === 32 // Spacebar
 
         if (leftKey) {
             this.dino.controlDino("left");
@@ -136,6 +138,10 @@ export default class Game {
 
         if (event.type === "keyup" && ( leftKey || rightKey)) {
             this.dino.controlDino("")
+        }
+
+        if (this.running === false && spaceKey) {
+            this.restart();
         }
     }
 }
