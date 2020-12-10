@@ -329,6 +329,7 @@ export default class Level {
         this.eachPlat(function (plat) {
 
             let x = CONSTANTS.PLAT_ARR[plat.counter]
+            debugger
             ctx.drawImage(
                 platformSprite,
                 x,
