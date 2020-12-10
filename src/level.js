@@ -268,6 +268,8 @@ export default class Level {
     }
 
     startPlat() {
+        debugger
+
         const plat = {
             x: 125,
             y: 550,
@@ -284,6 +286,10 @@ export default class Level {
     randomPlat(minPlatDistance) {
         let randX = Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
         let randY = Math.floor(Math.random() * 100) + minPlatDistance;
+
+        if (CONSTANTS.PLAT_COUNTER > 3) {
+            CONSTANTS.PLAT_COUNTER = 0;
+        }
         
         const plat = {
             x: randX,
@@ -294,15 +300,16 @@ export default class Level {
         }
 
         CONSTANTS.PLAT_COUNTER += 1;
-        if(CONSTANTS.PLAT_COUNTER === 3) {
-            CONSTANTS.PLAT_COUNTER = 0;
-        }
 
         return plat;
     }
     
     pushNewPlat() {
         let randX = Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
+
+        if (CONSTANTS.PLAT_COUNTER > 3) {
+            CONSTANTS.PLAT_COUNTER = 0;
+        }
         
         const plat = {
             x: randX,
@@ -313,9 +320,6 @@ export default class Level {
         }
 
         CONSTANTS.PLAT_COUNTER += 1;
-        if (CONSTANTS.PLAT_COUNTER === 3) {
-            CONSTANTS.PLAT_COUNTER = 0;
-        }
 
         return plat;
     }
