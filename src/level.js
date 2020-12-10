@@ -45,7 +45,7 @@ export default class Level {
             this.startPlat(),
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST),
             this.randomPlat(CONSTANTS.MIN_PLAT_DIST / 2),
-            this.randomPlat(CONSTANTS.MIN_PLAT_DIST / 4)
+            this.randomPlat(CONSTANTS.MIN_PLAT_DIST / 6)
         ];
         
         this.birds = [
@@ -268,8 +268,6 @@ export default class Level {
     }
 
     startPlat() {
-        debugger
-
         const plat = {
             x: 125,
             y: 550,
@@ -282,10 +280,19 @@ export default class Level {
         
         return plat
     }
+
+    // reassignIfOverlapX(randX) {
+    //     this.eachPlat(function (plat) {
+
+    //         if(randX )
+
+    //         Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
+    //     }); 
+    // }
     
     randomPlat(minPlatDistance) {
         let randX = Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
-        let randY = Math.floor(Math.random() * 100) + minPlatDistance;
+        let randY = Math.floor(Math.random() * (100 - 50)) + minPlatDistance;
 
         if (CONSTANTS.PLAT_COUNTER > 3) {
             CONSTANTS.PLAT_COUNTER = 0;
