@@ -26,6 +26,10 @@ export default class Game {
         this.restart();
     }
 
+    bonusPoints() {
+        this.score += 5;
+    }
+
     updateScore() {
         this.scorePlaceValues = [
             Math.floor(this.score / 10000 % 10),
@@ -86,6 +90,10 @@ export default class Game {
         this.dino.animate(this.ctx);
         this.drawScore(this.ctx);
         this.score += 0.2;
+        if(this.level.bonus) {
+            this.bonusPoints();
+            this.level.bonus = false;
+        }
         this.updateScore();
 
         if (this.level.collidesWith(this.dino)) {

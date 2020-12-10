@@ -40,6 +40,7 @@ platformSprite.src = "/home/andrew/Desktop/dino_jump/img/platforms.png";
 export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
+        this.bonus = false;
         
         this.platforms = [
             this.startPlat(),
@@ -202,6 +203,7 @@ export default class Level {
                     CONSTANTS.BIRD_HEIGHT
                 );
             } if (bird.pos == "dead") {
+                this.bonus = true;
                 ctx.drawImage(
                     deadBirdSprite,
                     2,
@@ -269,7 +271,7 @@ export default class Level {
 
     startPlat() {
         const plat = {
-            x: 125,
+            x: 190,
             y: 550,
             width: CONSTANTS.PLAT_WIDTH,
             height: CONSTANTS.PLAT_HEIGHT,
@@ -280,15 +282,6 @@ export default class Level {
         
         return plat
     }
-
-    // reassignIfOverlapX(randX) {
-    //     this.eachPlat(function (plat) {
-
-    //         if(randX )
-
-    //         Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
-    //     }); 
-    // }
     
     randomPlat(minPlatDistance) {
         let randX = Math.floor(Math.random() * (this.dimensions.width - CONSTANTS.PLAT_WIDTH + 1));
