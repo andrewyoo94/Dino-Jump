@@ -325,10 +325,10 @@ export default class Level {
     }
 
     drawPlatforms(ctx) {
+        debugger
         this.eachPlat(function (plat) {
 
             let x = CONSTANTS.PLAT_ARR[plat.counter]
-
             ctx.drawImage(
                 platformSprite,
                 x,
@@ -340,7 +340,7 @@ export default class Level {
                 plat.width,
                 plat.height
             );
-        });
+        }); 
     }
 
     movePlats() {
