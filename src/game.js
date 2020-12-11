@@ -31,7 +31,6 @@ export default class Game {
     }
 
     increaseDifficulty() {
-        debugger
         this.level.cactus.push(this.level.newCactus());
     }
 
