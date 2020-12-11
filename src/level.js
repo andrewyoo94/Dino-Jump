@@ -13,7 +13,8 @@ const CONSTANTS = {
     STARTING_SX_LEFT: 1997,
     CLOUD_SPEED: 0.5,
     PLAT_ARR: [1, 103, 205, 307],
-    PLAT_COUNTER: 0
+    PLAT_COUNTER: 0,
+    DIFFICULTY_TIMER: 0
 };
 
 const birdSprite = new Image();
@@ -123,6 +124,16 @@ export default class Level {
         if (this.cactus[0].y > this.dimensions.height) {
             this.cactus.shift();
             this.cactus.push(this.newCactus());
+        };
+
+        if (CONSTANTS.DIFFICULTY_TIMER === 5) {
+            this.cactus.push(this.newCactus());
+            CONSTANTS.DIFFICULTY_TIMER = 6;
+        };
+
+        if (CONSTANTS.DIFFICULTY_TIMER === 50) {
+            this.cactus.push(this.newCactus());
+            CONSTANTS.DIFFICULTY_TIMER = 51;
         };
     }
         
@@ -320,6 +331,7 @@ export default class Level {
         }
 
         CONSTANTS.PLAT_COUNTER += 1;
+        CONSTANTS.DIFFICULTY_TIMER += 1;
 
         return plat;
     }
@@ -329,11 +341,10 @@ export default class Level {
     }
 
     drawPlatforms(ctx) {
-        debugger
         this.eachPlat(function (plat) {
 
             let x = CONSTANTS.PLAT_ARR[plat.counter]
-            debugger
+
             ctx.drawImage(
                 platformSprite,
                 x,

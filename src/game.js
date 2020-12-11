@@ -30,6 +30,11 @@ export default class Game {
         this.score += 5;
     }
 
+    increaseDifficulty() {
+        debugger
+        this.level.cactus.push(this.level.newCactus());
+    }
+
     updateScore() {
         this.scorePlaceValues = [
             Math.floor(this.score / 10000 % 10),
