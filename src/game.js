@@ -27,7 +27,7 @@ export default class Game {
     }
 
     bonusPoints() {
-        this.score += 5;
+        this.score += 1;
     }
 
     increaseDifficulty() {
