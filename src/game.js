@@ -8,6 +8,9 @@ const CONSTANTS = {
 const scoreSprite = new Image();
 scoreSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 
+const topBorderSprite = new Image();
+topBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
+
 export default class Game {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
@@ -24,6 +27,16 @@ export default class Game {
         ];
         
         this.restart();
+    }
+
+    drawTopBorder(ctx) {
+        ctx.drawImage(
+            topBorderSprite,
+            1000, 2,  //sX, sY      lessen height to move line up
+            480, 24,  //           lessen this height after to shorten bottem
+            0, 0,
+            480, 24
+        )
     }
 
     bonusPoints() {
@@ -50,7 +63,7 @@ export default class Game {
                 scoreSprite, 
                 1294 + (CONSTANTS.SCORE_WIDTH * this.scorePlaceValues[i]), 2,  //sX, sY
                 18, 21, 
-                360 + (25 * i), 0, 
+                360 + (25 * i), 35, 
                 18, 21
             )
         }
@@ -91,6 +104,7 @@ export default class Game {
     
     animate() {
         this.level.animate(this.ctx);
+        this.drawTopBorder(this.ctx);
         this.dino.animate(this.ctx);
         this.drawScore(this.ctx);
         this.score += 0.2;
@@ -99,7 +113,8 @@ export default class Game {
             this.level.bonus = false;
         }
         this.updateScore();
-
+        
+        
         if (this.level.collidesWith(this.dino)) {
             this.dino.jump();
         }

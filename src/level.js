@@ -158,9 +158,12 @@ export default class Level {
         this.birds.forEach(callback.bind(this));
     }
     
+    // 60 y for platform
+
     newBird() {
         let randX = Math.random() < 0.5 ? -74 : 480;
-        let randY = Math.floor(Math.random() * 586);     // returns a random integer from 0 to 640
+        let randY = Math.floor(Math.random() * (586 - 90 + 1) + 90);    // returns a random integer from 25 to 586
+
         let pos = ""
         
         if(randX == -74) {
@@ -171,7 +174,7 @@ export default class Level {
          
         const bird = {
             x: randX,
-            y: randY, 
+            y: randY,
             width: CONSTANTS.BIRD_WIDTH,
             height: CONSTANTS.BIRD_HEIGHT,
             pos: pos
@@ -266,17 +269,32 @@ export default class Level {
 
     drawClouds(ctx) {
         this.eachCloud(function (cloud) {
-            ctx.drawImage(
-                cloudSprite,
-                174,
-                2,
-                cloud.width,
-                cloud.height,
-                cloud.x,
-                cloud.y,
-                cloud.width,
-                cloud.height
-            );
+
+            if(cloud.y >= 15) {
+                ctx.drawImage(
+                    cloudSprite,
+                    174,
+                    2,
+                    cloud.width,
+                    cloud.height,
+                    cloud.x,
+                    cloud.y,
+                    cloud.width,
+                    cloud.height
+                );
+            }
+
+            // ctx.drawImage(
+            //     cloudSprite,
+            //     174,
+            //     2,
+            //     cloud.width,
+            //     cloud.height,
+            //     cloud.x,
+            //     cloud.y,
+            //     cloud.width,
+            //     cloud.height
+            // );
         });
     }
 
@@ -324,7 +342,7 @@ export default class Level {
         
         const plat = {
             x: randX,
-            y: 0,
+            y: 60,
             width: CONSTANTS.PLAT_WIDTH,
             height: CONSTANTS.PLAT_HEIGHT,
             counter: CONSTANTS.PLAT_COUNTER
