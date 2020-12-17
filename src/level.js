@@ -14,8 +14,14 @@ const CONSTANTS = {
     CLOUD_SPEED: 0.5,
     PLAT_ARR: [1, 103, 205, 307],
     PLAT_COUNTER: 0,
-    DIFFICULTY_TIMER: 0
+    DIFFICULTY_TIMER: 0,
+    BORDER_WIDTH: 37,
+    BORDER_HEIGHT: 2385,
+    BORDER_SPEED: 3
 };
+
+const sideBorderSprite = new Image();
+sideBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/border.png";
 
 const birdSprite = new Image();
 birdSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
@@ -63,6 +69,84 @@ export default class Level {
         this.cactus = [
             this.newCactus()
         ];
+
+        this.borderLeft = [
+            this.newBorder("left")
+        ];
+
+        this.borderRight = [
+            this.newBorder("right")
+        ];
+    }
+
+    drawBorder(ctx) {
+
+        this.eachBorderLeft(function (border) {
+            ctx.drawImage(
+                sideBorderSprite,
+                12, 12,  //sX, sY      
+                37, 2380,  // sW, sH
+                border.x, border.y,
+                border.width, border.height
+            );
+        });
+
+        this.eachBorderRight(function (border) {
+            ctx.drawImage(
+                sideBorderSprite,
+                90, 10,  //sX, sY      
+                37, 2380,  // sW, sH
+                border.x, border.y,
+                border.width, border.height
+            );
+        });
+    }
+
+    newBorder(side, dY) {
+        let dX = side === "left" ? -1 : 444;
+        dY = (typeof dY !== 'undefined') ? dY : -1750;
+
+        const border = {
+            x: dX,
+            y: dY,
+            width: CONSTANTS.BORDER_WIDTH,
+            height: CONSTANTS.BORDER_HEIGHT
+        }
+        return border;
+    }
+
+    eachBorderLeft(callback) {
+        this.borderLeft.forEach(callback.bind(this));
+    }
+
+    eachBorderRight(callback) {
+        this.borderRight.forEach(callback.bind(this));
+    }
+
+    moveBorders() {
+        debugger
+        this.eachBorderLeft(function (border) {
+            border.y += CONSTANTS.BORDER_SPEED;
+            debugger
+        });
+
+        this.eachBorderRight(function (border) {
+            border.y += CONSTANTS.BORDER_SPEED;
+        });
+
+        //if top of border drops into frame push new border
+        if (this.borderLeft[0].y + 640 >= 640 && this.borderLeft.length < 2) {
+            this.borderLeft.push(this.newBorder("left", -2380));
+        }
+
+        if (this.borderRight[0].y + 640 >= 640 && this.borderRight.length < 2) {
+            this.borderRight.push(this.newBorder("right", -2380));
+        }
+
+        if (this.borderLeft[0].y >= 640) {
+            this.borderLeft.shift();
+            this.borderRight.shift();
+        }
     }
     
     eachCactus(callback) {
@@ -283,18 +367,6 @@ export default class Level {
                     cloud.height
                 );
             }
-
-            // ctx.drawImage(
-            //     cloudSprite,
-            //     174,
-            //     2,
-            //     cloud.width,
-            //     cloud.height,
-            //     cloud.x,
-            //     cloud.y,
-            //     cloud.width,
-            //     cloud.height
-            // );
         });
     }
 
@@ -539,9 +611,11 @@ export default class Level {
         this.drawPlatforms(ctx);
         this.drawCactus(ctx);
         this.drawBirds(ctx);
+        this.drawBorder(ctx);
         this.movePlats();
         this.moveBirds();
         this.moveCactus();
         this.moveClouds();
+        this.moveBorders();
     }
 }
