@@ -182,7 +182,7 @@ export default class Level {
             }
             cactus.timer += 1;
         });
-    }
+    } 
 
     // CHANGEPLACEMENT
     newCactus() {
