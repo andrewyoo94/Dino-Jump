@@ -102,6 +102,7 @@ export default class Level {
         });
     }
 
+    // CHANGEPLACEMENT
     newBorder(side, dY) {
         let dX = side === "left" ? -1 : 444;
         dY = (typeof dY !== 'undefined') ? dY : -1750;
@@ -124,10 +125,8 @@ export default class Level {
     }
 
     moveBorders() {
-        debugger
         this.eachBorderLeft(function (border) {
             border.y += CONSTANTS.BORDER_SPEED;
-            debugger
         });
 
         this.eachBorderRight(function (border) {
@@ -185,6 +184,7 @@ export default class Level {
         });
     }
 
+    // CHANGEPLACEMENT
     newCactus() {
         let randX = Math.floor(Math.random() * 443);
 
