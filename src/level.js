@@ -94,8 +94,8 @@ export default class Level {
         this.eachBorderRight(function (border) {
             ctx.drawImage(
                 sideBorderSprite,
-                90, 7,  //sX, sY       
-                36, 2385,  // sW, sH
+                90, 8,  //sX, sY       
+                138, 2380,  // sW, sH
                 border.x, border.y,
                 border.width, border.height
             );
@@ -105,12 +105,13 @@ export default class Level {
     // CHANGEPLACEMENT
     newBorder(side, dY) {
         let dX = side === "left" ? -1 : 500;
+        let width = side === "left" ? 37 : 138
         dY = (typeof dY !== 'undefined') ? dY : -1750;
 
         const border = {
             x: dX,
             y: dY,
-            width: CONSTANTS.BORDER_WIDTH,
+            width: width,
             height: CONSTANTS.BORDER_HEIGHT
         }
         return border;
@@ -184,7 +185,7 @@ export default class Level {
         });
     } 
 
-    CHANGEPLACEMENT
+    // CHANGEPLACEMENT
     newCactus() {
         let randX = Math.floor(Math.random() * 443);
 
@@ -324,7 +325,7 @@ export default class Level {
 
     randomCloud(buffer) {
         let randX = Math.floor(Math.random() * 450);
-        let y = -27 * buffer; //draw cloud above canvas so it drops down into view
+        let y = -30 * buffer; //draw cloud above canvas so it drops down into view
 
         const cloud = {
             x: randX,
