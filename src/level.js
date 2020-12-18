@@ -79,28 +79,28 @@ export default class Level {
         ];
     }
 
-    drawBorder(ctx) {
+    // drawBorder(ctx) {
 
-        this.eachBorderLeft(function (border) {
-            ctx.drawImage(
-                sideBorderSprite,
-                12, 12,  //sX, sY      
-                37, 2380,  // sW, sH
-                border.x, border.y,
-                border.width, border.height
-            );
-        });
+    //     this.eachBorderLeft(function (border) {
+    //         ctx.drawImage(
+    //             sideBorderSprite,
+    //             12, 12,  //sX, sY      
+    //             37, 2380,  // sW, sH
+    //             border.x, border.y,
+    //             border.width, border.height
+    //         );
+    //     });
 
-        this.eachBorderRight(function (border) {
-            ctx.drawImage(
-                sideBorderSprite,
-                90, 7,  //sX, sY      
-                36, 2385,  // sW, sH
-                border.x, border.y,
-                border.width, border.height
-            );
-        });
-    }
+    //     this.eachBorderRight(function (border) {
+    //         ctx.drawImage(
+    //             sideBorderSprite,
+    //             90, 7,  //sX, sY      
+    //             36, 2385,  // sW, sH
+    //             border.x, border.y,
+    //             border.width, border.height
+    //         );
+    //     });
+    // }
 
     // CHANGEPLACEMENT
     newBorder(side, dY) {
