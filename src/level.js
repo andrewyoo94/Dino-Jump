@@ -323,7 +323,7 @@ export default class Level {
     }
 
     randomCloud(buffer) {
-        let randX = Math.floor(Math.random() * 500) - 42;
+        let randX = Math.floor(Math.random() * 450);
         let y = -27 * buffer; //draw cloud above canvas so it drops down into view
 
         const cloud = {
@@ -384,8 +384,6 @@ export default class Level {
         return plat
     }
     
-
-    //CHANGE dX
     randomPlat(minPlatDistance) {
         let randX = Math.floor(Math.random() * (400 - 35) + 35);
         let randY = Math.floor(Math.random() * (100 - 50)) + minPlatDistance;
