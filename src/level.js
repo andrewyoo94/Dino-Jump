@@ -185,18 +185,18 @@ export default class Level {
     } 
 
     // CHANGEPLACEMENT
-    newCactus() {
-        let randX = Math.floor(Math.random() * 443);
+    // newCactus() {
+    //     let randX = Math.floor(Math.random() * 443);
 
-        const cactus = {
-            x: 35,
-            y: 0,
-            width: 37,
-            height: 63,
-            timer: 0
-        }
-        return cactus;
-    }
+    //     const cactus = {
+    //         x: 35,
+    //         y: 0,
+    //         width: 37,
+    //         height: 63,
+    //         timer: 0
+    //     }
+    //     return cactus;
+    // }
 
     moveCactus() {
         this.eachCactus(function (cactus) {
