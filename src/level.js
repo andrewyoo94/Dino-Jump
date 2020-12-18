@@ -94,8 +94,8 @@ export default class Level {
         this.eachBorderRight(function (border) {
             ctx.drawImage(
                 sideBorderSprite,
-                90, 10,  //sX, sY      
-                37, 2380,  // sW, sH
+                90, 7,  //sX, sY      
+                36, 2385,  // sW, sH
                 border.x, border.y,
                 border.width, border.height
             );
