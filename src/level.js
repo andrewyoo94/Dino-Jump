@@ -104,7 +104,7 @@ export default class Level {
 
     // CHANGEPLACEMENT
     newBorder(side, dY) {
-        let dX = side === "left" ? -1 : 444;
+        let dX = side === "left" ? -1 : 500;
         dY = (typeof dY !== 'undefined') ? dY : -1750;
 
         const border = {
@@ -189,7 +189,7 @@ export default class Level {
         let randX = Math.floor(Math.random() * 443);
 
         const cactus = {
-            x: randX,
+            x: 35,
             y: 0,
             width: 37,
             height: 63,

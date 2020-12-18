@@ -65,7 +65,7 @@ export default class Game {
                 scoreSprite, 
                 1294 + (CONSTANTS.SCORE_WIDTH * this.scorePlaceValues[i]), 2,  //sX, sY
                 18, 21, 
-                360 + (25 * i), 35, 
+                this.dimensions.width - (125) + (25 * i), 10, 
                 18, 21
             )
         }
