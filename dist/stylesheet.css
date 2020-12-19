@@ -50,9 +50,22 @@ canvas {
 } */
 
 #game {
-    display: flex;
+    /* display: flex;
     margin: 0 auto;
     z-index: -1;
+
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0; */
+
+  background-color: #ccc;
+  display: block;
+  position: absolute;
+  margin-left: 100px;
+  height: 100%;
 }
 
 #title {
