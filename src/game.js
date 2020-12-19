@@ -82,26 +82,18 @@ export default class Game {
     drawGameOver(ctx) {
         ctx.drawImage(
             scoreSprite,
-            1294,
-            29,
-            381,
-            21,
-            49.5,
-            100,
-            381,
-            21
+            1294, 29,
+            381, 21,
+            77.5, 100,
+            381, 21
         );
 
         ctx.drawImage(
             scoreSprite,
-            2,
-            2,
-            72,
-            64,
-            204,
-            175,
-            72,
-            64
+            2, 2,
+            72, 64,
+            232, 175,
+            72, 64
         );
     }
     
