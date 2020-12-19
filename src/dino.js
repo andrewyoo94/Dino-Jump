@@ -72,7 +72,7 @@ export default class Dino {
     controlDino(direction) {
         let acc = 0;
 
-        if(direction=="left") {
+        if(direction=="left" && this.x > 35) {
             this.direction="left";
             
             acc = 9;
@@ -85,7 +85,7 @@ export default class Dino {
             }
         } 
 
-        if(direction=="right") {
+        if(direction=="right" && this.x < 430) {
             this.direction = "right";
             acc = 9;
 
