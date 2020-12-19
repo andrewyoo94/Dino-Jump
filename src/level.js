@@ -415,7 +415,7 @@ export default class Level {
         
         const plat = {
             x: randX,
-            y: 60,
+            y: -15,
             width: CONSTANTS.PLAT_WIDTH,
             height: CONSTANTS.PLAT_HEIGHT,
             counter: CONSTANTS.PLAT_COUNTER
