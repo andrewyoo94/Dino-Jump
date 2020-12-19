@@ -233,7 +233,7 @@ export default class Level {
             }
         })
         
-        if (this.birds[0].x + CONSTANTS.BIRD_WIDTH < 0 || this.birds[0].x > this.dimensions.width || this.birds[0].y > this.dimensions.height) {
+        if (this.birds[0].x + CONSTANTS.BIRD_WIDTH < 0 || this.birds[0].x > 525 || this.birds[0].y > this.dimensions.height) {
             this.birds.shift();
             this.birds.push(this.newBird());
         }
@@ -246,19 +246,19 @@ export default class Level {
     // 60 y for platform
 
     newBird() {
-        let randX = Math.random() < 0.5 ? -74 : 480;
+        let dX = Math.random() < 0.5 ? -74 : 515;
         let randY = Math.floor(Math.random() * (586 - 90 + 1) + 90);    // returns a random integer from 25 to 586
 
         let pos = ""
         
-        if(randX == -74) {
+        if(dX === -74) {
             pos = "left";
         } else {
             pos = "right";
         }
          
         const bird = {
-            x: randX,
+            x: dX,
             y: randY,
             width: CONSTANTS.BIRD_WIDTH,
             height: CONSTANTS.BIRD_HEIGHT,
