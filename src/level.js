@@ -187,10 +187,10 @@ export default class Level {
 
     // CHANGEPLACEMENT
     newCactus() {
-        let randX = Math.floor(Math.random() * 443);
+        let randX = Math.floor(Math.random() * (460 - 35 + 1) + 35);
 
         const cactus = {
-            x: 35,
+            x: randX,
             y: 0,
             width: 37,
             height: 63,
