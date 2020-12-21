@@ -447,6 +447,7 @@ export default class Level {
                 plat.width,
                 plat.height
             );
+            
         }); 
     }
 

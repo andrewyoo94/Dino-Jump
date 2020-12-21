@@ -61,11 +61,14 @@ canvas {
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0; */
 
-  background-color: #ccc;
+  margin-right: auto;
+  margin-left: auto;
   display: block;
-  position: absolute;
-  margin-left: 100px;
-  height: 100%;
+  padding-left: 164px;
+
+
+  /* position: absolute; */
+  height: 98%;
 }
 
 #title {
@@ -77,3 +80,11 @@ canvas {
     color: #525252;
     z-index: 1;
 }
+/* 
+#container {
+  /* width: 620px; */
+  width: 59%;
+
+  height: 100px;
+  margin: 0px auto;
+} */
