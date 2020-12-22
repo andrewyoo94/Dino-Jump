@@ -1,77 +1,12 @@
-/* #game {
-    display: flex;
-    margin: 0 auto;
-    z-index: -1;
-}
-
-#title {
-    text-align: center;
-    margin-top: 0;
-    font-family: 'Press Start 2P', cursive;
-    font-weight: 900;
-    font-size: 45px;
-    color: #525252;
-    z-index: 1;
-}
-
-#container {
-  position: relative;
-}
-
-#container canvas, #overlay {
-  position: absolute;
-}
-
-canvas {
-  border: 1px solid black;
-} */
-
-/* ---------------------- */
-
-/* #container {
-  position: relative;
-}
-
-#container canvas, #title {
-    position: absolute;
-    text-align: center;
-    margin-top: 0;
-    font-family: 'Press Start 2P', cursive;
-    font-weight: 900;
-    font-size: 45px;
-    color: #525252;
-    z-index: 1;
-}
-
-canvas {
-    display: flex;
-    margin: 0 auto;
-    z-index: -1;
-} */
-
 #game {
-    /* display: flex;
-    margin: 0 auto;
-    z-index: -1;
-
-    max-width: 100%;
-    max-height: 100%;
-    margin: auto;
-
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0; */
-
   margin-right: auto;
   margin-left: auto;
   display: block;
-  padding-left: 164px;
-
-
-  /* position: absolute; */
-  height: 98%;
+  padding-left: 166px;
+  height: 98vh;
 }
 
-#title {
+/* #title {
     text-align: center;
     margin-top: 0;
     font-family: 'Press Start 2P', cursive;
@@ -79,4 +14,4 @@ canvas {
     font-size: 45px;
     color: #525252;
     z-index: 1;
-} 
+}  */
