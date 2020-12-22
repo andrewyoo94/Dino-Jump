@@ -18,12 +18,12 @@ if (jumpAudio.canPlayType("audio/mp3")) {
     jumpAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/jump.wav");
 }
 
-// var deathAudio = new Audio();
-// if (deathAudio.canPlayType("audio/mp3")) {
-//     deathAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/jump.mp3");
-// } else {
-//     deathAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/jump.wav");
-// }
+var deathAudio = new Audio();
+if (deathAudio.canPlayType("audio/mp3")) {
+    deathAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/death.mp3");
+} else {
+    deathAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/death.wav");
+}
 
 export default class Game {
     constructor(canvas) {
@@ -130,6 +130,7 @@ export default class Game {
         }
 
         if (this.isGameOver()) {
+            deathAudio.play();
             this.drawGameOver(this.ctx);
             this.running = false;
 
