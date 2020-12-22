@@ -13,16 +13,16 @@ topBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
 
 var jumpAudio = new Audio();
 if (jumpAudio.canPlayType("audio/mp3")) {
-    jumpAudio = "/home/andrew/Desktop/dino_jump/sounds/jump.mp3";
+    jumpAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/jump.mp3");
 } else {
-    jumpAudio = "/home/andrew/Desktop/dino_jump/sounds/jump.wav";
+    jumpAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/jump.wav");
 }
 
-// const deathAudio = new Audio();
-// if (audio.canPlayType("audio/mp3")) {
-//     audioType = ".mp3";
+// var deathAudio = new Audio();
+// if (deathAudio.canPlayType("audio/mp3")) {
+//     deathAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/jump.mp3");
 // } else {
-//     audioType = ".wav";
+//     deathAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/jump.wav");
 // }
 
 export default class Game {
