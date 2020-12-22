@@ -11,6 +11,20 @@ scoreSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 const topBorderSprite = new Image();
 topBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
 
+var jumpAudio = new Audio();
+if (jumpAudio.canPlayType("audio/mp3")) {
+    jumpAudio = "/home/andrew/Desktop/dino_jump/sounds/jump.mp3";
+} else {
+    jumpAudio = "/home/andrew/Desktop/dino_jump/sounds/jump.wav";
+}
+
+// const deathAudio = new Audio();
+// if (audio.canPlayType("audio/mp3")) {
+//     audioType = ".mp3";
+// } else {
+//     audioType = ".wav";
+// }
+
 export default class Game {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
@@ -112,6 +126,7 @@ export default class Game {
         
         if (this.level.collidesWith(this.dino)) {
             this.dino.jump();
+            jumpAudio.play();
         }
 
         if (this.isGameOver()) {
