@@ -24,7 +24,7 @@ if (deathAudio.canPlayType("audio/mp3")) {
 } else {
     deathAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/death.wav");
 }
-  
+
 export default class Game {
     constructor(canvas) {
         this.ctx = canvas.getContext("2d");
