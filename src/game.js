@@ -11,9 +11,6 @@ scoreSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 const topBorderSprite = new Image();
 topBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
 
-const titleSprite = new Image();
-titleSprite.src = "/home/andrew/Desktop/dino_jump/img/titleSprite.png";
-
 var jumpAudio = new Audio();
 if (jumpAudio.canPlayType("audio/mp3")) {
     jumpAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/jump.mp3");
@@ -46,22 +43,6 @@ export default class Game {
         
         this.restart();
     } 
-
-    drawTitleScreen(ctx) {
-        ctx.drawImage(
-            titleSprite,
-            0, 0,  //sX, sY      lessen height to move line up
-            498, 52,  //           lessen this height after to shorten bottem
-            44, -1,
-            448, 52
-        )
-    }
-
-    moveTitleScreen() {
-
-
-
-    }
 
     drawTopBorder(ctx) {
         ctx.drawImage(
@@ -132,36 +113,34 @@ export default class Game {
     }
     
     animate() {
-
-        // if(CONSTANTS.START_GAME === false) {
-            this.startAnimation(this.ctx);
-        // }
-
         this.level.animate(this.ctx);
-        // this.drawTopBorder(this.ctx);
-        this.dino.animate(this.ctx);
-        this.drawScore(this.ctx);
-        this.score += 0.2;
-        if(this.level.bonus) {
-            this.bonusPoints();
-            this.level.bonus = false;
-        }
-        this.updateScore();
-        this.startAnimation(this.ctx);
+
+        if (this.start_game === true) {
+            // this.drawTopBorder(this.ctx);
+            this.dino.animate(this.ctx);
+            this.drawScore(this.ctx);
+            this.score += 0.2;
+            if(this.level.bonus) {
+                this.bonusPoints();
+                this.level.bonus = false;
+            }
+            this.updateScore();
+            this.drawTitleScreen(this.ctx);
+            
+            
+            if (this.level.collidesWith(this.dino)) {
+                this.dino.jump();
+                jumpAudio.play();
+            }
+
+            if (this.isGameOver()) {
+                deathAudio.play();
+                this.drawGameOver(this.ctx);
+                this.running = false;
+            }
         
-        
-        if (this.level.collidesWith(this.dino)) {
-            this.dino.jump();
-            jumpAudio.play();
         }
 
-        if (this.isGameOver()) {
-            deathAudio.play();
-            this.drawGameOver(this.ctx);
-            this.running = false;
-
-        }
-    
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }

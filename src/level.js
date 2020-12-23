@@ -44,10 +44,14 @@ cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
 const platformSprite = new Image();
 platformSprite.src = "/home/andrew/Desktop/dino_jump/img/platforms.png";
 
+const titleSprite = new Image();
+titleSprite.src = "/home/andrew/Desktop/dino_jump/img/titleSprite.png";
+
 export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
         this.bonus = false;
+        this.start_game = false;
         
         this.platforms = [
             this.startPlat(),
@@ -77,6 +81,27 @@ export default class Level {
         this.borderRight = [
             this.newBorder("right")
         ];
+
+        this.title = {
+            x: 44,
+            y: -1,
+            width: 448,
+            height: 52
+        };
+    }
+
+    drawTitleScreen(ctx, title) {
+        ctx.drawImage(
+            titleSprite,
+            0, 0,  //sX, sY      lessen height to move line up
+            498, 52,  //           lessen this height after to shorten bottem
+            title.x, title.y,
+            title.width, title.height
+        )
+    }
+
+    moveTitleScreen() {
+
     }
 
     drawBorder(ctx) {
@@ -608,16 +633,21 @@ export default class Level {
     // }
     
     animate(ctx) {
-        this.drawBackground(ctx);
-        this.drawClouds(ctx);
-        this.drawPlatforms(ctx);
-        this.drawCactus(ctx);
-        this.drawBirds(ctx);
+        if (this.start_game === true) {
+            
+            this.drawBackground(ctx);
+            this.drawClouds(ctx);
+            this.drawPlatforms(ctx);
+            this.drawCactus(ctx);
+            this.drawBirds(ctx);
+            this.movePlats();
+            this.moveBirds();
+            this.moveCactus();
+            this.moveClouds();
+            this.moveBorders();
+        }
+        
         this.drawBorder(ctx);
-        this.movePlats();
-        this.moveBirds();
-        this.moveCactus();
-        this.moveClouds();
-        this.moveBorders();
+        this.drawTitleScreen(ctx, this.title);
     }
 }
