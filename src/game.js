@@ -45,7 +45,7 @@ export default class Game {
         ];
         
         this.restart();
-    } 
+    }
 
     drawTitleScreen(ctx) {
         ctx.drawImage(
