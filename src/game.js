@@ -2,8 +2,7 @@ import Level from "./level";
 import Dino from "./dino";
 
 const CONSTANTS = {
-    SCORE_WIDTH: 20,
-    START_GAME: false
+    SCORE_WIDTH: 20
 };
 
 const scoreSprite = new Image();
@@ -35,6 +34,7 @@ export default class Game {
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.registerEvents();
         this.score = 0;
+        this.start_game = false;
         
         this.scorePlaceValues = [
             Math.floor(this.score % 10),
@@ -45,9 +45,9 @@ export default class Game {
         ];
         
         this.restart();
-    }
+    } 
 
-    startAnimation(ctx) {
+    drawTitleScreen(ctx) {
         ctx.drawImage(
             titleSprite,
             0, 0,  //sX, sY      lessen height to move line up
@@ -55,6 +55,12 @@ export default class Game {
             44, -1,
             448, 52
         )
+    }
+
+    moveTitleScreen() {
+
+
+
     }
 
     drawTopBorder(ctx) {
