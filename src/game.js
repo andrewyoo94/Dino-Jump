@@ -2,7 +2,8 @@ import Level from "./level";
 import Dino from "./dino";
 
 const CONSTANTS = {
-    SCORE_WIDTH: 20
+    SCORE_WIDTH: 20,
+    START_GAME: false
 };
 
 const scoreSprite = new Image();
@@ -10,6 +11,9 @@ scoreSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 
 const topBorderSprite = new Image();
 topBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
+
+const titleSprite = new Image();
+titleSprite.src = "/home/andrew/Desktop/dino_jump/img/titleSprite.png";
 
 var jumpAudio = new Audio();
 if (jumpAudio.canPlayType("audio/mp3")) {
@@ -43,9 +47,19 @@ export default class Game {
         this.restart();
     }
 
+    startAnimation(ctx) {
+        ctx.drawImage(
+            titleSprite,
+            0, 0,  //sX, sY      lessen height to move line up
+            498, 52,  //           lessen this height after to shorten bottem
+            44, -1,
+            448, 52
+        )
+    }
+
     drawTopBorder(ctx) {
         ctx.drawImage(
-            topBorderSprite,
+            titleSprite,
             1000, 2,  //sX, sY      lessen height to move line up
             480, 24,  //           lessen this height after to shorten bottem
             0, 0,
@@ -112,6 +126,11 @@ export default class Game {
     }
     
     animate() {
+
+        // if(CONSTANTS.START_GAME === false) {
+            this.startAnimation(this.ctx);
+        // }
+
         this.level.animate(this.ctx);
         // this.drawTopBorder(this.ctx);
         this.dino.animate(this.ctx);
@@ -122,6 +141,7 @@ export default class Game {
             this.level.bonus = false;
         }
         this.updateScore();
+        this.startAnimation(this.ctx);
         
         
         if (this.level.collidesWith(this.dino)) {
