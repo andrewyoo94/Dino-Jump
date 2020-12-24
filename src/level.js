@@ -82,30 +82,45 @@ export default class Level {
             this.newBorder("right")
         ];
 
-        this.title = {
+        this.title = [
+            this.newTitle()
+        ];
+    }
+
+    newTitle() {
+        const title = {
             x: 44,
             y: -1,
             width: 448,
             height: 52
         };
+        return title;
     }
 
     drawTitleScreen(ctx, title) {
-        ctx.drawImage(
-            titleSprite,
-            0, 0,  //sX, sY      lessen height to move line up
-            498, 52,  //           lessen this height after to shorten bottem
-            title.x, title.y,
-            title.width, title.height
-        )
+
+        if(title.y < 640) {
+            ctx.drawImage(
+                titleSprite,
+                0, -1,  //sX, sY      lessen height to move line up
+                498, 52,  //           lessen this height after to shorten bottem
+                title.x, title.y,
+                title.width, title.height
+            )
+        }
     }
 
     moveTitleScreen() {
+        if (this.title[0].y < 640) {
+            this.title[0].y += 5;
+        }
 
+        if(this.title[0].y > 640) {
+            this.title.shift();
+        }
     }
 
     drawBorder(ctx) {
-
         this.eachBorderLeft(function (border) {
             ctx.drawImage(
                 sideBorderSprite,
@@ -634,7 +649,6 @@ export default class Level {
     
     animate(ctx) {
         if (this.start_game === true) {
-            
             this.drawBackground(ctx);
             this.drawClouds(ctx);
             this.drawPlatforms(ctx);
@@ -648,6 +662,11 @@ export default class Level {
         }
         
         this.drawBorder(ctx);
-        this.drawTitleScreen(ctx, this.title);
+
+        // if(this.title.length === 1) {
+            this.drawTitleScreen(ctx, this.title[0]);
+        // }
+
+        // this.moveTitleScreen();
     }
 }
