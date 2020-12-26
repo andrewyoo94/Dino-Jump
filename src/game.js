@@ -167,24 +167,24 @@ export default class Game {
         document.addEventListener("keyup", this.boundClickHandler);
     }
 
-    // input(event) {
-    //     let leftKey = event.keyCode === 65 || event.keyCode === 37; // A or Arrow_Left
-    //     let rightKey = event.keyCode === 68 || event.keyCode === 39; // D or Arrow_Right
-    //     let spaceKey = event.keyCode === 32 // Spacebar
+    input(event) {
+        let leftKey = event.keyCode === 65 || event.keyCode === 37; // A or Arrow_Left
+        let rightKey = event.keyCode === 68 || event.keyCode === 39; // D or Arrow_Right
+        let spaceKey = event.keyCode === 32 // Spacebar
 
-    //     if (leftKey) {
-    //         this.dino.controlDino("left");
-    //     }
-    //     if (rightKey) {
-    //         this.dino.controlDino("right");
-    //     }
+        if (leftKey) {
+            this.dino.controlDino("left");
+        }
+        if (rightKey) {
+            this.dino.controlDino("right");
+        }
 
-    //     if (event.type === "keyup" && ( leftKey || rightKey)) {
-    //         this.dino.controlDino("")
-    //     }
+        if (event.type === "keyup" && ( leftKey || rightKey)) {
+            this.dino.controlDino("")
+        }
 
-    //     if (this.running === false && spaceKey) {
-    //         this.restart();
-    //     }
-    // }
+        if (this.running === false && spaceKey) {
+            this.restart();
+        }
+    }
 }    
