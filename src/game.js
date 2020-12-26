@@ -161,11 +161,11 @@ export default class Game {
         this.animate();
     }
 
-    // registerEvents() {
-    //     this.boundClickHandler = this.input.bind(this);
-    //     document.addEventListener("keydown", this.boundClickHandler);
-    //     document.addEventListener("keyup", this.boundClickHandler);
-    // }
+    registerEvents() {
+        this.boundClickHandler = this.input.bind(this);
+        document.addEventListener("keydown", this.boundClickHandler);
+        document.addEventListener("keyup", this.boundClickHandler);
+    }
 
     input(event) {
         let leftKey = event.keyCode === 65 || event.keyCode === 37; // A or Arrow_Left
