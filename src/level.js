@@ -86,7 +86,7 @@ export default class Level {
             this.newTitle()
         ];
     }
- 
+
     newTitle() {
         const title = {
             x: 44,
