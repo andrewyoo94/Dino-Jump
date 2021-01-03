@@ -96,7 +96,7 @@ export default class Level {
         };
         return title;
     }
-
+ 
     drawTitleScreen(ctx, title) {
 
         if(title.y < 640) {
@@ -115,9 +115,9 @@ export default class Level {
             this.title[0].y += 5;
         }
 
-        if(this.title[0].y > 640) {
-            this.title.shift();
-        }
+            if(this.title[0].y > 640) {
+                this.title.shift();
+            }
     }
 
     drawBorder(ctx) {
@@ -667,6 +667,6 @@ export default class Level {
             this.drawTitleScreen(ctx, this.title[0]);
         // }
 
-        // this.moveTitleScreen();
+        this.moveTitleScreen();
     }
 }
