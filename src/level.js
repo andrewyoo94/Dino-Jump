@@ -94,8 +94,8 @@ export default class Level {
             width: 448,
             height: 52
         };
-        return title;
-    }    
+        return title; 
+    }
 
     drawTitleScreen(ctx, title) {
 
