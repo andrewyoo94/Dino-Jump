@@ -96,7 +96,7 @@ export default class Level {
         };
         return title; 
     }   
-
+ 
     drawTitleScreen(ctx, title) {
 
         if(title.y < 640) {
