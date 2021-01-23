@@ -95,7 +95,7 @@ export default class Level {
             height: 52
         };
         return title;
-    }    
+    }
 
     drawTitleScreen(ctx, title) {
 
@@ -108,7 +108,7 @@ export default class Level {
                 title.width, title.height
             )
         }
-    }
+    } 
 
     moveTitleScreen() {
         if (this.title[0].y < 640) {
