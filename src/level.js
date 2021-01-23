@@ -108,7 +108,7 @@ export default class Level {
                 title.width, title.height
             )
         }
-    }    
+    }     
 
     moveTitleScreen() {
         if (this.title[0].y < 640) {
