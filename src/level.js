@@ -99,7 +99,7 @@ export default class Level {
 
     drawTitleScreen(ctx, title) {
 
-        if(title.y < 640) {
+        // if(title.y < 640) {
             ctx.drawImage(
                 titleSprite,
                 0, -1,  //sX, sY      lessen height to move line up
@@ -107,7 +107,7 @@ export default class Level {
                 title.x, title.y,
                 title.width, title.height
             )
-        }
+        // }
     }
 
     moveTitleScreen() {
@@ -115,9 +115,10 @@ export default class Level {
             this.title[0].y += 5;
         }
 
-            if(this.title[0].y > 640) {
-                this.title.shift();
-            }
+        if(this.title[0].y > 640) {
+            this.title.shift();
+            this.start_game = true;
+        }
     }
 
     drawBorder(ctx) {
@@ -663,9 +664,9 @@ export default class Level {
         
         this.drawBorder(ctx);
 
-        // if(this.title.length === 1) {
+        if(this.title.length === 1) {
             this.drawTitleScreen(ctx, this.title[0]);
-        // }
+        }
 
         this.moveTitleScreen();
     }
