@@ -114,7 +114,7 @@ export default class Game {
     
     animate() {
         this.level.animate(this.ctx);
-        // this.dino.animate(this.ctx);
+        this.dino.animate(this.ctx);
 
         if (this.start_game === true) {
             // this.drawTopBorder(this.ctx);

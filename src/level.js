@@ -666,8 +666,8 @@ export default class Level {
 
         if(this.title.length === 1) {
             this.drawTitleScreen(ctx, this.title[0]);
+            this.moveTitleScreen();
         }
 
-        this.moveTitleScreen();
     }
 }
