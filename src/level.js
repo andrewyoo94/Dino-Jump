@@ -123,6 +123,7 @@ export default class Level {
 
     registerEvents() {
         this.boundClickHandler = this.input.bind(this);
+        document.addEventListener("keydown", this.boundClickHandler);
     }
 
     input(event) {
