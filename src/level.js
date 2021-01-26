@@ -136,7 +136,7 @@ export default class Level {
         if (spaceKey) {
             this.start_titleAnimation = true;
         }
-
+ 
     }
 
     drawBorder(ctx) {
