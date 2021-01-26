@@ -90,7 +90,6 @@ export default class Game {
         return (
             this.dino.isOutOfBounds() || this.level.collidesWith(this.dino) === "cactus"
         );
-        // this.level.deathFromBirdCheck(this.dino)
     }
 
     // CHANGEPLACEMENT
@@ -114,7 +113,6 @@ export default class Game {
     
     animate() {
         this.level.animate(this.ctx);
-
         
         if (this.level.start_game === true) {
             this.dino.animate(this.ctx);
@@ -126,8 +124,6 @@ export default class Game {
                 this.level.bonus = false;
             }
             this.updateScore();
-            // this.drawTitleScreen(this.ctx);
-            
             
             if (this.level.collidesWith(this.dino)) {
                 this.dino.jump();

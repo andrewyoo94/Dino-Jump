@@ -51,7 +51,9 @@ export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
         this.bonus = false;
+        this.start_titleAnimation = false;
         this.start_game = false;
+        this.registerEvents();
         
         this.platforms = [
             this.startPlat(),
@@ -90,7 +92,7 @@ export default class Level {
     newTitle() {
         const title = {
             x: 44,
-            y: -1,
+            y: 0,
             width: 448,
             height: 52
         };
@@ -99,26 +101,41 @@ export default class Level {
 
     drawTitleScreen(ctx, title) {
 
-        // if(title.y < 640) {
-            ctx.drawImage(
-                titleSprite,
-                0, -1,  //sX, sY      lessen height to move line up
-                498, 52,  //           lessen this height after to shorten bottem
-                title.x, title.y,
-                title.width, title.height
-            )
-        // }
+        ctx.drawImage(
+            titleSprite,
+            0, 0,  //sX, sY      lessen height to move line up
+            498, 52,  //           lessen this height after to shorten bottem
+            title.x, title.y,
+            title.width, title.height
+        )
     }
 
     moveTitleScreen() {
-        if (this.title[0].y < 640) {
-            this.title[0].y += 5;
+        if (this.title[0].y < 640 && this.start_titleAnimation === true) {
+            this.title[0].y += 3;
         }
 
         if(this.title[0].y > 640) {
             this.title.shift();
             this.start_game = true;
         }
+    }
+
+    registerEvents() {
+        this.boundClickHandler = this.input.bind(this);
+    }
+
+    input(event) {
+        let spaceKey = event.keyCode === 32 // Spacebar
+
+        // if (this.start_game === false && spaceKey) {
+        //     this.start_titleAnimation = true;
+        // }
+
+        if (spaceKey) {
+            this.start_titleAnimation = true;
+        }
+
     }
 
     drawBorder(ctx) {
@@ -666,7 +683,10 @@ export default class Level {
 
         if(this.title.length === 1) {
             this.drawTitleScreen(ctx, this.title[0]);
-            this.moveTitleScreen();
+
+            // if (this.start_titleAnimation) { 
+                this.moveTitleScreen();
+            // }
         }
 
     }
