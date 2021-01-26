@@ -114,9 +114,10 @@ export default class Game {
     
     animate() {
         this.level.animate(this.ctx);
-        this.dino.animate(this.ctx);
 
-        if (this.start_game === true) {
+        
+        if (this.level.start_game === true) {
+            this.dino.animate(this.ctx);
             // this.drawTopBorder(this.ctx);
             this.drawScore(this.ctx);
             this.score += 0.2;
@@ -125,7 +126,7 @@ export default class Game {
                 this.level.bonus = false;
             }
             this.updateScore();
-            this.drawTitleScreen(this.ctx);
+            // this.drawTitleScreen(this.ctx);
             
             
             if (this.level.collidesWith(this.dino)) {
