@@ -133,7 +133,7 @@ export default class Level {
             this.start_titleAnimation = true;
         }
 
-        // if (spaceKey) {
+        // if (spaceKey) { 
         //     this.start_titleAnimation = true;
         // }
     }
