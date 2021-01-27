@@ -129,13 +129,13 @@ export default class Level {
     input(event) {
         let spaceKey = event.keyCode === 32 // Spacebar
 
-        // if (this.start_game === false && spaceKey) {
-        //     this.start_titleAnimation = true;
-        // }
-
-        if (spaceKey) {
+        if (this.start_game === false && spaceKey) {
             this.start_titleAnimation = true;
         }
+
+        // if (spaceKey) {
+        //     this.start_titleAnimation = true;
+        // }
     }
 
     drawBorder(ctx) {
