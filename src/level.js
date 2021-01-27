@@ -121,22 +121,22 @@ export default class Level {
         }
     }
 
-    // registerEvents() {
-    //     this.boundClickHandler = this.input.bind(this);
-    //     document.addEventListener("keydown", this.boundClickHandler);
-    // }
+    registerEvents() {
+        this.boundClickHandler = this.input.bind(this);
+        document.addEventListener("keydown", this.boundClickHandler);
+    }
 
-    // input(event) {
-    //     let spaceKey = event.keyCode === 32 // Spacebar
+    input(event) {
+        let spaceKey = event.keyCode === 32 // Spacebar
 
-    //     // if (this.start_game === false && spaceKey) {
-    //     //     this.start_titleAnimation = true;
-    //     // }
+        // if (this.start_game === false && spaceKey) {
+        //     this.start_titleAnimation = true;
+        // }
 
-    //     if (spaceKey) {
-    //         this.start_titleAnimation = true;
-    //     }
-    // }
+        if (spaceKey) {
+            this.start_titleAnimation = true;
+        }
+    }
 
     drawBorder(ctx) {
         this.eachBorderLeft(function (border) {
