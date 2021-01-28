@@ -464,50 +464,50 @@ export default class Level {
         return plat;
     }
     
-    // pushNewPlat() {
-    //     let randX = Math.floor(Math.random() * (400 - 35) + 35);
+    pushNewPlat() {
+        let randX = Math.floor(Math.random() * (400 - 35) + 35);
 
-    //     if (CONSTANTS.PLAT_COUNTER > 3) {
-    //         CONSTANTS.PLAT_COUNTER = 0;
-    //     }
+        if (CONSTANTS.PLAT_COUNTER > 3) {
+            CONSTANTS.PLAT_COUNTER = 0;
+        }
         
-    //     const plat = {
-    //         x: randX,
-    //         y: -15,
-    //         width: CONSTANTS.PLAT_WIDTH,
-    //         height: CONSTANTS.PLAT_HEIGHT,
-    //         counter: CONSTANTS.PLAT_COUNTER
-    //     }
+        const plat = {
+            x: randX,
+            y: -15,
+            width: CONSTANTS.PLAT_WIDTH,
+            height: CONSTANTS.PLAT_HEIGHT,
+            counter: CONSTANTS.PLAT_COUNTER
+        }
 
-    //     CONSTANTS.PLAT_COUNTER += 1;
-    //     CONSTANTS.DIFFICULTY_TIMER += 1;
+        CONSTANTS.PLAT_COUNTER += 1;
+        CONSTANTS.DIFFICULTY_TIMER += 1;
 
-    //     return plat;
-    // }
+        return plat;
+    }
     
-    // eachPlat(callback) {
-    //     this.platforms.forEach(callback.bind(this));
-    // }
+    eachPlat(callback) {
+        this.platforms.forEach(callback.bind(this));
+    }
  
-    // drawPlatforms(ctx) {
-    //     this.eachPlat(function (plat) {
+    drawPlatforms(ctx) {
+        this.eachPlat(function (plat) {
 
-    //         let x = CONSTANTS.PLAT_ARR[plat.counter]
+            let x = CONSTANTS.PLAT_ARR[plat.counter]
 
-    //         ctx.drawImage(
-    //             platformSprite,
-    //             x,
-    //             1,
-    //             100,
-    //             15,
-    //             plat.x,
-    //             plat.y,
-    //             plat.width,
-    //             plat.height
-    //         );
+            ctx.drawImage(
+                platformSprite,
+                x,
+                1,
+                100,
+                15,
+                plat.x,
+                plat.y,
+                plat.width,
+                plat.height
+            );
             
-    //     }); 
-    // }
+        }); 
+    }
 
     movePlats() {
         this.eachPlat(function (plat) {
