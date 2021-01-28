@@ -507,7 +507,7 @@ export default class Level {
             );
             
         }); 
-    } 
+    }
 
     movePlats() {
         this.eachPlat(function (plat) {
