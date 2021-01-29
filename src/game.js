@@ -143,15 +143,15 @@ export default class Game {
         }
     }
 
-    // restart() {
-    //     this.running = true;
-    //     this.score = 0;
+    restart() {
+        this.running = true;
+        this.score = 0;
         
-    //     this.level = new Level(this.dimensions);
-    //     this.dino = new Dino(this.dimensions);
+        this.level = new Level(this.dimensions);
+        this.dino = new Dino(this.dimensions);
         
-    //     this.animate();
-    // }
+        this.animate();
+    }
     
     play() {
         this.running = true;
