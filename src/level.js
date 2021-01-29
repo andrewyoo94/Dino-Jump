@@ -99,15 +99,15 @@ export default class Level {
         return title;
     }
 
-    drawTitleScreen(ctx, title) {
-        ctx.drawImage(
-            titleSprite,
-            0, 0,  //sX, sY      lessen height to move line up
-            498, 52,  //           lessen this height after to shorten bottem
-            title.x, title.y,
-            title.width, title.height
-        )
-    }
+    // drawTitleScreen(ctx, title) {
+    //     ctx.drawImage(
+    //         titleSprite,
+    //         0, 0,  //sX, sY      lessen height to move line up
+    //         498, 52,  //           lessen this height after to shorten bottem
+    //         title.x, title.y,
+    //         title.width, title.height
+    //     )
+    // }
 
     moveTitleScreen() {
         if (this.title[0].y < 640 && this.start_titleAnimation === true) {
