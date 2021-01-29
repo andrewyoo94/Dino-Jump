@@ -141,7 +141,7 @@ export default class Game {
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }
-    }
+    } 
 
     restart() {
         this.running = true;
