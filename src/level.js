@@ -99,27 +99,26 @@ export default class Level {
         return title;
     }
 
-    // drawTitleScreen(ctx, title) {
+    drawTitleScreen(ctx, title) {
+        ctx.drawImage(
+            titleSprite,
+            0, 0,  //sX, sY      lessen height to move line up
+            498, 52,  //           lessen this height after to shorten bottem
+            title.x, title.y,
+            title.width, title.height
+        )
+    }
 
-    //     ctx.drawImage(
-    //         titleSprite,
-    //         0, 0,  //sX, sY      lessen height to move line up
-    //         498, 52,  //           lessen this height after to shorten bottem
-    //         title.x, title.y,
-    //         title.width, title.height
-    //     )
-    // }
+    moveTitleScreen() {
+        if (this.title[0].y < 640 && this.start_titleAnimation === true) {
+            this.title[0].y += 3;
+        }
 
-    // moveTitleScreen() {
-    //     if (this.title[0].y < 640 && this.start_titleAnimation === true) {
-    //         this.title[0].y += 3;
-    //     }
-
-    //     if(this.title[0].y > 640) {
-    //         this.title.shift();
-    //         this.start_game = true;
-    //     }
-    // }
+        if(this.title[0].y > 640) {
+            this.title.shift();
+            this.start_game = true;
+        }
+    }
 
     registerEvents() {
         this.boundClickHandler = this.input.bind(this);
