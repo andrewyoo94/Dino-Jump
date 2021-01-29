@@ -109,33 +109,33 @@ export default class Level {
         )
     }
 
-    // moveTitleScreen() {
-    //     if (this.title[0].y < 640 && this.start_titleAnimation === true) {
-    //         this.title[0].y += 3;
-    //     }
-
-    //     if(this.title[0].y > 640) {
-    //         this.title.shift();
-    //         this.start_game = true;
-    //     }
-    // }
-
-    registerEvents() {
-        this.boundClickHandler = this.input.bind(this);
-        document.addEventListener("keydown", this.boundClickHandler);
-    }
-
-    input(event) {
-        let spaceKey = event.keyCode === 32 // Spacebar
-
-        if (this.start_game === false && spaceKey) {
-            this.start_titleAnimation = true;
+    moveTitleScreen() {
+        if (this.title[0].y < 640 && this.start_titleAnimation === true) {
+            this.title[0].y += 3;
         }
 
-        // if (spaceKey) { 
-        //     this.start_titleAnimation = true;
-        // }
+        if(this.title[0].y > 640) {
+            this.title.shift();
+            this.start_game = true;
+        }
     }
+
+    // registerEvents() {
+    //     this.boundClickHandler = this.input.bind(this);
+    //     document.addEventListener("keydown", this.boundClickHandler);
+    // }
+
+    // input(event) {
+    //     let spaceKey = event.keyCode === 32 // Spacebar
+
+    //     if (this.start_game === false && spaceKey) {
+    //         this.start_titleAnimation = true;
+    //     }
+
+    //     // if (spaceKey) { 
+    //     //     this.start_titleAnimation = true;
+    //     // }
+    // }
 
     drawBorder(ctx) {
         this.eachBorderLeft(function (border) {
