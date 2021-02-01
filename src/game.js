@@ -72,7 +72,6 @@ export default class Game {
         ];
     }
 
-
     // CHANGEPLACEMENT 
     drawScore(ctx) {
         for(let i = 0; i < 5; i++) {
