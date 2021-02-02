@@ -115,6 +115,9 @@ export default class Game {
     animate() {
 
         this.title.animate(this.ctx);
+        if (this.title.space_pressed === true) {
+            this.title.jump();
+        }
         
         if (this.title.titleAnimation_finished === true) {
             this.level.animate(this.ctx);

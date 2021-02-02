@@ -1,3 +1,9 @@
+const CONSTANTS = {
+    GRAVITY: 0.25,
+    TERMINAL_VEL: 10,
+    JUMP_SPEED: 12
+};
+
 const titleSprite = new Image();
 titleSprite.src = "/home/andrew/Desktop/dino_jump/img/titleSprite.png";
 
@@ -5,8 +11,10 @@ export default class Title {
 
     constructor(dimensions) {
         this.dimensions = dimensions;
+        this.space_pressed = false;
         this.start_titleAnimation = false;
         this.titleAnimation_finished = false;
+        this.vel = 0;
         this.registerEvents();
 
         this.title = [
@@ -17,7 +25,7 @@ export default class Title {
     newTitle() {
         const title = {
             x: 44,
-            y: 0,
+            y: 200,
             width: 448,
             height: 52
         };
@@ -36,13 +44,31 @@ export default class Title {
 
     moveTitleScreen() {
         if (this.title[0].y < 640 && this.start_titleAnimation === true) {
-            this.title[0].y += 3;
+            this.title[0].y += this.vel;
+            this.title[0].y += CONSTANTS.GRAVITY;
+
+            if (Math.abs(this.vel) > CONSTANTS.TERMINAL_VEL) {
+                //if the terminal velocity is exceeded, we set it to the terminal velicty
+                if (this.vel > 0) {
+                    this.vel = CONSTANTS.TERMINAL_VEL;
+                } else {
+                    this.vel = CONSTANTS.TERMINAL_VEL * -1;
+                }
+            }
         }
 
         if (this.title[0].y > 640) {
             this.title.shift();
             this.titleAnimation_finished  = true;
         }
+    }
+
+    jump() {
+        //if this were a more realistic bird simulation, we would be adding to the velocity
+        //instead of just assigning it outright
+        //to make the experience more fun and 'bouncy' we just set it directly
+        this.vel = -1 * (this.vel + CONSTANTS.JUMP_SPEED);
+        this.space_pressed = false;
     }
 
     registerEvents() {
@@ -53,8 +79,9 @@ export default class Title {
     input(event) {
         let spaceKey = event.keyCode === 32 // Spacebar
 
-        if (spaceKey) {
+        if (spaceKey && this.space_pressed === false) {
             this.start_titleAnimation = true;
+            this.space_pressed = true;
         }
     }
 
