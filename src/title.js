@@ -1,5 +1,5 @@
 const CONSTANTS = {
-    GRAVITY: 5,
+    GRAVITY: 8,
     TERMINAL_VEL: 10,
     JUMP_SPEED: 12
 };
@@ -57,9 +57,10 @@ export default class Title {
             }
         }
 
-        if (this.title[0].y > 640) {
+        if (this.title[0].y >= 640) {
             this.title.shift();
-            this.titleAnimation_finished  = true;
+            this.titleAnimation_finished = true;
+            // debugger
         }
     }
 
@@ -67,7 +68,7 @@ export default class Title {
         //if this were a more realistic bird simulation, we would be adding to the velocity
         //instead of just assigning it outright
         //to make the experience more fun and 'bouncy' we just set it directly
-        this.vel = -1 * (this.vel + CONSTANTS.JUMP_SPEED);
+        this.vel -= 10;
         this.space_pressed = false;
     }
 

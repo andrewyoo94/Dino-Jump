@@ -117,6 +117,7 @@ export default class Game {
         this.title.animate(this.ctx);
         // if (this.title.space_pressed === true) {
         //     this.title.jump();
+        //     this.title.space_pressed = false;
         // }
         
         if (this.title.titleAnimation_finished === true) {

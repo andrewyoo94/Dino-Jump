@@ -44,9 +44,6 @@ cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
 const platformSprite = new Image();
 platformSprite.src = "/home/andrew/Desktop/dino_jump/img/platforms.png";
 
-const titleSprite = new Image();
-titleSprite.src = "/home/andrew/Desktop/dino_jump/img/titleSprite.png";
-
 export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
