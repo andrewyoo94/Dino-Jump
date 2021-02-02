@@ -1,5 +1,6 @@
 import Level from "./level";
 import Dino from "./dino";
+import Title from "./title";
 
 const CONSTANTS = {
     SCORE_WIDTH: 20
@@ -32,6 +33,7 @@ export default class Game {
         this.registerEvents();
         this.score = 0;
         this.start_game = false;
+        this.title = new Title(this.dimensions);
         
         this.scorePlaceValues = [
             Math.floor(this.score % 10),
@@ -111,9 +113,11 @@ export default class Game {
     }
     
     animate() {
-        this.level.animate(this.ctx);
+
+        this.title.animate(this.ctx);
         
-        if (this.level.start_game === true) {
+        if (this.title.titleAnimation_finished === true) {
+            this.level.animate(this.ctx);
             this.dino.animate(this.ctx);
             // this.drawTopBorder(this.ctx);
             this.drawScore(this.ctx);

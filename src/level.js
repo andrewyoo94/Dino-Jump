@@ -51,9 +51,11 @@ export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
         this.bonus = false;
-        this.start_titleAnimation = false;
-        this.start_game = false;
-        this.registerEvents();
+
+        // this.start_titleAnimation = false;
+
+        // this.start_game = false;
+        // this.registerEvents();
         
         this.platforms = [
             this.startPlat(),
@@ -84,58 +86,58 @@ export default class Level {
             this.newBorder("right")
         ];
 
-        this.title = [
-            this.newTitle()
-        ];
+        // this.title = [
+        //     this.newTitle()
+        // ];
     }
 
-    newTitle() {
-        const title = {
-            x: 44,
-            y: 0,
-            width: 448,
-            height: 52
-        };
-        return title;
-    }
+    // newTitle() {
+    //     const title = {
+    //         x: 44,
+    //         y: 0,
+    //         width: 448,
+    //         height: 52
+    //     };
+    //     return title;
+    // }
 
-    drawTitleScreen(ctx, title) {
-        ctx.drawImage(
-            titleSprite,
-            0, 0,  //sX, sY      lessen height to move line up
-            498, 52,  //           lessen this height after to shorten bottem
-            title.x, title.y,
-            title.width, title.height
-        )
-    }
+    // drawTitleScreen(ctx, title) {
+    //     ctx.drawImage(
+    //         titleSprite,
+    //         0, 0,  //sX, sY      lessen height to move line up
+    //         498, 52,  //           lessen this height after to shorten bottem
+    //         title.x, title.y,
+    //         title.width, title.height
+    //     )
+    // }
 
-    moveTitleScreen() {
-        if (this.title[0].y < 640 && this.start_titleAnimation === true) {
-            this.title[0].y += 3;
-        }
+    // moveTitleScreen() {
+    //     if (this.title[0].y < 640 && this.start_titleAnimation === true) {
+    //         this.title[0].y += 3;
+    //     }
 
-        if(this.title[0].y > 640) {
-            this.title.shift();
-            this.start_game = true;
-        }
-    }
+    //     if(this.title[0].y > 640) {
+    //         this.title.shift();
+    //         this.start_game = true;
+    //     }
+    // }
 
-    registerEvents() {
-        this.boundClickHandler = this.input.bind(this);
-        document.addEventListener("keydown", this.boundClickHandler);
-    }
+    // registerEvents() {
+    //     this.boundClickHandler = this.input.bind(this);
+    //     document.addEventListener("keydown", this.boundClickHandler);
+    // }
 
-    input(event) {
-        let spaceKey = event.keyCode === 32 // Spacebar
+    // input(event) {
+    //     let spaceKey = event.keyCode === 32 // Spacebar
 
-        if (this.start_game === false && spaceKey) {
-            this.start_titleAnimation = true;
-        }
+    //     if (this.start_game === false && spaceKey) {
+    //         this.start_titleAnimation = true;
+    //     }
 
-        // if (spaceKey) { 
-        //     this.start_titleAnimation = true;
-        // }
-    }
+    //     // if (spaceKey) { 
+    //     //     this.start_titleAnimation = true;
+    //     // }
+    // }
 
     drawBorder(ctx) {
         this.eachBorderLeft(function (border) {
@@ -664,29 +666,43 @@ export default class Level {
     //     return collision;
     // }
     
-    animate(ctx) {
-        if (this.start_game === true) {
-            this.drawBackground(ctx);
-            this.drawClouds(ctx);
-            this.drawPlatforms(ctx);
-            this.drawCactus(ctx);
-            this.drawBirds(ctx);
-            this.movePlats();
-            this.moveBirds();
-            this.moveCactus();
-            this.moveClouds();
-            this.moveBorders();
-        }
+    // animate(ctx) {
+    //     if (this.start_game === true) {
+    //         this.drawBackground(ctx);
+    //         this.drawClouds(ctx);
+    //         this.drawPlatforms(ctx);
+    //         this.drawCactus(ctx);
+    //         this.drawBirds(ctx);
+    //         this.movePlats();
+    //         this.moveBirds();
+    //         this.moveCactus();
+    //         this.moveClouds();
+    //         this.moveBorders();
+    //     }
         
+    //     this.drawBorder(ctx);
+
+    //     if(this.title.length === 1) {
+    //         this.drawTitleScreen(ctx, this.title[0]);
+
+    //         // if (this.start_titleAnimation) { 
+    //             this.moveTitleScreen();
+    //         // }
+    //     }
+
+    // }
+
+    animate(ctx) {
+        this.drawBackground(ctx);
+        this.drawClouds(ctx);
+        this.drawPlatforms(ctx);
+        this.drawCactus(ctx);
+        this.drawBirds(ctx);
+        this.movePlats();
+        this.moveBirds();
+        this.moveCactus();
+        this.moveClouds();
         this.drawBorder(ctx);
-
-        if(this.title.length === 1) {
-            this.drawTitleScreen(ctx, this.title[0]);
-
-            // if (this.start_titleAnimation) { 
-                this.moveTitleScreen();
-            // }
-        }
-
+        this.moveBorders();
     }
 }
