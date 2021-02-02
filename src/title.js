@@ -1,11 +1,11 @@
 const CONSTANTS = {
-    GRAVITY: 0.25,
+    GRAVITY: 5,
     TERMINAL_VEL: 10,
     JUMP_SPEED: 12
 };
 
 const titleSprite = new Image();
-titleSprite.src = "/home/andrew/Desktop/dino_jump/img/titleSprite.png";
+titleSprite.src = "/home/andrew/Desktop/dino_jump/img/titleScreen.png";
 
 export default class Title {
 
@@ -27,7 +27,7 @@ export default class Title {
             x: 44,
             y: 200,
             width: 448,
-            height: 52
+            height: 65
         };
         return title;
     }
@@ -36,7 +36,7 @@ export default class Title {
         ctx.drawImage(
             titleSprite,
             0, 0,  //sX, sY      lessen height to move line up
-            498, 52,  //           lessen this height after to shorten bottem
+            498, 65,  //           lessen this height after to shorten bottem
             title.x, title.y,
             title.width, title.height
         )
