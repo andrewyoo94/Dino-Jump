@@ -3,7 +3,10 @@ import Dino from "./dino";
 import Title from "./title";
 
 const CONSTANTS = {
-    SCORE_WIDTH: 20
+    SCORE_WIDTH: 20,
+    BORDER_WIDTH: 37,
+    BORDER_HEIGHT: 2385,
+    BORDER_SPEED: 3
 };
 
 const scoreSprite = new Image();
@@ -11,6 +14,9 @@ scoreSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 
 const topBorderSprite = new Image();
 topBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
+
+const sideBorderSprite = new Image();
+sideBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/border.png";
 
 var jumpAudio = new Audio();
 if (jumpAudio.canPlayType("audio/mp3")) {
@@ -34,6 +40,16 @@ export default class Game {
         this.score = 0;
         this.start_game = false;
         this.title = new Title(this.dimensions);
+
+        this.moveBorder = true;
+
+        this.borderLeft = [
+            this.newBorder("left")
+        ];
+
+        this.borderRight = [
+            this.newBorder("right")
+        ];
         
         this.scorePlaceValues = [
             Math.floor(this.score % 10),
@@ -45,6 +61,76 @@ export default class Game {
         
         this.restart();
     } 
+
+    drawBorder(ctx) {
+        debugger
+        this.eachBorderLeft(function (border) {
+            ctx.drawImage(
+                sideBorderSprite,
+                12, 12,  //sX, sY      
+                37, 2380,  // sW, sH
+                border.x, border.y,
+                border.width, border.height
+            );
+        });
+
+        this.eachBorderRight(function (border) {
+            ctx.drawImage(
+                sideBorderSprite,
+                90, 8,  //sX, sY       
+                138, 2380,  // sW, sH
+                border.x, border.y,
+                border.width, border.height
+            );
+        });
+    }
+
+    // CHANGEPLACEMENT
+    newBorder(side, dY) {
+        let dX = side === "left" ? -1 : 500;
+        let width = side === "left" ? 37 : 138
+        dY = (typeof dY !== 'undefined') ? dY : -1750;
+
+        const border = {
+            x: dX,
+            y: dY,
+            width: width,
+            height: CONSTANTS.BORDER_HEIGHT
+        }
+        return border;
+    }
+
+    eachBorderLeft(callback) {
+        this.borderLeft.forEach(callback.bind(this));
+    }
+
+    eachBorderRight(callback) {
+        this.borderRight.forEach(callback.bind(this));
+    }
+
+    moveBorders() {
+        this.eachBorderLeft(function (border) {
+            border.y += CONSTANTS.BORDER_SPEED;
+        });
+
+        this.eachBorderRight(function (border) {
+            border.y += CONSTANTS.BORDER_SPEED;
+        });
+
+        //if top of border drops into frame push new border
+        if (this.borderLeft[0].y + 640 >= 640 && this.borderLeft.length < 2) {
+            this.borderLeft.push(this.newBorder("left", -2380));
+        }
+
+        if (this.borderRight[0].y + 640 >= 640 && this.borderRight.length < 2) {
+            this.borderRight.push(this.newBorder("right", -2380));
+        }
+
+        if (this.borderLeft[0].y >= 640) {
+            this.borderLeft.shift();
+            this.borderRight.shift();
+        }
+    }
 
     drawTopBorder(ctx) {
         ctx.drawImage(
@@ -119,6 +205,8 @@ export default class Game {
         //     this.title.jump();
         //     this.title.space_pressed = false;
         // }
+
+        
         
         if (this.title.titleAnimation_finished === true) {
             this.level.animate(this.ctx);
@@ -136,25 +224,29 @@ export default class Game {
                 this.dino.jump();
                 jumpAudio.play();
             }
-
+            
             if (this.isGameOver()) {
                 deathAudio.play();
                 this.drawGameOver(this.ctx);
+                this.level.pauseBorder = false;
                 this.running = false;
             }
-        
+            
         }
-
+        this.drawBorder(this.ctx);
+    
+        this.moveBorders();
+        
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }
     } 
-
+    
     restart() {
         this.running = true;
         this.score = 0;
         
-        this.level = new Level(this.dimensions);
+        this.level = new Level(this.dimensions, this.title);
         this.dino = new Dino(this.dimensions);
         
         this.animate();
@@ -164,7 +256,7 @@ export default class Game {
         this.running = true;
         this.animate();
     }
-
+    
     registerEvents() {
         this.boundClickHandler = this.input.bind(this);
         document.addEventListener("keydown", this.boundClickHandler);

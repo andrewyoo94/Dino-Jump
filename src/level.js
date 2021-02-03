@@ -20,8 +20,8 @@ const CONSTANTS = {
     BORDER_SPEED: 3
 };
 
-const sideBorderSprite = new Image();
-sideBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/border.png";
+// const sideBorderSprite = new Image();
+// sideBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/border.png";
 
 const birdSprite = new Image();
 birdSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
@@ -45,9 +45,11 @@ const platformSprite = new Image();
 platformSprite.src = "/home/andrew/Desktop/dino_jump/img/platforms.png";
 
 export default class Level {
-    constructor(dimensions) {
+    constructor(dimensions, title) {
         this.dimensions = dimensions;
+        this.title = title;
         this.bonus = false;
+        // this.moveBorder = true;
 
         // this.start_titleAnimation = false;
 
@@ -75,13 +77,13 @@ export default class Level {
             this.newCactus()
         ];
 
-        this.borderLeft = [
-            this.newBorder("left")
-        ];
+        // this.borderLeft = [
+        //     this.newBorder("left")
+        // ];
 
-        this.borderRight = [
-            this.newBorder("right")
-        ];
+        // this.borderRight = [
+        //     this.newBorder("right")
+        // ];
 
         // this.title = [
         //     this.newTitle()
@@ -136,74 +138,74 @@ export default class Level {
     //     // }
     // }
 
-    drawBorder(ctx) {
-        this.eachBorderLeft(function (border) {
-            ctx.drawImage(
-                sideBorderSprite,
-                12, 12,  //sX, sY      
-                37, 2380,  // sW, sH
-                border.x, border.y,
-                border.width, border.height
-            );
-        });
+    // drawBorder(ctx) {
+    //     this.eachBorderLeft(function (border) {
+    //         ctx.drawImage(
+    //             sideBorderSprite,
+    //             12, 12,  //sX, sY      
+    //             37, 2380,  // sW, sH
+    //             border.x, border.y,
+    //             border.width, border.height
+    //         );
+    //     });
 
-        this.eachBorderRight(function (border) {
-            ctx.drawImage(
-                sideBorderSprite,
-                90, 8,  //sX, sY       
-                138, 2380,  // sW, sH
-                border.x, border.y,
-                border.width, border.height
-            );
-        });
-    }
+    //     this.eachBorderRight(function (border) {
+    //         ctx.drawImage(
+    //             sideBorderSprite,
+    //             90, 8,  //sX, sY       
+    //             138, 2380,  // sW, sH
+    //             border.x, border.y,
+    //             border.width, border.height
+    //         );
+    //     });
+    // }
 
-    // CHANGEPLACEMENT
-    newBorder(side, dY) {
-        let dX = side === "left" ? -1 : 500;
-        let width = side === "left" ? 37 : 138
-        dY = (typeof dY !== 'undefined') ? dY : -1750;
+    // // CHANGEPLACEMENT
+    // newBorder(side, dY) {
+    //     let dX = side === "left" ? -1 : 500;
+    //     let width = side === "left" ? 37 : 138
+    //     dY = (typeof dY !== 'undefined') ? dY : -1750;
 
-        const border = {
-            x: dX,
-            y: dY,
-            width: width,
-            height: CONSTANTS.BORDER_HEIGHT
-        }
-        return border;
-    }
+    //     const border = {
+    //         x: dX,
+    //         y: dY,
+    //         width: width,
+    //         height: CONSTANTS.BORDER_HEIGHT
+    //     }
+    //     return border;
+    // }
 
-    eachBorderLeft(callback) {
-        this.borderLeft.forEach(callback.bind(this));
-    }
+    // eachBorderLeft(callback) {
+    //     this.borderLeft.forEach(callback.bind(this));
+    // }
 
-    eachBorderRight(callback) {
-        this.borderRight.forEach(callback.bind(this));
-    }
+    // eachBorderRight(callback) {
+    //     this.borderRight.forEach(callback.bind(this));
+    // }
 
-    moveBorders() {
-        this.eachBorderLeft(function (border) {
-            border.y += CONSTANTS.BORDER_SPEED;
-        });
+    // moveBorders() {
+    //     this.eachBorderLeft(function (border) {
+    //         border.y += CONSTANTS.BORDER_SPEED;
+    //     });
 
-        this.eachBorderRight(function (border) {
-            border.y += CONSTANTS.BORDER_SPEED;
-        });
+    //     this.eachBorderRight(function (border) {
+    //         border.y += CONSTANTS.BORDER_SPEED;
+    //     });
 
-        //if top of border drops into frame push new border
-        if (this.borderLeft[0].y + 640 >= 640 && this.borderLeft.length < 2) {
-            this.borderLeft.push(this.newBorder("left", -2380));
-        }
+    //     //if top of border drops into frame push new border
+    //     if (this.borderLeft[0].y + 640 >= 640 && this.borderLeft.length < 2) {
+    //         this.borderLeft.push(this.newBorder("left", -2380));
+    //     }
 
-        if (this.borderRight[0].y + 640 >= 640 && this.borderRight.length < 2) {
-            this.borderRight.push(this.newBorder("right", -2380));
-        }
+    //     if (this.borderRight[0].y + 640 >= 640 && this.borderRight.length < 2) {
+    //         this.borderRight.push(this.newBorder("right", -2380));
+    //     }
 
-        if (this.borderLeft[0].y >= 640) {
-            this.borderLeft.shift();
-            this.borderRight.shift();
-        }
-    }
+    //     if (this.borderLeft[0].y >= 640) {
+    //         this.borderLeft.shift();
+    //         this.borderRight.shift();
+    //     }
+    // }
     
     eachCactus(callback) {
         this.cactus.forEach(callback.bind(this));   
@@ -689,6 +691,12 @@ export default class Level {
 
     // }
 
+    // borderMoveCheck() {
+    //     if(this.title.) {
+    //         return false;
+    //     }
+    // }
+
     animate(ctx) {
         this.drawBackground(ctx);
         this.drawClouds(ctx);
@@ -699,7 +707,10 @@ export default class Level {
         this.moveBirds();
         this.moveCactus();
         this.moveClouds();
-        this.drawBorder(ctx);
-        this.moveBorders();
+    //     this.drawBorder(ctx);
+
+    //     if (!this.pauseBorder) {
+    //         this.moveBorders();
+    //     }
     }
 }
