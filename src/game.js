@@ -212,7 +212,6 @@ export default class Game {
             this.level.animate(this.ctx);
             this.dino.animate(this.ctx);
             // this.drawTopBorder(this.ctx);
-            this.drawScore(this.ctx);
             this.score += 0.2;
             if(this.level.bonus) {
                 this.bonusPoints();
@@ -234,9 +233,10 @@ export default class Game {
             
         }
         this.drawBorder(this.ctx);
-    
+        
         this.moveBorders();
         
+        this.drawScore(this.ctx);
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }
