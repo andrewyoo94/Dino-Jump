@@ -4,7 +4,37 @@
   display: block;
   padding-left: 166px;
   height: 98vh;
+  position: relative;
 }
+
+body {
+  position: relative;
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden;
+  padding-top: 6px;
+}
+
+body canvas, .info-master {
+  position: absolute;
+}
+
+/* .info-master {
+  
+} */
+
+.github {
+  color: #535353;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.linkedin {
+  color: #535353;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+}
+
 
 /* #title {
     text-align: center;

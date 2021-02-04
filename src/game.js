@@ -195,7 +195,7 @@ export default class Game {
                 1294 + (CONSTANTS.SCORE_WIDTH * this.scorePlaceValues[i]), 2,  //sX, sY
                 18, 21, 
                 // this.dimensions.width - (125) + (25 * i), 10,
-                this.dimensions.width - (125) + (25 * i), 50, 
+                this.dimensions.width - (125) + (25 * i), 30, 
                 18, 21
             )
         }
@@ -206,7 +206,7 @@ export default class Game {
             highscoreSprite,
             1494, 2,  //sX, sY
             38, 21,
-            this.dimensions.width - (175), 10,
+            this.dimensions.width - (175), 0,
             38, 21
         )
 
@@ -215,7 +215,7 @@ export default class Game {
                 highscoreSprite,
                 1294 + (CONSTANTS.SCORE_WIDTH * this.highscorePlaceValues[i]), 2,  //sX, sY
                 18, 21,
-                this.dimensions.width - (125) + (25 * i), 10,
+                this.dimensions.width - (125) + (25 * i), 0,
                 18, 21
             )
         }
@@ -248,10 +248,9 @@ export default class Game {
     
     animate() {
 
-        this.title.animate(this.ctx);
         // if (this.title.space_pressed === true) {
-        //     this.title.jump();
-        //     this.title.space_pressed = false;
+            //     this.title.jump();
+            //     this.title.space_pressed = false;
         // }
         
         if (this.title.titleAnimation_finished === true) {
@@ -284,7 +283,8 @@ export default class Game {
         
         this.drawScore(this.ctx);
         this.drawHighscore(this.ctx);
-
+        
+        this.title.animate(this.ctx);
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }
