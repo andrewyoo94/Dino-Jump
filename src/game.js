@@ -12,6 +12,9 @@ const CONSTANTS = {
 const scoreSprite = new Image();
 scoreSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
 
+const highscoreSprite = new Image();
+highscoreSprite.src = "/home/andrew/Desktop/dino_jump/img/highscoreSprite.png";
+
 const topBorderSprite = new Image();
 topBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
 
@@ -37,7 +40,9 @@ export default class Game {
         this.ctx = canvas.getContext("2d");
         this.dimensions = { width: canvas.width, height: canvas.height };
         this.registerEvents();
+
         this.score = 0;
+        this.highscore = localStorage.getItem("highscore") ?? 0;
         this.start_game = false;
         this.title = new Title(this.dimensions);
 
@@ -58,12 +63,34 @@ export default class Game {
             Math.floor(this.score / 1000 % 10),
             Math.floor(this.score / 10000 % 10)
         ];
+
+        this.highscorePlaceValues = [
+            Math.floor(this.highscore / 10000 % 10),
+            Math.floor(this.highscore / 1000 % 10),
+            Math.floor(this.highscore / 100 % 10),
+            Math.floor(this.highscore / 10 % 10),
+            Math.floor(this.highscore % 10)
+        ];
         
         this.restart();
     } 
 
+    updateHighscore() {
+        if (this.score > this.highscore) {
+            localStorage.setItem("highscore", this.score);
+            this.highscore = this.score;
+        }
+
+        this.highscorePlaceValues = [
+            Math.floor(this.highscore / 10000 % 10),
+            Math.floor(this.highscore / 1000 % 10),
+            Math.floor(this.highscore / 100 % 10),
+            Math.floor(this.highscore / 10 % 10),
+            Math.floor(this.highscore % 10)
+        ];
+    }
+
     drawBorder(ctx) {
-        debugger
         this.eachBorderLeft(function (border) {
             ctx.drawImage(
                 sideBorderSprite,
@@ -167,7 +194,28 @@ export default class Game {
                 scoreSprite, 
                 1294 + (CONSTANTS.SCORE_WIDTH * this.scorePlaceValues[i]), 2,  //sX, sY
                 18, 21, 
-                this.dimensions.width - (125) + (25 * i), 10, 
+                // this.dimensions.width - (125) + (25 * i), 10,
+                this.dimensions.width - (125) + (25 * i), 50, 
+                18, 21
+            )
+        }
+    }
+
+    drawHighscore(ctx) {
+        ctx.drawImage(
+            highscoreSprite,
+            1494, 2,  //sX, sY
+            38, 21,
+            this.dimensions.width - (175), 10,
+            38, 21
+        )
+
+        for (let i = 0; i < 5; i++) {
+            ctx.drawImage(
+                highscoreSprite,
+                1294 + (CONSTANTS.SCORE_WIDTH * this.highscorePlaceValues[i]), 2,  //sX, sY
+                18, 21,
+                this.dimensions.width - (125) + (25 * i), 10,
                 18, 21
             )
         }
@@ -205,8 +253,6 @@ export default class Game {
         //     this.title.jump();
         //     this.title.space_pressed = false;
         // }
-
-        
         
         if (this.title.titleAnimation_finished === true) {
             this.level.animate(this.ctx);
@@ -226,8 +272,8 @@ export default class Game {
             
             if (this.isGameOver()) {
                 deathAudio.play();
+                this.updateHighscore();
                 this.drawGameOver(this.ctx);
-                this.level.pauseBorder = false;
                 this.running = false;
             }
             
@@ -237,6 +283,8 @@ export default class Game {
         this.moveBorders();
         
         this.drawScore(this.ctx);
+        this.drawHighscore(this.ctx);
+
         if (this.running) {
             requestAnimationFrame(this.animate.bind(this));
         }
