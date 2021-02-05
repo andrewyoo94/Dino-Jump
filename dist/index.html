@@ -6,6 +6,17 @@
     <script type="text/javascript" src="main.js" charset="utf-8" defer></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <script>
+        function changeClass() {
+            if (document.getElementById("instructions").className === "fade-out") {
+                document.getElementById("instructions").className = "fade-in";
+            } else {
+                document.getElementById("instructions").className = "fade-out";
+            }
+        }
+    </script>
+
 </head>
 
 <body>
@@ -19,8 +30,10 @@
             LinkedIn
         </a>
 
-        <h3 class="instructions">
-            A simple twist on the classic google offline dino game. Survive for as long as possible while dodging the cactuses. 
+        <button class="fader-button" onclick="changeClass()">i</button>
+
+        <h3 class="fade-in" id="instructions">
+            A twist on the classic google chrome dino game. Survive for as long as possible while dodging the cactuses. 
             Birds act as platforms and gives you bonus points for jumping on them. Control the dino with A or D//Left or Right Arrow Keys.  
         </h3>
     </div>
