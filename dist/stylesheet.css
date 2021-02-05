@@ -39,6 +39,7 @@ body canvas, .info-master {
   text-decoration: none;
   font-family: 'Press Start 2P', cursive;
   position: absolute;
+  z-index: 2;
 }
 
 .linkedin {
@@ -46,10 +47,11 @@ body canvas, .info-master {
   text-decoration: none;
   font-family: 'Press Start 2P', cursive;
   position: relative;
+  z-index: 2;
   top: 21px;
 }
 
-.github:hover, .linkedin:hover {
+.github:hover, .linkedin:hover, .fader-button:hover {
   color: #535353;
 }
 
@@ -58,7 +60,20 @@ body canvas, .info-master {
   position: relative;
   top: 40px;
   left: 20px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  z-index: 2;
+  position: relative;
+  cursor: pointer;
 }
+
+.fader-button img {
+  max-width: 50%;
+  height: auto;
+}
+
+
 
 /* ----------------------------------------------------------------------------------- */
 
