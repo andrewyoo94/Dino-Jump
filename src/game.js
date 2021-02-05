@@ -278,7 +278,6 @@ export default class Game {
             
         }
         this.drawBorder(this.ctx);
-        
         this.moveBorders();
         
         this.drawScore(this.ctx);
