@@ -56,24 +56,32 @@ body canvas, .info-master {
 }
 
 .fader-button {
-  float: left;
-  position: relative;
-  top: 40px;
-  left: 20px;
-  border: none;
-  background-color: transparent;
-  outline: none;
-  z-index: 2;
-  position: relative;
+  background: url("/home/andrew/Desktop/dino_jump/img/Infobutton.png");
+  background-size: cover;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-style: none;
   cursor: pointer;
+  position: relative;
+  border: none;
+  z-index: 2;
+  outline:none;
 }
 
-.fader-button img {
-  max-width: 50%;
-  height: auto;
+.fader-button:hover {
+  background: url("/home/andrew/Desktop/dino_jump/img/infobuttonHover.png") no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  border-style: none;
+  border: none;
+  outline:none;
 }
-
-
 
 /* ----------------------------------------------------------------------------------- */
 
