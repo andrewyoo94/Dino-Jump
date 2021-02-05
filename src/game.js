@@ -195,7 +195,7 @@ export default class Game {
                 1294 + (CONSTANTS.SCORE_WIDTH * this.scorePlaceValues[i]), 2,  //sX, sY
                 18, 21, 
                 // this.dimensions.width - (125) + (25 * i), 10,
-                this.dimensions.width - (125) + (25 * i), 30, 
+                this.dimensions.width - (120) + (25 * i), 30, 
                 18, 21
             )
         }
@@ -215,7 +215,7 @@ export default class Game {
                 highscoreSprite,
                 1294 + (CONSTANTS.SCORE_WIDTH * this.highscorePlaceValues[i]), 2,  //sX, sY
                 18, 21,
-                this.dimensions.width - (125) + (25 * i), 0,
+                this.dimensions.width - (120) + (25 * i), 0,
                 18, 21
             )
         }

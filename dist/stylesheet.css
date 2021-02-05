@@ -19,9 +19,18 @@ body canvas, .info-master {
   position: absolute;
 }
 
-/* .info-master {
-  
-} */
+.info-master {
+  margin-left: 7%;
+  width: 22%;
+}
+
+.instructions {
+  color: #757575;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+  font-weight: 100;
+  line-height: 1.4;
+}
 
 .github {
   color: #535353;
@@ -29,19 +38,12 @@ body canvas, .info-master {
   font-family: 'Press Start 2P', cursive;
 }
 
+.github:hover, .linkedin:hover {
+  color: black;
+}
+
 .linkedin {
   color: #535353;
   text-decoration: none;
   font-family: 'Press Start 2P', cursive;
 }
-
-
-/* #title {
-    text-align: center;
-    margin-top: 0;
-    font-family: 'Press Start 2P', cursive;
-    font-weight: 900;
-    font-size: 45px;
-    color: #525252;
-    z-index: 1;
-}  */
