@@ -5,7 +5,7 @@ const CONSTANTS = {
 };
 
 const titleSprite = new Image();
-titleSprite.src = "/home/andrew/Desktop/dino_jump/img/titleScreen.png";
+titleSprite.src = "img/titleScreen.png";
 
 export default class Title {
 

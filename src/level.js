@@ -24,25 +24,25 @@ const CONSTANTS = {
 // sideBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/border.png";
 
 const birdSprite = new Image();
-birdSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+birdSprite.src = "img/dino_sprite.png";
 
 const birdLeftSprite = new Image();
-birdLeftSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
+birdLeftSprite.src = "img/dino_left.png";
 
 const deadBirdSprite = new Image();
-deadBirdSprite.src = "/home/andrew/Desktop/dino_jump/img/deadBird.png";
+deadBirdSprite.src = "img/deadBird.png";
 
 const cloudSprite = new Image();
-cloudSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+cloudSprite.src = "img/dino_sprite.png";
 
 const groundSprite = new Image();
-groundSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
+groundSprite.src = "img/dino_left.png";
 
 const cactusSprite = new Image();
-cactusSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
+cactusSprite.src = "img/cactus.png";
 
 const platformSprite = new Image();
-platformSprite.src = "/home/andrew/Desktop/dino_jump/img/platforms.png";
+platformSprite.src = "img/platforms.png";
 
 export default class Level {
     constructor(dimensions, title) {

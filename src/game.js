@@ -10,29 +10,29 @@ const CONSTANTS = {
 };
 
 const scoreSprite = new Image();
-scoreSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+scoreSprite.src = "img/dino_sprite.png";
 
 const highscoreSprite = new Image();
-highscoreSprite.src = "/home/andrew/Desktop/dino_jump/img/highscoreSprite.png";
-
-const topBorderSprite = new Image();
-topBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
+highscoreSprite.src = "img/highscoreSprite.png";
 
 const sideBorderSprite = new Image();
-sideBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/border.png";
+sideBorderSprite.src = "img/border.png";
+
+// const topBorderSprite = new Image();
+// topBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
 
 var jumpAudio = new Audio();
 if (jumpAudio.canPlayType("audio/mp3")) {
-    jumpAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/jump.mp3");
+    jumpAudio = new Audio("sounds/jump.mp3");
 } else {
-    jumpAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/jump.wav");
+    jumpAudio = new Audio("sounds/jump.wav");
 }
 
 var deathAudio = new Audio();
 if (deathAudio.canPlayType("audio/mp3")) {
-    deathAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/death.mp3");
+    deathAudio = new Audio("sounds/death.mp3");
 } else {
-    deathAudio = new Audio("/home/andrew/Desktop/dino_jump/sounds/death.wav");
+    deathAudio = new Audio("sounds/death.wav");
 }
 
 export default class Game {

@@ -9,10 +9,10 @@ const CONSTANTS = {
 };
 
 const dinoSprite = new Image();
-dinoSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_sprite.png";
+dinoSprite.src = "img/dino_sprite.png";
 
 const dinoLeftSprite = new Image();
-dinoLeftSprite.src = "/home/andrew/Desktop/dino_jump/img/dino_left.png";
+dinoLeftSprite.src = "img/dino_left.png";
 
 export default class Dino {
 
