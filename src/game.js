@@ -147,11 +147,11 @@ export default class Game {
         //if top of border drops into frame push new border
         if (this.borderLeft[0].y + 640 >= 640 && this.borderLeft.length < 2) {
             this.borderLeft.push(this.newBorder("left", -2380));
-        }
-
-        if (this.borderRight[0].y + 640 >= 640 && this.borderRight.length < 2) {
             this.borderRight.push(this.newBorder("right", -2380));
         }
+
+        // if (this.borderRight[0].y + 640 >= 640 && this.borderRight.length < 2) {
+        // }
 
         if (this.borderLeft[0].y >= 640) {
             this.borderLeft.shift();
@@ -159,15 +159,15 @@ export default class Game {
         }
     }
 
-    drawTopBorder(ctx) {
-        ctx.drawImage(
-            titleSprite,
-            1000, 2,  //sX, sY      lessen height to move line up
-            480, 24,  //           lessen this height after to shorten bottem
-            0, 0,
-            480, 24
-        )
-    }
+    // drawTopBorder(ctx) {
+    //     ctx.drawImage(
+    //         titleSprite,
+    //         1000, 2,  //sX, sY      lessen height to move line up
+    //         480, 24,  //           lessen this height after to shorten bottem
+    //         0, 0,
+    //         480, 24
+    //     )
+    // }
 
     bonusPoints() {
         this.score += 1;
@@ -245,14 +245,22 @@ export default class Game {
             72, 64
         );
     }
+
+    restart() {
+        this.running = true;
+        this.score = 0;
+
+        this.level = new Level(this.dimensions);
+        this.dino = new Dino(this.dimensions);
+
+        this.animate();
+    }
     
     animate() {
+        if (this.running) {
+            requestAnimationFrame(this.animate.bind(this));
+        }
 
-        // if (this.title.space_pressed === true) {
-            //     this.title.jump();
-            //     this.title.space_pressed = false;
-        // }
-        
         if (this.title.titleAnimation_finished === true) {
             this.level.animate(this.ctx);
             this.dino.animate(this.ctx);
@@ -275,34 +283,26 @@ export default class Game {
                 this.drawGameOver(this.ctx);
                 this.running = false;
             }
-            
         }
+
         this.drawBorder(this.ctx);
         this.moveBorders();
-        
+
+        // testing functions
+        // this.score += 0.2;
+        // this.updateScore();
+
         this.drawScore(this.ctx);
         this.drawHighscore(this.ctx);
-        
+
         this.title.animate(this.ctx);
-        if (this.running) {
-            requestAnimationFrame(this.animate.bind(this));
-        }
+        
     } 
     
-    restart() {
-        this.running = true;
-        this.score = 0;
-        
-        this.level = new Level(this.dimensions, this.title);
-        this.dino = new Dino(this.dimensions);
-        
-        this.animate();
-    }
-    
-    play() {
-        this.running = true;
-        this.animate();
-    }
+    // play() {
+    //     this.running = true;
+    //     this.animate();
+    // }
     
     registerEvents() {
         this.boundClickHandler = this.input.bind(this);

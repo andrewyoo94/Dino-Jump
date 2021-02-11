@@ -20,23 +20,14 @@ const CONSTANTS = {
     BORDER_SPEED: 3
 };
 
-// const sideBorderSprite = new Image();
-// sideBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/border.png";
-
-const birdSprite = new Image();
-birdSprite.src = "img/dino_sprite.png";
+const masterSprite = new Image();
+masterSprite.src = "img/dino_sprite.png";
 
 const birdLeftSprite = new Image();
 birdLeftSprite.src = "img/dino_left.png";
 
 const deadBirdSprite = new Image();
 deadBirdSprite.src = "img/deadBird.png";
-
-const cloudSprite = new Image();
-cloudSprite.src = "img/dino_sprite.png";
-
-const groundSprite = new Image();
-groundSprite.src = "img/dino_left.png";
 
 const cactusSprite = new Image();
 cactusSprite.src = "img/cactus.png";
@@ -45,9 +36,8 @@ const platformSprite = new Image();
 platformSprite.src = "img/platforms.png";
 
 export default class Level {
-    constructor(dimensions, title) {
+    constructor(dimensions) {
         this.dimensions = dimensions;
-        this.title = title;
         this.bonus = false;
         // this.moveBorder = true;
 
@@ -349,7 +339,7 @@ export default class Level {
                 );
             } if(bird.pos == "right") {
                 ctx.drawImage(
-                    birdSprite, 
+                    masterSprite, 
                     CONSTANTS.STARTING_SX, 
                     14, 
                     92, 
@@ -415,7 +405,7 @@ export default class Level {
 
             if(cloud.y >= 15) {
                 ctx.drawImage(
-                    cloudSprite,
+                    masterSprite,
                     174,
                     2,
                     cloud.width,
