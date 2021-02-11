@@ -91,6 +91,11 @@ export default class Game {
     }
 
     drawBorder(ctx) {
+
+        if (this.title.titleAnimation_finished != true) {
+            ctx.clearRect(0, 0, this.dimensions.width, this.dimensions.height);
+        }
+
         this.eachBorderLeft(function (border) {
             ctx.drawImage(
                 sideBorderSprite,
@@ -264,7 +269,6 @@ export default class Game {
         if (this.title.titleAnimation_finished === true) {
             this.level.animate(this.ctx);
             this.dino.animate(this.ctx);
-            // this.drawTopBorder(this.ctx);
             this.score += 0.2;
             if(this.level.bonus) {
                 this.bonusPoints();
