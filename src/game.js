@@ -285,7 +285,6 @@ export default class Game {
         
         this.title.animate(this.ctx);
         if (this.running) {
-            debugger
             requestAnimationFrame(this.animate.bind(this));
         }
     } 

@@ -20,18 +20,17 @@ body canvas, .info-master {
 }
 
 .info-master {
-  margin-left: 7%;
-  width: 22%;
+  margin-left: 4%;
+  width: 19%;
 }
 
 #instructions {
   color: #757575;
   font-family: 'Press Start 2P', cursive;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 100;
   line-height: 1.4;
   padding-top: 31px;
-  padding-left: 21px;
 }
 
 .github {
@@ -40,6 +39,7 @@ body canvas, .info-master {
   font-family: 'Press Start 2P', cursive;
   position: absolute;
   z-index: 2;
+  font-size: 30px;
 }
 
 .linkedin {
@@ -48,7 +48,8 @@ body canvas, .info-master {
   font-family: 'Press Start 2P', cursive;
   position: relative;
   z-index: 2;
-  top: 21px;
+  top: 40px;
+  font-size: 30px;
 }
 
 .github:hover, .linkedin:hover, .fader-button:hover {
@@ -58,29 +59,33 @@ body canvas, .info-master {
 .fader-button {
   background: url("img/Infobutton.png");
   background-size: cover;
-  display: inline-block;
-  width: 30px;
-  height: 30px;
+  /* display: inline-block; */
+  width: 38px;
+  height: 38px;
   border-style: none;
   cursor: pointer;
   position: relative;
   border: none;
   z-index: 2;
   outline:none;
+  display: flex;
+  margin-top: 45px;
 }
 
 .fader-button:hover {
   background: url("img/infobuttonHover.png") no-repeat;
   background-size: cover;
-  display: inline-block;
-  width: 30px;
-  height: 30px;
+  /* display: inline-block; */
+  width: 38px;
+  height: 38px;
   cursor: pointer;
   position: relative;
   z-index: 2;
   border-style: none;
   border: none;
   outline:none;
+  display: flex;
+  margin-top: 45px;
 }
 
 /* ----------------------------------------------------------------------------------- */
