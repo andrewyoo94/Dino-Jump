@@ -2,7 +2,7 @@
   margin-right: auto;
   margin-left: auto;
   display: block;
-  padding-left: 270px;
+  padding-left: 275px;
   height: 98vh;
   position: relative;
 }
@@ -20,7 +20,7 @@ body canvas, .info-master {
 }
 
 .info-master {
-  margin-left: 4%;
+  margin-left: 1%;
   width: 19%;
 }
 
@@ -29,35 +29,53 @@ body canvas, .info-master {
   font-family: 'Press Start 2P', cursive;
   font-size: 18px;
   font-weight: 100;
-  line-height: 1.4;
-  padding-top: 31px;
+  line-height: 1.3;
+}
+
+.repo {
+  color: #535353;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  position: relative;
+  z-index: 2;
+  font-size: 30px;
+}
+
+.divider {
+  color: #535353;
+  text-decoration: none;
+  font-family: 'Press Start 2P', cursive;
+  /* position: absolute; */
+  z-index: 2;
+  font-size: 30px;
+  display: contents;
 }
 
 .github {
-  color: black;
+  color: #535353;
   text-decoration: none;
   font-family: 'Press Start 2P', cursive;
-  position: absolute;
+  /* position: absolute; */
   z-index: 2;
   font-size: 30px;
 }
 
 .linkedin {
-  color: black;
+  color: #535353;
   text-decoration: none;
   font-family: 'Press Start 2P', cursive;
   position: relative;
   z-index: 2;
-  top: 40px;
+  /* top: 40px; */
   font-size: 30px;
 }
 
-.github:hover, .linkedin:hover, .fader-button:hover {
-  color: #535353;
+.github:hover, .linkedin:hover, .fader-button:hover, .repo:hover {
+  color: black;
 }
 
 .fader-button {
-  background: url("img/Infobutton.png");
+  background: url("img/infobuttonHover.png");
   background-size: cover;
   /* display: inline-block; */
   width: 38px;
@@ -73,7 +91,7 @@ body canvas, .info-master {
 }
 
 .fader-button:hover {
-  background: url("img/infobuttonHover.png") no-repeat;
+  background: url("img/Infobutton.png") no-repeat;
   background-size: cover;
   /* display: inline-block; */
   width: 38px;
