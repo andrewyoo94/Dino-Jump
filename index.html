@@ -16,7 +16,64 @@
             }
         }
     </script>
+</head>
+<body>
+    <div class="info-master">
+        
+        <a class="github" target="_blank" rel="noopener noreferrer" href="https://github.com/andrewyoo94">
+            Github
+        </a>
+
+        <p class="divider">/ </p>
+
+        <a class="repo" target="_blank" rel="noopener noreferrer" href="https://github.com/andrewyoo94/Dino-Jump">
+            Repo
+        </a>
+        
+        <a class="linkedin" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/andrewyoo94/">
+            LinkedIn
+        </a>
+
+        <a class="linkedin" target="_blank" rel="noopener noreferrer" href="https://andrewyoo94.github.io/">
+            Portfolio
+        </a>
+
+
+
+        <!-- <button class="fader-button" onclick="changeClass()">
+        </button>
+
+        <h3 class="fade-in" id="instructions">
+            A twist on the classic google chrome dino game. Survive for as long as possible while dodging the cactuses. 
+            Birds act as platforms and gives bonus points for jumping on them. <br /> 
+            <br>
+            Control the dino with A or D//Left or Right Arrow Keys.  
+        </h3> -->
+
+
+
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn">Info</button>
+        
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+        
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>
+                    A twist on the classic google chrome dino game. Survive for as long as possible while dodging the cactuses.
+                    Birds act as platforms and gives bonus points for jumping on them. <br />
+                    <br>
+                    Control the dino with A or D//Left or Right Arrow Keys.
+                </p>
+            </div>
+        
+        </div>
+    </div>
     
+    <canvas id="game" height="640" width="750"></canvas>
+
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -44,59 +101,6 @@
             }
         }
     </script>
-</head>
-<body>
-    <div class="info-master">
-        
-        <a class="github" target="_blank" rel="noopener noreferrer" href="https://github.com/andrewyoo94">
-            Github
-        </a>
-
-        <p class="divider">/ </p>
-
-        <a class="repo" target="_blank" rel="noopener noreferrer" href="https://github.com/andrewyoo94/Dino-Jump">
-            Repo
-        </a>
-        
-        <a class="linkedin" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/andrewyoo94/">
-            LinkedIn
-        </a>
-
-        <a class="linkedin" target="_blank" rel="noopener noreferrer" href="https://andrewyoo94.github.io/">
-            Portfolio
-        </a>
-
-        <!-- <button class="fader-button" onclick="changeClass()">
-        </button>
-
-        <h3 class="fade-in" id="instructions">
-            A twist on the classic google chrome dino game. Survive for as long as possible while dodging the cactuses. 
-            Birds act as platforms and gives bonus points for jumping on them. <br /> 
-            <br>
-            Control the dino with A or D//Left or Right Arrow Keys.  
-        </h3> -->
-
-        <!-- Trigger/Open The Modal -->
-        <button id="myBtn">Open Modal</button>
-        
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-        
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <p>
-                    A twist on the classic google chrome dino game. Survive for as long as possible while dodging the cactuses.
-                    Birds act as platforms and gives bonus points for jumping on them. <br />
-                    <br>
-                    Control the dino with A or D//Left or Right Arrow Keys.
-                </p>
-            </div>
-        
-        </div>
-    </div>
-    <canvas id="game" height="640" width="750"></canvas>
-
 </body>
 
 </html>
