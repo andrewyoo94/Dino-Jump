@@ -22,6 +22,8 @@ body canvas, .info-master {
 .info-master {
   margin-left: 1%;
   width: 19%;
+
+  display: block;
 }
 
 #instructions {
@@ -221,6 +223,15 @@ body canvas, .info-master {
 
 #myBtn {
   font-family: 'Press Start 2P', cursive;
+  display: block;
+    float: left;
+    background: none;
+    /* color: inherit; */
+    border: none;
+    padding: 0;
+    /* font: inherit; */
+    cursor: pointer;
+    outline: inherit;
 }
 
 /* The Modal (background) */
@@ -243,7 +254,7 @@ body canvas, .info-master {
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 70%; /* Could be more or less, depending on screen size */
   animation-name: animatetop;
   animation-duration: 0.4s;
   font-family: 'Press Start 2P', cursive;

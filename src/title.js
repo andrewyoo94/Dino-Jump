@@ -25,7 +25,7 @@ export default class Title {
     newTitle() {
         const title = {
             x: 44,
-            y: 200,
+            y: 50,
             width: 448,
             height: 65
         };
