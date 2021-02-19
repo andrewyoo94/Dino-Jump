@@ -21,8 +21,7 @@ body canvas, .info-master {
 
 .info-master {
   margin-left: 1%;
-  width: 19%;
-
+  width: 12%;
   display: block;
 }
 
@@ -223,15 +222,13 @@ body canvas, .info-master {
 
 #myBtn {
   font-family: 'Press Start 2P', cursive;
-  display: block;
-    float: left;
-    background: none;
-    /* color: inherit; */
-    border: none;
-    padding: 0;
-    /* font: inherit; */
-    cursor: pointer;
-    outline: inherit;
+  float: left;
+  background: none;
+  padding: 0;
+  padding: 5px;
+  font-size: 25px;
+  cursor: pointer;
+  outline: inherit;
 }
 
 /* The Modal (background) */
