@@ -21,7 +21,7 @@ body canvas, .info-master {
 
 .info-master {
   margin-left: 1%;
-  width: 12%;
+  width: 16%;
   display: block;
 }
 
@@ -39,7 +39,8 @@ body canvas, .info-master {
   font-family: 'Press Start 2P', cursive;
   position: relative;
   z-index: 2;
-  font-size: 30px;
+  font-size: 25px;
+  padding-right: 100%;
 }
 
 .divider {
@@ -48,7 +49,7 @@ body canvas, .info-master {
   font-family: 'Press Start 2P', cursive;
   /* position: absolute; */
   z-index: 2;
-  font-size: 30px;
+  font-size: 25px;
   display: contents;
 }
 
@@ -58,7 +59,7 @@ body canvas, .info-master {
   font-family: 'Press Start 2P', cursive;
   /* position: absolute; */
   z-index: 2;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .linkedin {
@@ -68,7 +69,7 @@ body canvas, .info-master {
   position: relative;
   z-index: 2;
   /* top: 40px; */
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .github:hover, .linkedin:hover, .fader-button:hover, .repo:hover {
@@ -277,4 +278,10 @@ body canvas, .info-master {
 @keyframes animatetop {
   from {top: -300px; opacity: 0}
   to {top: 0; opacity: 1}
+}
+
+.fa-github-square, .fa-linkedin-square, .fa-angellist {
+  display: flex;
+  float: left;
+  margin-right: 10px;
 }
