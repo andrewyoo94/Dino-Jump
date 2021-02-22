@@ -5,7 +5,7 @@ const CONSTANTS = {
 };
 
 const titleSprite = new Image();
-titleSprite.src = "img/titleScreen.png";
+titleSprite.src = "img/titleScreenv2.png";
 
 export default class Title {
 
@@ -27,7 +27,7 @@ export default class Title {
             x: 44,
             y: 50,
             width: 448,
-            height: 65
+            height: 120
         };
         return title;
     }
@@ -36,7 +36,7 @@ export default class Title {
         ctx.drawImage(
             titleSprite,
             0, 0,  //sX, sY      lessen height to move line up
-            498, 65,  //           lessen this height after to shorten bottem
+            498, 120,  //           lessen this height after to shorten bottem
             title.x, title.y,
             title.width, title.height
         )
