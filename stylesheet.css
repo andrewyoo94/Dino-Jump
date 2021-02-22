@@ -25,6 +25,10 @@ body canvas, .info-master {
   display: block;
 }
 
+.title {
+  font-family: 'Press Start 2P', cursive;
+}
+
 #instructions {
   color: #757575;
   font-family: 'Press Start 2P', cursive;
@@ -227,7 +231,7 @@ body canvas, .info-master {
   background: none;
   padding: 0;
   padding: 5px;
-  font-size: 25px;
+  font-size: 20px;
   cursor: pointer;
   outline: inherit;
 }
@@ -280,7 +284,7 @@ body canvas, .info-master {
   to {top: 0; opacity: 1}
 }
 
-.fa-github-square, .fa-linkedin-square, .fa-angellist {
+.fa-github, .fa-linkedin-square, .fa-angellist {
   display: flex;
   float: left;
   margin-right: 10px;
