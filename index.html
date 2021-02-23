@@ -113,6 +113,12 @@
                 modal.style.display = "none";
             }
         }
+
+        $(document).keydown(function (event) {
+            if (event.keyCode == 32) {
+                $('#myModal').hide();
+            }
+        });
     </script>
 
     <script type="text/javascript">
