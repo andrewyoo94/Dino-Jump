@@ -98,7 +98,6 @@ export default class Level {
         });
     } 
 
-    // CHANGEPLACEMENT
     newCactus() {
         let randX = Math.floor(Math.random() * (460 - 35 + 1) + 35);
 
@@ -156,8 +155,6 @@ export default class Level {
         this.birds.forEach(callback.bind(this));
     }
     
-    // 60 y for platform
-
     newBird() {
         let dX = Math.random() < 0.5 ? -74 : 515;
         let randY = Math.floor(Math.random() * (586 - 90 + 1) + 90);    // returns a random integer from 25 to 586

@@ -26,10 +26,7 @@ export default class Dino {
         this.direction = "";
     }
 
-    drawDino(ctx) { 
-        // ctx.fillStyle = "grey";
-        // ctx.fillRect(this.x, this.y, CONSTANTS.DINO_WIDTH, CONSTANTS.DINO_HEIGHT);
-        
+    drawDino(ctx) {
         if(this.direction==="left") {
             ctx.drawImage(dinoLeftSprite, 411 + (CONSTANTS.FRAME_X * 88), 6, 88, 94, this.x, this.y, 70, 75);
         } else {
@@ -38,16 +35,10 @@ export default class Dino {
     }
 
     moveDino() {
-        //for each frame, the bird should move by it's current velocity
-        //velocity is 'pixels per frame', so each frame it should update position by vel
         this.y += this.vel;
-        //the acceleration of gravity is in pixels per second per second
-        //so each second, it changes the velocity by whatever the gravity constant is
         this.vel += CONSTANTS.GRAVITY;
-        //we set a 'terminal velocity', a maximum speed the bird can travel
-        //this keeps the game from becoming too wild because the bird is moving too fast to control
+
         if (Math.abs(this.vel) > CONSTANTS.TERMINAL_VEL) {
-            //if the terminal velocity is exceeded, we set it to the terminal velicty
             if (this.vel > 0) {
                 this.vel = CONSTANTS.TERMINAL_VEL;
             } else {
@@ -57,9 +48,6 @@ export default class Dino {
     }
 
     jump() {
-        //if this were a more realistic bird simulation, we would be adding to the velocity
-        //instead of just assigning it outright
-        //to make the experience more fun and 'bouncy' we just set it directly
         this.vel = -1 * (this.vel + CONSTANTS.JUMP_SPEED);
     }
 
@@ -102,8 +90,4 @@ export default class Dino {
             return true;
         };
     };
-
-    // reduceGravity() {
-    //     this.vel += 0.002;
-    // }
 }

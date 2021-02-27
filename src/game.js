@@ -20,9 +20,6 @@ highscoreSprite.src = "img/highscoreSprite.png";
 const sideBorderSprite = new Image();
 sideBorderSprite.src = "img/border.png";
 
-// const topBorderSprite = new Image();
-// topBorderSprite.src = "/home/andrew/Desktop/dino_jump/img/cactus.png";
-
 var jumpAudio = new Audio();
 if (jumpAudio.canPlayType("audio/mp3")) {
     jumpAudio = new Audio("sounds/jump.mp3");
@@ -119,7 +116,6 @@ export default class Game {
         });
     }
 
-    // CHANGEPLACEMENT
     newBorder(side, dY) {
         let dX = side === "left" ? -1 : 500;
         let width = side === "left" ? 37 : 138
@@ -151,20 +147,6 @@ export default class Game {
             border.y += CONSTANTS.BORDER_SPEED;
         });
 
-        // //if top of border drops into frame push new border
-        // if (this.borderLeft[0].y + 640 >= 640 && this.borderLeft.length < 2) {
-        //     this.borderLeft.push(this.newBorder("left", -2380));
-        //     this.borderRight.push(this.newBorder("right", -2380));
-        // }
-
-        // // if (this.borderRight[0].y + 640 >= 640 && this.borderRight.length < 2) {
-        // // }
-
-        // if (this.borderLeft[0].y >= 640) {
-        //     this.borderLeft.shift();
-        //     this.borderRight.shift();
-        // }
-
         // Pushes new border into the array when end of first border drops into frame
         if (this.borderLeft[0].y >= 0 && this.borderLeft.length < 2) {
             this.borderLeft.push(this.newBorder("left", CONSTANTS.NEW_BORDER_Y_COORD));
@@ -177,16 +159,6 @@ export default class Game {
             this.borderRight.shift();
         }
     }
-
-    // drawTopBorder(ctx) {
-    //     ctx.drawImage(
-    //         titleSprite,
-    //         1000, 2,  //sX, sY      lessen height to move line up
-    //         480, 24,  //           lessen this height after to shorten bottem
-    //         0, 0,
-    //         480, 24
-    //     )
-    // }
 
     bonusPoints() {
         this.score += 1;
@@ -206,7 +178,6 @@ export default class Game {
         ];
     }
 
-    // CHANGEPLACEMENT 
     drawScore(ctx) {
         for(let i = 0; i < 5; i++) {
             ctx.drawImage(
@@ -246,7 +217,6 @@ export default class Game {
         );
     }
 
-    // CHANGEPLACEMENT
     drawGameOver(ctx) {
         ctx.drawImage(
             scoreSprite,
@@ -306,21 +276,12 @@ export default class Game {
         this.drawBorder(this.ctx);
         this.moveBorders();
 
-        // testing functions
-        // this.score += 0.2;
-        // this.updateScore();
-
         this.drawScore(this.ctx);
         this.drawHighscore(this.ctx);
 
         this.title.animate(this.ctx);
         
     } 
-    
-    // play() {
-    //     this.running = true;
-    //     this.animate();
-    // }
     
     registerEvents() {
         this.boundClickHandler = this.input.bind(this);

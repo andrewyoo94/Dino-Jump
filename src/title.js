@@ -60,7 +60,6 @@ export default class Title {
         if (this.title[0].y >= 640) {
             this.title.shift();
             this.titleAnimation_finished = true;
-            // debugger
         }
     }
 
