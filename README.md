@@ -113,3 +113,8 @@ collidesWith(dino) {
 }
 
 ```
+
+## Future Implemenations 
+* Improve physics of dino
+* Offscreen bubble dino title sprite
+* Mute audio button
