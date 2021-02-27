@@ -39,12 +39,6 @@ export default class Level {
     constructor(dimensions) {
         this.dimensions = dimensions;
         this.bonus = false;
-        // this.moveBorder = true;
-
-        // this.start_titleAnimation = false;
-
-        // this.start_game = false;
-        // this.registerEvents();
         
         this.platforms = [
             this.startPlat(),
@@ -66,136 +60,7 @@ export default class Level {
         this.cactus = [
             this.newCactus()
         ];
-
-        // this.borderLeft = [
-        //     this.newBorder("left")
-        // ];
-
-        // this.borderRight = [
-        //     this.newBorder("right")
-        // ];
-
-        // this.title = [
-        //     this.newTitle()
-        // ];
     }
-
-    // newTitle() {
-    //     const title = {
-    //         x: 44,
-    //         y: 0,
-    //         width: 448,
-    //         height: 52
-    //     };
-    //     return title;
-    // }
-
-    // drawTitleScreen(ctx, title) {
-    //     ctx.drawImage(
-    //         titleSprite,
-    //         0, 0,  //sX, sY      lessen height to move line up
-    //         498, 52,  //           lessen this height after to shorten bottem
-    //         title.x, title.y,
-    //         title.width, title.height
-    //     )
-    // }
-
-    // moveTitleScreen() {
-    //     if (this.title[0].y < 640 && this.start_titleAnimation === true) {
-    //         this.title[0].y += 3;
-    //     }
-
-    //     if(this.title[0].y > 640) {
-    //         this.title.shift();
-    //         this.start_game = true;
-    //     }
-    // }
-
-    // registerEvents() {
-    //     this.boundClickHandler = this.input.bind(this);
-    //     document.addEventListener("keydown", this.boundClickHandler);
-    // }
-
-    // input(event) {
-    //     let spaceKey = event.keyCode === 32 // Spacebar
-
-    //     if (this.start_game === false && spaceKey) {
-    //         this.start_titleAnimation = true;
-    //     }
-
-    //     // if (spaceKey) { 
-    //     //     this.start_titleAnimation = true;
-    //     // }
-    // }
-
-    // drawBorder(ctx) {
-    //     this.eachBorderLeft(function (border) {
-    //         ctx.drawImage(
-    //             sideBorderSprite,
-    //             12, 12,  //sX, sY      
-    //             37, 2380,  // sW, sH
-    //             border.x, border.y,
-    //             border.width, border.height
-    //         );
-    //     });
-
-    //     this.eachBorderRight(function (border) {
-    //         ctx.drawImage(
-    //             sideBorderSprite,
-    //             90, 8,  //sX, sY       
-    //             138, 2380,  // sW, sH
-    //             border.x, border.y,
-    //             border.width, border.height
-    //         );
-    //     });
-    // }
-
-    // // CHANGEPLACEMENT
-    // newBorder(side, dY) {
-    //     let dX = side === "left" ? -1 : 500;
-    //     let width = side === "left" ? 37 : 138
-    //     dY = (typeof dY !== 'undefined') ? dY : -1750;
-
-    //     const border = {
-    //         x: dX,
-    //         y: dY,
-    //         width: width,
-    //         height: CONSTANTS.BORDER_HEIGHT
-    //     }
-    //     return border;
-    // }
-
-    // eachBorderLeft(callback) {
-    //     this.borderLeft.forEach(callback.bind(this));
-    // }
-
-    // eachBorderRight(callback) {
-    //     this.borderRight.forEach(callback.bind(this));
-    // }
-
-    // moveBorders() {
-    //     this.eachBorderLeft(function (border) {
-    //         border.y += CONSTANTS.BORDER_SPEED;
-    //     });
-
-    //     this.eachBorderRight(function (border) {
-    //         border.y += CONSTANTS.BORDER_SPEED;
-    //     });
-
-    //     //if top of border drops into frame push new border
-    //     if (this.borderLeft[0].y + 640 >= 640 && this.borderLeft.length < 2) {
-    //         this.borderLeft.push(this.newBorder("left", -2380));
-    //     }
-
-    //     if (this.borderRight[0].y + 640 >= 640 && this.borderRight.length < 2) {
-    //         this.borderRight.push(this.newBorder("right", -2380));
-    //     }
-
-    //     if (this.borderLeft[0].y >= 640) {
-    //         this.borderLeft.shift();
-    //         this.borderRight.shift();
-    //     }
-    // }
     
     eachCactus(callback) {
         this.cactus.forEach(callback.bind(this));   
@@ -517,29 +382,35 @@ export default class Level {
     }
 
     collidesWith(dino) {
-        //this function returns true if the the rectangles overlap
-        const platformCheck = (plat, dino) => {
+        const dino_y_offset = 60;
+
+        //this function returns true if the dino and plat objects overlap
+        const collisionCheck = (obj, dino) => {
             //check that they don't overlap in the x axis
-            if(plat.x > dino.x + dino.width || plat.x + plat.width < dino.x) {
+            if (obj.x > dino.x + dino.width || obj.x + obj.width < dino.x) {
                 return false;
             }
 
             //check that they don't overlap in the y axis
-            if (dino.y + 60 > plat.y + plat.height || dino.y + 60 < plat.y ) {
+            if (dino.y + dino_y_offset > obj.y + obj.height || dino.y + dino_y_offset < obj.y) {
                 return false;
             }
-            
+
             return true;
         };
-        
+
+        const cactus_x_offset = 20;
+        const cactus_y_offset = 25;
+
+        //this function returns true if the dino and cactuses overlap
         const cactusCheck = (cactus, dino) => {
             //check that they don't overlap in the x axis
-            if (cactus.x + 20 > dino.x + dino.width || cactus.x + cactus.width - 20 < dino.x) {
+            if (cactus.x + cactus_x_offset > dino.x + dino.width || cactus.x + cactus.width - cactus_x_offset < dino.x) {
                 return false;
             }
 
             //check that they don't overlap in the y axis
-            if (dino.y + 25 > cactus.y + cactus.height || dino.y + dino.height < cactus.y) {
+            if (dino.y + cactus_y_offset > cactus.y + cactus.height || dino.y + dino.height < cactus.y) {
                 return false;
             }
 
@@ -548,19 +419,22 @@ export default class Level {
 
         let collision = false;
 
+        // Checks for collision with dino and all platforms
         this.eachPlat((plat) => {
-            if (platformCheck(plat, dino)) { 
-                collision = true; 
-            } 
+            if (collisionCheck(plat, dino)) {
+                collision = true;
+            }
         });
 
+        // Checks for collision with dino and birds. Sets bird.pos = "dead" to change bird sprite to dead bird sprite
         this.eachBird((bird) => {
-            if (platformCheck(bird, dino)) {
+            if (collisionCheck(bird, dino)) {
                 collision = true;
                 bird.pos = "dead";
             }
         });
 
+        // Checks for collision with dino and cactus only after delay for cactus spawn
         this.eachCactus((cactus) => {
             if (cactus.timer > 55) {
                 if (cactusCheck(cactus, dino)) {
@@ -568,124 +442,9 @@ export default class Level {
                 }
             }
         });
-        
+
         return collision;
     }
-
-    // deathFromBirdCheck(dino) {
-    //     // const check = (bird, dino) => {
-    //     //     // let dinoTopBirdBottom = 
-    //     //     //     bird.y + CONSTANTS.BIRD_HEIGHT > dino.y &&
-    //     //     //     (bird.x < dino.x + dino.width || bird.x + CONSTANTS.BIRD_WIDTH > dino.x);
-
-    //     //     const adjustedHitboxBottom = 2;
-    //     //     const adjustedHitboxRight = 2;
-            
-    //     //     // if (bird.y + CONSTANTS.BIRD_HEIGHT - adjustedHitbox > dino.y) {
-    //     //     //     debugger
-    //     //     //     return true;
-    //     //     // }
-
-    //     //     let testCollision = 0;
-    //     //     let test1 = 0;
-    //     //     let test2 = 0;
-    //     //     let test3 = 0;
-    //     //     let test4 = 0;
-
-    //     //     if (bird.y + CONSTANTS.BIRD_HEIGHT - 25 > dino.y && dino.y > bird.y + CONSTANTS.BIRD_HEIGHT - 25) {
-    //     //         testCollision += 1; 
-    //     //         test1 += 1;
-    //     //     }
-
-    //     //     if (bird.x < dino.x + dino.width) {
-    //     //         testCollision += 1;
-    //     //         test2 += 1;
-    //     //     }
-
-    //     //     if (bird.x + CONSTANTS.BIRD_WIDTH > dino.x) {
-    //     //         testCollision += 1;
-    //     //         test3 += 1;
-    //     //     }
-
-    //     //     // if ( bird.y < (dino.y + 50) < bird.y + 60) {
-    //     //     //     test4 += 1;
-    //     //     //     testCollision += 1;
-    //     //     // }
-
-    //     //     // if (dinoTopBirdBottom) {
-    //     //     //     debugger
-    //     //     //     return true;
-    //     //     // }
-
-    //     //     if (testCollision === 3) {
-    //     //         debugger
-    //     //         console.log(test1,test2,test3,test4)
-    //     //         return true;
-    //     //     }
-
-    //     //     return false;
-    //     // };
-
-
-    //     const check = (bird, dino) => {
-
-    //         const adjustedHitboxRightOfBird = 10;
-
-    //         //check that they don't overlap in the x axis
-    //         if (bird.x + adjustedHitboxRightOfBird > dino.x + dino.width || bird.x + CONSTANTS.BIRD_WIDTH - adjustedHitboxRightOfBird < dino.x) {
-    //             return false;
-    //         }
-
-    //         //check that they don't overlap in the y axis
-    //         if (dino.y + 25 > bird.y + CONSTANTS.BIRD_HEIGHT || dino.y + dino.height < bird.y - 25) {
-    //             return false;
-    //         }
-
-    //         return true;
-    //     };
-    //     let collision = false;
-
-    //     this.eachBird((bird) => {
-    //         if (check(bird, dino)) {
-    //             collision = true;
-    //         } 
-    //         // return check(bird, dino);
-    //     });
-
-    //     return collision;
-    // }
-    
-    // animate(ctx) {
-    //     if (this.start_game === true) {
-    //         this.drawBackground(ctx);
-    //         this.drawClouds(ctx);
-    //         this.drawPlatforms(ctx);
-    //         this.drawCactus(ctx);
-    //         this.drawBirds(ctx);
-    //         this.movePlats();
-    //         this.moveBirds();
-    //         this.moveCactus();
-    //         this.moveClouds();
-    //         this.moveBorders();
-    //     }
-        
-    //     this.drawBorder(ctx);
-
-    //     if(this.title.length === 1) {
-    //         this.drawTitleScreen(ctx, this.title[0]);
-
-    //         // if (this.start_titleAnimation) { 
-    //             this.moveTitleScreen();
-    //         // }
-    //     }
-
-    // }
-
-    // borderMoveCheck() {
-    //     if(this.title.) {
-    //         return false;
-    //     }
-    // }
 
     animate(ctx) {
         this.drawBackground(ctx);
@@ -697,10 +456,5 @@ export default class Level {
         this.moveBirds();
         this.moveCactus();
         this.moveClouds();
-    //     this.drawBorder(ctx);
-
-    //     if (!this.pauseBorder) {
-    //         this.moveBorders();
-    //     }
     }
 }
