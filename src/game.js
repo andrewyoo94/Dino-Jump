@@ -6,7 +6,9 @@ const CONSTANTS = {
     SCORE_WIDTH: 20,
     BORDER_WIDTH: 37,
     BORDER_HEIGHT: 2385,
-    BORDER_SPEED: 3
+    BORDER_SPEED: 3,
+    CANVAS_HEIGHT: 640,
+    NEW_BORDER_Y_COORD: -2380
 };
 
 const scoreSprite = new Image();
@@ -149,16 +151,28 @@ export default class Game {
             border.y += CONSTANTS.BORDER_SPEED;
         });
 
-        //if top of border drops into frame push new border
-        if (this.borderLeft[0].y + 640 >= 640 && this.borderLeft.length < 2) {
-            this.borderLeft.push(this.newBorder("left", -2380));
-            this.borderRight.push(this.newBorder("right", -2380));
-        }
-
-        // if (this.borderRight[0].y + 640 >= 640 && this.borderRight.length < 2) {
+        // //if top of border drops into frame push new border
+        // if (this.borderLeft[0].y + 640 >= 640 && this.borderLeft.length < 2) {
+        //     this.borderLeft.push(this.newBorder("left", -2380));
+        //     this.borderRight.push(this.newBorder("right", -2380));
         // }
 
-        if (this.borderLeft[0].y >= 640) {
+        // // if (this.borderRight[0].y + 640 >= 640 && this.borderRight.length < 2) {
+        // // }
+
+        // if (this.borderLeft[0].y >= 640) {
+        //     this.borderLeft.shift();
+        //     this.borderRight.shift();
+        // }
+
+        // Pushes new border into the array when end of first border drops into frame
+        if (this.borderLeft[0].y >= 0 && this.borderLeft.length < 2) {
+            this.borderLeft.push(this.newBorder("left", CONSTANTS.NEW_BORDER_Y_COORD));
+            this.borderRight.push(this.newBorder("right", CONSTANTS.NEW_BORDER_Y_COORD));
+        }
+
+        // Shifts leading border out of array once its off screen
+        if (this.borderLeft[0].y >= CONSTANTS.CANVAS_HEIGHT) {
             this.borderLeft.shift();
             this.borderRight.shift();
         }
